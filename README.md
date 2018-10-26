@@ -1,5 +1,5 @@
 # GitHubReleaseNotes
-Generate Release Notes from GitHub using [Oktokit](https://github.com/octokit/octokit.net) and [LibGit2Sharp](https://github.com/libgit2/libgit2sharp).
+Generate Release Notes from GitHub using [Oktokit](https://github.com/octokit/octokit.net), [LibGit2Sharp](https://github.com/libgit2/libgit2sharp) and [DotLiquid](https://github.com/dotliquid/dotliquid).
 
 ## Information
 This project is based on [GitTools/GitReleaseNotes](https://github.com/GitTools/GitReleaseNotes).
