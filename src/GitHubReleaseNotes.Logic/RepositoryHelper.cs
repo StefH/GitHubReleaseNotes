@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using GitHubReleaseNotes.Models;
+using GitHubReleaseNotes.Logic.Models;
 using Octokit;
 
-namespace GitHubReleaseNotes
+namespace GitHubReleaseNotes.Logic
 {
-    internal static class RepositoryHelper
+    public static class RepositoryHelper
     {
         private static readonly Regex Regex = new Regex(@"^https:\/\/github.com\/(?<owner>.+)\/(?<project>.+).git$", RegexOptions.Compiled);
         private static readonly GitHubClient Client = new GitHubClient(new ProductHeaderValue("GitHubReleaseNotes"));

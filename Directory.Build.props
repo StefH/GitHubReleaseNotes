@@ -1,0 +1,18 @@
+<Project>
+  <PropertyGroup>
+    <MsBuildAllProjects>$(MsBuildAllProjects);$(MsBuildThisFileFullPath)</MsBuildAllProjects>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>1.0.0.0</Version>
+    <Description>Generate Release Notes from a GitHub project.</Description>
+    <Authors>Stef Heyenrath</Authors>
+    <Copyright>Stef Heyenrath</Copyright>
+    <PackageTags>release;releasenotes;notes;github;generate;oktokit;libgit2sharp;markdown</PackageTags>
+    <PackageReleaseNotes>See CHANGELOG.md</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/StefH/GitHubReleaseNotes</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/StefH/GitHubReleaseNotes/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/StefH/GitHubReleaseNotes</RepositoryUrl>
+  </PropertyGroup>
+</Project>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GitHubReleaseNotes.Models
+namespace GitHubReleaseNotes.Logic.Models
 {
     internal class ReleaseInfo
     {

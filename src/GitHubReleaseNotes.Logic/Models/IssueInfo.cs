@@ -1,4 +1,4 @@
-﻿namespace GitHubReleaseNotes.Models
+﻿namespace GitHubReleaseNotes.Logic.Models
 {
     internal class IssueInfo
     {

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using GitHubReleaseNotes.Logic;
 
 namespace GitHubReleaseNotes
 {
@@ -10,20 +10,9 @@ namespace GitHubReleaseNotes
             MainAsync(args).GetAwaiter().GetResult();
         }
 
-        private static async Task MainAsync(string[] args)
+        private static Task MainAsync(string[] args)
         {
-            var releaseInfos = await RepositoryHelper.GetReleaseInfoAsync(@"C:\Users\\StefHeyenrath\Documents\Github\WireMock.Net\.git");
-
-            foreach (var releaseInfo in releaseInfos)
-            {
-                Console.WriteLine(releaseInfo.FriendlyName);
-                Console.WriteLine(releaseInfo.When);
-                foreach (var issueInfo in releaseInfo.IssueInfos)
-                {
-                    Console.WriteLine("  " + issueInfo.ToString());
-                }
-                Console.WriteLine("");
-            }
+            return Generator.GenerateAsync(@"C:\Users\\StefHeyenrath\Documents\Github\WireMock.Net\.git");
         }
     }
 }
