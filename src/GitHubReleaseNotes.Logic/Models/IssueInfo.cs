@@ -2,7 +2,7 @@
 {
     internal class IssueInfo
     {
-        public int Id { get; set; }
+        public int Number { get; set; }
 
         public bool IsPulRequest { get; set; }
 
@@ -21,7 +21,7 @@
                 {
                     string extra = IsPulRequest ? $" contributed by [{User}]({UserUrl})" : "";
 
-                    return $"[#{Id}]({IssueUrl}) - {Title}{extra}";
+                    return $"[#{Number}]({IssueUrl}) - {Title}{extra}";
                 }
             }
         }

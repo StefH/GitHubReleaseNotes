@@ -15,66 +15,103 @@ namespace GitHubReleaseNotes.Logic
 
         internal static async Task<IEnumerable<ReleaseInfo>> GetReleaseInfoAsync(string path)
         {
-            using (var repo = new LibGit2Sharp.Repository(path))
+            var repo = new LibGit2Sharp.Repository(path);
+
+            var orderedReleaseInfos = GetOrderedReleaseInfos(repo);
+
+            (List<Issue> issuesFromProject, List<PullRequest> pullRequestsFromProject) = await GetAllIssuesAndPullRequestsAsync(repo);
+
+            // Loop all orderedReleaseInfos and add the correct Pull Requests and Issues
+            int idx = 0;
+            foreach (var releaseInfo in orderedReleaseInfos)
             {
-                (string owner, string project) = GetOwnerAndProduct(repo);
+                var previousReleaseInfo = idx > 0 ? orderedReleaseInfos[idx - 1] : null;
 
-                var orderedReleaseInfos = repo.Tags
-
-                    // Convert Tag into ReleaseInfo
-                    .Select(tag => new ReleaseInfo
-                    {
-                        Version = GetVersionAsLong(tag.FriendlyName) ?? 0,
-                        FriendlyName = tag.FriendlyName,
-                        When = tag.Target is LibGit2Sharp.Commit commit ? commit.Committer.When : DateTimeOffset.MinValue
-                    })
-
-                    // Skip invalid versions
-                    .Where(tag => tag.Version > 0)
-
-                    // Order by the version
-                    .OrderBy(tag => tag.Version)
-                    .ToList();
-
-                // Add the `next` version
-                orderedReleaseInfos.Add(new ReleaseInfo
+                // Process Issues
+                var issuesForThisTag = issuesFromProject.Where(issue => issue.ClosedAt < releaseInfo.When && (previousReleaseInfo == null || issue.ClosedAt > previousReleaseInfo.When));
+                var issueInfos = issuesForThisTag.Select(issue => new IssueInfo
                 {
-                    Version = long.MaxValue,
-                    FriendlyName = "next",
-                    When = DateTimeOffset.Now
+                    Number = issue.Number,
+                    IsPulRequest = false,
+                    IssueUrl = issue.HtmlUrl,
+                    Title = issue.Title,
+                    User = issue.User.Login,
+                    UserUrl = issue.User.HtmlUrl
                 });
 
-                // Do a request to GitHub using Octokit.GitHubClient
-                var closedIssuesRequest = new RepositoryIssueRequest
+                // Process PullRequests
+                var pullsForThisTag = pullRequestsFromProject.Where(pull => pull.ClosedAt < releaseInfo.When && (previousReleaseInfo == null || pull.ClosedAt > previousReleaseInfo.When));
+                var pullInfos = pullsForThisTag.Select(pull => new IssueInfo
                 {
-                    SortDirection = SortDirection.Ascending,
-                    Filter = IssueFilter.All,
-                    State = ItemStateFilter.Closed
-                };
-                var issuesFromProject = (await Client.Issue.GetAllForRepository(owner, project, closedIssuesRequest)).ToList();
+                    Number = pull.Number,
+                    IsPulRequest = true,
+                    IssueUrl = pull.HtmlUrl,
+                    Title = pull.Title,
+                    User = pull.User.Login,
+                    UserUrl = pull.User.HtmlUrl
+                });
 
-                // Loop all orderedReleaseInfos and add the correct Pull Requests and Issues
-                int idx = 0;
-                foreach (var releaseInfo in orderedReleaseInfos)
-                {
-                    var previousReleaseInfo = idx > 0 ? orderedReleaseInfos[idx - 1] : null;
-                    var issuesForThisTag = issuesFromProject.Where(issue => issue.ClosedAt < releaseInfo.When && (previousReleaseInfo == null || issue.ClosedAt > previousReleaseInfo.When));
+                var allIssues = issueInfos.Union(pullInfos).Distinct();
+                releaseInfo.IssueInfos = allIssues.OrderByDescending(issue => issue.IsPulRequest).ThenBy(issue => issue.Number).ToList();
 
-                    releaseInfo.IssueInfos = issuesForThisTag.Select(issue => new IssueInfo
-                    {
-                        Id = issue.Number,
-                        IsPulRequest = issue.PullRequest != null,
-                        IssueUrl = issue.HtmlUrl,
-                        Title = issue.Title,
-                        User = issue.User.Login,
-                        UserUrl = issue.User.HtmlUrl
-                    }).OrderByDescending(issue => issue.IsPulRequest).ThenBy(issue => issue.Id).ToList();
-
-                    idx++;
-                }
-
-                return orderedReleaseInfos.OrderByDescending(r => r.Version);
+                idx++;
             }
+
+            return orderedReleaseInfos.OrderByDescending(r => r.Version);
+        }
+
+        private static List<ReleaseInfo> GetOrderedReleaseInfos(LibGit2Sharp.Repository repo)
+        {
+            var orderedReleaseInfos = repo.Tags
+
+                // Convert Tag into ReleaseInfo
+                .Select(tag => new ReleaseInfo
+                {
+                    Version = GetVersionAsLong(tag.FriendlyName) ?? 0,
+                    FriendlyName = tag.FriendlyName,
+                    When = tag.Target is LibGit2Sharp.Commit commit ? commit.Committer.When : DateTimeOffset.MinValue
+                })
+
+                // Skip invalid versions
+                .Where(tag => tag.Version > 0)
+
+                // Order by the version
+                .OrderBy(tag => tag.Version)
+                .ToList();
+
+            // Add the `next` version
+            orderedReleaseInfos.Add(new ReleaseInfo
+            {
+                Version = long.MaxValue,
+                FriendlyName = "next",
+                When = DateTimeOffset.Now
+            });
+
+            return orderedReleaseInfos;
+        }
+
+        private static async Task<(List<Issue> Issues, List<PullRequest> PullRequests)> GetAllIssuesAndPullRequestsAsync(LibGit2Sharp.Repository repo)
+        {
+            (string owner, string project) = GetOwnerAndProduct(repo);
+
+            // Do a request to GitHub using Octokit.GitHubClient to get all Closed Issues
+            var closedIssuesRequest = new RepositoryIssueRequest
+            {
+                SortDirection = SortDirection.Ascending,
+                Filter = IssueFilter.All,
+                State = ItemStateFilter.Closed
+            };
+            var issuesFromProject = (await Client.Issue.GetAllForRepository(owner, project, closedIssuesRequest)).Where(issue => issue.PullRequest == null).ToList();
+
+            // Do a request to GitHub using Octokit.GitHubClient to get all Closed and Merged Pull Requests
+            var closedPullRequestsRequest = new PullRequestRequest
+            {
+                SortDirection = SortDirection.Ascending,
+                State = ItemStateFilter.Closed
+            };
+            var pullRequestsFromProject = (await Client.PullRequest.GetAllForRepository(owner, project, closedPullRequestsRequest)).Where(pull => pull.Merged).ToList();
+
+            return (issuesFromProject, pullRequestsFromProject);
         }
 
         private static (string owner, string project) GetOwnerAndProduct(LibGit2Sharp.Repository repo)
