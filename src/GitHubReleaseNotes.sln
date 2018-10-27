@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubReleaseNotes", "GitHubReleaseNotes\GitHubReleaseNotes.csproj", "{B6269AAC-170A-43D0-8B9B-579DED3D9A95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubReleaseNotes", "GitHubReleaseNotes\GitHubReleaseNotes.csproj", "{B6269AAC-170A-43D0-8B9B-579DED3D9A00}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EF77BB40-C919-4644-81A3-968854FB9B23}"
 EndProject
@@ -15,10 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{5B560300-4B76-4FFF-8B7B-D0F52972A2F5}"
 	ProjectSection(SolutionItems) = preProject
+		..\examples\System.Linq.Dynamic.Core.md = ..\examples\System.Linq.Dynamic.Core.md
 		..\examples\WireMock-Net.md = ..\examples\WireMock-Net.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubReleaseNotes.Logic", "GitHubReleaseNotes.Logic\GitHubReleaseNotes.Logic.csproj", "{7DE1725A-15FD-426E-B24E-6F2E9992F669}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubReleaseNotes.Logic", "GitHubReleaseNotes.Logic\GitHubReleaseNotes.Logic.csproj", "{B6269AAC-170A-43D0-8B9B-579DED3D9A99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,21 +27,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B6269AAC-170A-43D0-8B9B-579DED3D9A95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B6269AAC-170A-43D0-8B9B-579DED3D9A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B6269AAC-170A-43D0-8B9B-579DED3D9A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B6269AAC-170A-43D0-8B9B-579DED3D9A95}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7DE1725A-15FD-426E-B24E-6F2E9992F669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7DE1725A-15FD-426E-B24E-6F2E9992F669}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7DE1725A-15FD-426E-B24E-6F2E9992F669}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7DE1725A-15FD-426E-B24E-6F2E9992F669}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6269AAC-170A-43D0-8B9B-579DED3D9A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6269AAC-170A-43D0-8B9B-579DED3D9A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6269AAC-170A-43D0-8B9B-579DED3D9A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6269AAC-170A-43D0-8B9B-579DED3D9A00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6269AAC-170A-43D0-8B9B-579DED3D9A99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6269AAC-170A-43D0-8B9B-579DED3D9A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6269AAC-170A-43D0-8B9B-579DED3D9A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6269AAC-170A-43D0-8B9B-579DED3D9A99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B6269AAC-170A-43D0-8B9B-579DED3D9A95} = {EF77BB40-C919-4644-81A3-968854FB9B23}
-		{7DE1725A-15FD-426E-B24E-6F2E9992F669} = {EF77BB40-C919-4644-81A3-968854FB9B23}
+		{B6269AAC-170A-43D0-8B9B-579DED3D9A00} = {EF77BB40-C919-4644-81A3-968854FB9B23}
+		{B6269AAC-170A-43D0-8B9B-579DED3D9A99} = {EF77BB40-C919-4644-81A3-968854FB9B23}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A791AAB-CF55-4174-A6B7-C2AC7E7DECB2}

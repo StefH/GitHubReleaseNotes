@@ -16,7 +16,7 @@
 
         public override string ToString()
         {
-            string extra = IsPulRequest ? $" PR contributed by [{User}]({UserUrl})" : "";
+            string extra = IsPulRequest ? $" contributed by [{User}]({UserUrl})" : "";
 
             return $"- [#{Id}]({IssueUrl}) - {Title}{extra}";
         }

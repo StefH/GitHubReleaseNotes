@@ -19,16 +19,30 @@ namespace GitHubReleaseNotes.Logic
             {
                 (string owner, string project) = GetOwnerAndProduct(repo);
 
-                var orderedTags = repo.Tags
-                    .Select(tag => new
+                var orderedReleaseInfos = repo.Tags
+
+                    // Convert Tag into ReleaseInfo
+                    .Select(tag => new ReleaseInfo
                     {
-                        Version = GetVersionAsLong(tag.FriendlyName),
-                        tag.FriendlyName,
+                        Version = GetVersionAsLong(tag.FriendlyName) ?? 0,
+                        FriendlyName = tag.FriendlyName,
                         When = tag.Target is LibGit2Sharp.Commit commit ? commit.Committer.When : DateTimeOffset.MinValue
                     })
-                    .Where(tag => tag.Version != null)
+
+                    // Skip invalid versions
+                    .Where(tag => tag.Version > 0)
+
+                    // Order by the version
                     .OrderBy(tag => tag.Version)
-                    .ToArray();
+                    .ToList();
+
+                // Add the `next` vesion
+                orderedReleaseInfos.Add(new ReleaseInfo
+                {
+                    Version = long.MaxValue,
+                    FriendlyName = "next",
+                    When = DateTimeOffset.Now
+                });
 
                 // Do a request to GitHub using Octokit.GitHubClient
                 var closedIssuesRequest = new RepositoryIssueRequest
@@ -39,34 +53,27 @@ namespace GitHubReleaseNotes.Logic
                 };
                 var issuesFromProject = (await Client.Issue.GetAllForRepository(owner, project, closedIssuesRequest)).ToList();
 
-                var releaseInfos = new ReleaseInfo[orderedTags.Length];
+                // Loop all orderedReleaseInfos and add the correct Pull Requests and Issues
                 int idx = 0;
-                foreach (var tag in orderedTags)
+                foreach (var releaseInfo in orderedReleaseInfos)
                 {
-                    var previousReleaseInfo = idx > 0 ? releaseInfos[idx - 1] : null;
-                    var issuesForThisTag = issuesFromProject.Where(issue => issue.ClosedAt < tag.When && (previousReleaseInfo == null || issue.ClosedAt > previousReleaseInfo.When));
+                    var previousReleaseInfo = idx > 0 ? orderedReleaseInfos[idx - 1] : null;
+                    var issuesForThisTag = issuesFromProject.Where(issue => issue.ClosedAt < releaseInfo.When && (previousReleaseInfo == null || issue.ClosedAt > previousReleaseInfo.When));
 
-                    var releaseInfo = new ReleaseInfo
+                    releaseInfo.IssueInfos = issuesForThisTag.Select(issue => new IssueInfo
                     {
-                        Version = tag.Version,
-                        FriendlyName = tag.FriendlyName,
-                        When = tag.When,
-                        IssueInfos = issuesForThisTag.Select(issue => new IssueInfo
-                        {
-                            Id = issue.Number,
-                            IsPulRequest = issue.PullRequest != null,
-                            IssueUrl = issue.HtmlUrl,
-                            Title = issue.Title,
-                            User = issue.User.Login,
-                            UserUrl = issue.User.HtmlUrl
-                        }).OrderByDescending(issue => issue.IsPulRequest).ThenBy(issue => issue.Id).ToList()
-                    };
+                        Id = issue.Number,
+                        IsPulRequest = issue.PullRequest != null,
+                        IssueUrl = issue.HtmlUrl,
+                        Title = issue.Title,
+                        User = issue.User.Login,
+                        UserUrl = issue.User.HtmlUrl
+                    }).OrderByDescending(issue => issue.IsPulRequest).ThenBy(issue => issue.Id).ToList();
 
-                    releaseInfos[idx] = releaseInfo;
                     idx++;
                 }
 
-                return releaseInfos.OrderByDescending(r => r.Version);
+                return orderedReleaseInfos.OrderByDescending(r => r.Version);
             }
         }
 

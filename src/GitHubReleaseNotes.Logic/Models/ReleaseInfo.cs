@@ -5,7 +5,7 @@ namespace GitHubReleaseNotes.Logic.Models
 {
     internal class ReleaseInfo
     {
-        public long? Version { get; set; }
+        public long Version { get; set; }
 
         public string FriendlyName { get; set; }
 

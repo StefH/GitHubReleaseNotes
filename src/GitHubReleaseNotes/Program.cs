@@ -12,7 +12,8 @@ namespace GitHubReleaseNotes
 
         private static Task MainAsync(string[] args)
         {
-            return Generator.GenerateAsync(@"C:\Users\\StefHeyenrath\Documents\Github\WireMock.Net\.git");
+            return Generator.GenerateAsync(@"C:\Users\\StefHeyenrath\Documents\Github\System.Linq.Dynamic.Core\.git");
+            // return Generator.GenerateAsync(@"C:\Users\\StefHeyenrath\Documents\Github\WireMock.Net\.git");
         }
     }
 }
