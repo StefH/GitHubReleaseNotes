@@ -10,16 +10,18 @@ namespace GitHubReleaseNotes.Logic
 {
     public static class RepositoryHelper
     {
-        private static readonly Regex Regex = new Regex(@"^https:\/\/github.com\/(?<owner>.+)\/(?<project>.+).git$", RegexOptions.Compiled);
         private static readonly GitHubClient Client = new GitHubClient(new ProductHeaderValue("GitHubReleaseNotes"));
 
-        internal static async Task<IEnumerable<ReleaseInfo>> GetReleaseInfoAsync(string path)
+        internal static async Task<IEnumerable<ReleaseInfo>> GetReleaseInfoAsync(string repositoryPath)
         {
-            var repo = new LibGit2Sharp.Repository(path);
+            var repo = new LibGit2Sharp.Repository(repositoryPath);
+            string url = repo.Network.Remotes.First(r => r.Name == "origin").Url;
 
+            Console.WriteLine($"Analyzing Git Repository at '{repositoryPath}'");
             var orderedReleaseInfos = GetOrderedReleaseInfos(repo);
 
-            (List<Issue> issuesFromProject, List<PullRequest> pullRequestsFromProject) = await GetAllIssuesAndPullRequestsAsync(repo);
+            Console.WriteLine($"Getting Issues and PullRequest from '{url}'");
+            (List<Issue> issuesFromProject, List<PullRequest> pullRequestsFromProject) = await GetAllIssuesAndPullRequestsAsync(url);
 
             // Loop all orderedReleaseInfos and add the correct Pull Requests and Issues
             int idx = 0;
@@ -90,9 +92,9 @@ namespace GitHubReleaseNotes.Logic
             return orderedReleaseInfos;
         }
 
-        private static async Task<(List<Issue> Issues, List<PullRequest> PullRequests)> GetAllIssuesAndPullRequestsAsync(LibGit2Sharp.Repository repo)
+        private static async Task<(List<Issue> Issues, List<PullRequest> PullRequests)> GetAllIssuesAndPullRequestsAsync(string url)
         {
-            (string owner, string project) = GetOwnerAndProduct(repo);
+            (string owner, string project) = GetOwnerAndProject(url);
 
             // Do a request to GitHub using Octokit.GitHubClient to get all Closed Issues
             var closedIssuesRequest = new RepositoryIssueRequest
@@ -114,11 +116,10 @@ namespace GitHubReleaseNotes.Logic
             return (issuesFromProject, pullRequestsFromProject);
         }
 
-        private static (string owner, string project) GetOwnerAndProduct(LibGit2Sharp.Repository repo)
+        private static (string owner, string project) GetOwnerAndProject(string url)
         {
-            string url = repo.Network.Remotes.First(r => r.Name == "origin").Url;
-
-            return (Regex.Match(url).Groups["owner"].Value, Regex.Match(url).Groups["project"].Value);
+            var regex = new Regex(@"^https:\/\/github.com\/(?<owner>.+)\/(?<project>.+).git$", RegexOptions.Compiled);
+            return (regex.Match(url).Groups["owner"].Value, regex.Match(url).Groups["project"].Value);
         }
 
         private static long? GetVersionAsLong(string friendlyName)

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using GitHubReleaseNotes.Logic;
 
 namespace GitHubReleaseNotes
@@ -12,8 +13,13 @@ namespace GitHubReleaseNotes
 
         private static Task MainAsync(string[] args)
         {
-            return Generator.GenerateAsync(@"C:\Users\\StefHeyenrath\Documents\Github\System.Linq.Dynamic.Core\.git");
-            // return Generator.GenerateAsync(@"C:\Users\\StefHeyenrath\Documents\Github\WireMock.Net\.git");
+            var parser = new SimpleCommandLineParser();
+            parser.Parse(args);
+
+            string repositoryPath = Path.Combine(parser.GetStringValue("path", string.Empty), ".git");
+            string outputFile = parser.GetStringValue("output");
+
+            return Generator.GenerateAsync(repositoryPath, outputFile);
         }
     }
 }

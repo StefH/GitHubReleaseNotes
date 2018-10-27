@@ -95,7 +95,7 @@
 - [#129](https://github.com/StefH/System.Linq.Dynamic.Core/issues/129) - ToDynamicList/ToDynamicArray cannot actually cast to specified type in .net core 2
 - [#131](https://github.com/StefH/System.Linq.Dynamic.Core/issues/131) - Adding LIKE operator for EF6
 - [#132](https://github.com/StefH/System.Linq.Dynamic.Core/issues/132) - System.Linq.Dynamic.Core.Exceptions.ParseException in IQueryable&lt;object&gt; filled with anonymous type
-- [#133](https://github.com/StefH/System.Linq.Dynamic.Core/issues/133) - Possibility to parse an Expression&lt;T, bool&gt; to a valid expression string
+- [#133](https://github.com/StefH/System.Linq.Dynamic.Core/issues/133) - Possibility to parse an Expression&lt;T, bool&gt; to a valid expression string 
 - [#134](https://github.com/StefH/System.Linq.Dynamic.Core/issues/134) - Accessing DbGeography methods/properties
 
 # 1.0.8.0 (16 December 2017)
@@ -151,7 +151,7 @@
 - [#7](https://github.com/StefH/System.Linq.Dynamic.Core/issues/7) - Add SelectMany with resultSelector
 - [#9](https://github.com/StefH/System.Linq.Dynamic.Core/issues/9) - Add Null-coalescing operator support
 - [#10](https://github.com/StefH/System.Linq.Dynamic.Core/issues/10) - Support explicit integer qualifiers
-- [#11](https://github.com/StefH/System.Linq.Dynamic.Core/issues/11) - IN does not support negative and parse of negative integers with qualifiers.
+- [#11](https://github.com/StefH/System.Linq.Dynamic.Core/issues/11) - IN does not support negative and parse of negative integers with qualifiers. 
 - [#12](https://github.com/StefH/System.Linq.Dynamic.Core/issues/12) - parsing negative float or double with qualifier
 - [#13](https://github.com/StefH/System.Linq.Dynamic.Core/issues/13) - Add isnull sql function &quot;isnull(a, b)&quot;
 - [#14](https://github.com/StefH/System.Linq.Dynamic.Core/issues/14) - Ampersand can be used both as logical And or as vb-like concatenation operator
@@ -175,7 +175,7 @@
 - [#32](https://github.com/StefH/System.Linq.Dynamic.Core/issues/32) - When same dynamic class is first used in Linq2Entities, it's reused for Linq2Sql
 - [#33](https://github.com/StefH/System.Linq.Dynamic.Core/issues/33) - Package 1.0.6.3 install fails for UWP App
 - [#34](https://github.com/StefH/System.Linq.Dynamic.Core/issues/34) - Support for netcoreapp1.0?
-- [#35](https://github.com/StefH/System.Linq.Dynamic.Core/issues/35) - Compatibility with System.Linq.Dynamic.Library
+- [#35](https://github.com/StefH/System.Linq.Dynamic.Core/issues/35) - Compatibility with System.Linq.Dynamic.Library 
 - [#36](https://github.com/StefH/System.Linq.Dynamic.Core/issues/36) - CreateClass Equivalent?
 - [#40](https://github.com/StefH/System.Linq.Dynamic.Core/issues/40) - Add strong naming from library
 - [#42](https://github.com/StefH/System.Linq.Dynamic.Core/issues/42) - Microsoft.EntityFrameworkCore.DynamicLinq - ToListAsync()?
@@ -218,4 +218,5 @@
 - [#101](https://github.com/StefH/System.Linq.Dynamic.Core/issues/101) - Question: OrderBy does not work with navigation properties
 - [#102](https://github.com/StefH/System.Linq.Dynamic.Core/issues/102) - Aggregate method does not work with Average function
 - [#104](https://github.com/StefH/System.Linq.Dynamic.Core/issues/104) - Add PDB to nuget package
-- [#106](https://github.com/StefH/System.Linq.Dynamic.Core/issues/106) - Using both System.Linq and System.Linq.Dynamic.Core
+- [#106](https://github.com/StefH/System.Linq.Dynamic.Core/issues/106) - Using both System.Linq and System.Linq.Dynamic.Core 
+
