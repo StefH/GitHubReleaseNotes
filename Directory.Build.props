@@ -6,9 +6,11 @@
   <PropertyGroup>
     <Version>1.0.0.0</Version>
     <Description>Generate Release Notes from a GitHub project.</Description>
+    <Summary>Generate Release Notes from a GitHub project.</Summary>
     <Authors>Stef Heyenrath</Authors>
+    <Owners>Stef Heyenrath</Owners>
     <Copyright>Stef Heyenrath</Copyright>
-    <PackageTags>release;releasenotes;notes;github;generate;oktokit;libgit2sharp;markdown</PackageTags>
+    <PackageTags>GitHubReleaseNotes;Release;ReleaseNotes;Notes;GitHub;Generate;Octokit;libgit2sharp;MarkDown;Project</PackageTags>
     <PackageReleaseNotes>See CHANGELOG.md</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/StefH/GitHubReleaseNotes</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/StefH/GitHubReleaseNotes/master/LICENSE</PackageLicenseUrl>
