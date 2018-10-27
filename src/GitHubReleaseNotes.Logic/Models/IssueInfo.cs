@@ -14,11 +14,16 @@
 
         public string UserUrl { get; set; }
 
-        public override string ToString()
+        public string Text
         {
-            string extra = IsPulRequest ? $" contributed by [{User}]({UserUrl})" : "";
+            get
+            {
+                {
+                    string extra = IsPulRequest ? $" contributed by [{User}]({UserUrl})" : "";
 
-            return $"- [#{Id}]({IssueUrl}) - {Title}{extra}";
+                    return $"[#{Id}]({IssueUrl}) - {Title}{extra}";
+                }
+            }
         }
     }
 }

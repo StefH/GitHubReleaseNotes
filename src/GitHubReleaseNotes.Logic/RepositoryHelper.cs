@@ -36,7 +36,7 @@ namespace GitHubReleaseNotes.Logic
                     .OrderBy(tag => tag.Version)
                     .ToList();
 
-                // Add the `next` vesion
+                // Add the `next` version
                 orderedReleaseInfos.Add(new ReleaseInfo
                 {
                     Version = long.MaxValue,
