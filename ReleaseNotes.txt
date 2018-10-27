@@ -1,0 +1,1 @@
+.\src\GitHubReleaseNotes\bin\Release\net452\GitHubReleaseNotes.exe --output ReleaseNotes.md
