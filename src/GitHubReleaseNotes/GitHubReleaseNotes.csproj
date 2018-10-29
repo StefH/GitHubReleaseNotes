@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net452</TargetFramework>
     <ProjectGuid>{B6269AAC-170A-43D0-8B9B-579DED3D9A00}</ProjectGuid>
+    <StartupObject>GitHubReleaseNotes.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

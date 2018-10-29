@@ -4,7 +4,7 @@ using GitHubReleaseNotes.Logic;
 
 namespace GitHubReleaseNotes
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {
@@ -13,13 +13,23 @@ namespace GitHubReleaseNotes
 
         private static Task MainAsync(string[] args)
         {
+            var configuration = ParseConfiguration(args);
+
+            return Generator.GenerateAsync(configuration);
+        }
+
+        private static Configuration ParseConfiguration(string[] args)
+        {
             var parser = new SimpleCommandLineParser();
             parser.Parse(args);
 
-            string repositoryPath = Path.Combine(parser.GetStringValue("path", string.Empty), ".git");
-            string outputFile = parser.GetStringValue("output");
-
-            return Generator.GenerateAsync(repositoryPath, outputFile);
+            return new Configuration
+            {
+                RepositoryPath = Path.Combine(parser.GetStringValue("path", string.Empty), ".git"),
+                OutputFile = parser.GetStringValue("output"),
+                Language = parser.GetStringValue("language", "en"),
+                Version = parser.GetStringValue("version")
+            };
         }
     }
 }

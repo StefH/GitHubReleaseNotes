@@ -6,16 +6,16 @@ namespace GitHubReleaseNotes.Logic
 {
     public static class Generator
     {
-        public static async Task GenerateAsync(string repositoryPath, string outputFile = null)
+        public static async Task GenerateAsync(Configuration configuration)
         {
-            var releaseInfos = await RepositoryHelper.GetReleaseInfoAsync(repositoryPath);
+            var releaseInfos = await RepositoryHelper.GetReleaseInfoAsync(configuration);
 
             string result = HandleBarsHelper.Generate(releaseInfos);
 
-            if (!string.IsNullOrEmpty(outputFile))
+            if (!string.IsNullOrEmpty(configuration.OutputFile))
             {
-                Console.WriteLine($"Writing Release Notes to '{new FileInfo(outputFile).FullName}'");
-                File.WriteAllText(outputFile, result);
+                Console.WriteLine($"Writing Release Notes to '{new FileInfo(configuration.OutputFile).FullName}'");
+                File.WriteAllText(configuration.OutputFile, result);
             }
             else
             {

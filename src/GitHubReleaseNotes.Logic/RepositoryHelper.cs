@@ -14,12 +14,12 @@ namespace GitHubReleaseNotes.Logic
 
         private static readonly GitHubClient Client = new GitHubClient(new ProductHeaderValue("GitHubReleaseNotes"));
 
-        internal static async Task<IEnumerable<ReleaseInfo>> GetReleaseInfoAsync(string repositoryPath)
+        internal static async Task<IEnumerable<ReleaseInfo>> GetReleaseInfoAsync(Configuration configuration)
         {
-            var repo = new LibGit2Sharp.Repository(repositoryPath);
+            var repo = new LibGit2Sharp.Repository(configuration.RepositoryPath);
             string url = repo.Network.Remotes.First(r => r.Name == "origin").Url;
 
-            Console.WriteLine($"Analyzing Git Repository at '{repositoryPath}'");
+            Console.WriteLine($"Analyzing Git Repository at '{configuration.RepositoryPath}'");
             var orderedReleaseInfos = GetOrderedReleaseInfos(repo);
 
             Console.WriteLine($"Getting Issues and PullRequests from '{url}'");
