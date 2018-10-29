@@ -1,4 +1,4 @@
-# next (27 October 2018)
+# next (29 October 2018)
 - [#207](https://github.com/WireMock-Net/WireMock.Net/pull/207) - Rewrite some unit-integration-tests to unit-tests (#206) contributed by [StefH](https://github.com/StefH)
 - [#208](https://github.com/WireMock-Net/WireMock.Net/pull/208) - Refactor contributed by [StefH](https://github.com/StefH)
 - [#209](https://github.com/WireMock-Net/WireMock.Net/pull/209) - NET Core 2.1 + support for Service Fabric commandline parameters contributed by [StefH](https://github.com/StefH)
@@ -189,12 +189,12 @@
 - [#91](https://github.com/WireMock-Net/WireMock.Net/issues/91) - Bug: WireMock.Net is not matching application/json http requests using JSONPathMatcher
 
 # 1.0.3.2 (14 February 2018)
-- [#89](https://github.com/WireMock-Net/WireMock.Net/pull/89) - Add log4net logging contributed by [StefH](https://github.com/StefH)
 - [#90](https://github.com/WireMock-Net/WireMock.Net/pull/90) - Concurrent issue (#88) contributed by [StefH](https://github.com/StefH)
-- [#87](https://github.com/WireMock-Net/WireMock.Net/issues/87) - Feature: Add logging
 - [#88](https://github.com/WireMock-Net/WireMock.Net/issues/88) - Bug: Standalone server throws 500 error when receiving concurrent requests
 
 # 1.0.3.1 (14 February 2018)
+- [#89](https://github.com/WireMock-Net/WireMock.Net/pull/89) - Add log4net logging contributed by [StefH](https://github.com/StefH)
+- [#87](https://github.com/WireMock-Net/WireMock.Net/issues/87) - Feature: Add logging
 
 # 1.0.3.0 (05 February 2018)
 - [#80](https://github.com/WireMock-Net/WireMock.Net/issues/80) - Feature: When using proxy, in case Content-Type is JSON, use BodyAsJson in Response
