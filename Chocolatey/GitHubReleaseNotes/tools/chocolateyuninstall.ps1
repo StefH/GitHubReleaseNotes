@@ -1,1 +1,1 @@
-Remove-BinFile "grn" "$packageFolder\Tools\GitHubReleaseNotes.exe"
+Remove-BinFile "ghrn" "$packageFolder\Tools\GitHubReleaseNotes.exe"

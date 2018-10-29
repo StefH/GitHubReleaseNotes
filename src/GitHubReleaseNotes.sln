@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{EC3EE34B
 	ProjectSection(SolutionItems) = preProject
 		..\Chocolatey\GitHubReleaseNotes\tools\chocolateyinstall.ps1 = ..\Chocolatey\GitHubReleaseNotes\tools\chocolateyinstall.ps1
 		..\Chocolatey\GitHubReleaseNotes\tools\chocolateyuninstall.ps1 = ..\Chocolatey\GitHubReleaseNotes\tools\chocolateyuninstall.ps1
+		..\Chocolatey\GitHubReleaseNotes\tools\LICENSE.txt = ..\Chocolatey\GitHubReleaseNotes\tools\LICENSE.txt
+		..\Chocolatey\GitHubReleaseNotes\tools\VERIFICATION.txt = ..\Chocolatey\GitHubReleaseNotes\tools\VERIFICATION.txt
 	EndProjectSection
 EndProject
 Global

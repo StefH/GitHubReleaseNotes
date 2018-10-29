@@ -10,6 +10,7 @@
     <Authors>Stef Heyenrath</Authors>
     <Owners>Stef Heyenrath</Owners>
     <Copyright>Stef Heyenrath</Copyright>
+    <PackageIconUrl>https://raw.githubusercontent.com/StefH/GitHubReleaseNotes/master/icon.png</PackageIconUrl>
     <PackageTags>GitHubReleaseNotes;Release;ReleaseNotes;Notes;GitHub;Generate;Octokit;libgit2sharp;MarkDown;Project</PackageTags>
     <PackageReleaseNotes>See CHANGELOG.md</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/StefH/GitHubReleaseNotes</PackageProjectUrl>
