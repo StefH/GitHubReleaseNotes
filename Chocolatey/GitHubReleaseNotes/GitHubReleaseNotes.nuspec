@@ -38,15 +38,15 @@ This is a nuspec. It mostly adheres to https://docs.nuget.org/create/Nuspec-Refe
     <authors>Stef Heyenrath</authors>
     <!-- projectUrl is required for the community feed -->
     <projectUrl>https://github.com/StefH/GitHubReleaseNotes</projectUrl>
-    <!-- <iconurl>http://cdn.rawgit.com/https://github.com/stefh/githubreleasenotes/master/icons/icon.png</iconurl> -->
+    <iconUrl>https://raw.githubusercontent.com/StefH/GitHubReleaseNotes/master/icon.png</iconUrl>
     <copyright>2018 Stef Heyenrath</copyright>
     <!-- If there is a license Url available, it is required for the community feed -->
     <licenseUrl>https://raw.githubusercontent.com/StefH/GitHubReleaseNotes/master/LICENSE</licenseUrl>
     <!--<requireLicenseAcceptance>true</requireLicenseAcceptance>-->
-    <!--<projectSourceUrl>https://github.com/StefH/GitHubReleaseNotes</projectSourceUrl>-->
+    <projectSourceUrl>https://github.com/StefH/GitHubReleaseNotes</projectSourceUrl>
     <!--<docsUrl>At what url are the software docs located?</docsUrl>-->
     <!--<mailingListUrl></mailingListUrl>-->
-    <!--<bugTrackerUrl>https://github.com/StefH/GitHubReleaseNotes/issues</bugTrackerUrl>-->
+    <bugTrackerUrl>https://github.com/StefH/GitHubReleaseNotes/issues</bugTrackerUrl>
     <tags>GitHubReleaseNotes Release ReleaseNotes Notes GitHub Generate Octokit libgit2sharp MarkDown Project</tags>
     <summary>Generate Release Notes from a GitHub project.</summary>
     <description>Generate Release Notes from a GitHub project.</description>
@@ -74,6 +74,7 @@ This is a nuspec. It mostly adheres to https://docs.nuget.org/create/Nuspec-Refe
   </metadata>
   <files>
     <!-- this section controls what actually gets packaged into the Chocolatey package -->
+    <file src="tools\**" target="tools" />
     <file src="..\..\ReleaseNotes.md" target="tools" />
     <file src="..\..\src\GitHubReleaseNotes\bin\Release\net452\GitHubReleaseNotes.exe" target="tools" />
     <!--Building from Linux? You may need this instead: <file src="tools/**" target="tools" />-->

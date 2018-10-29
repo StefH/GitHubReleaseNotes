@@ -1,1 +1,1 @@
-Generate-BinFile "grn" "$packageFolder\Tools\GitHubReleaseNotes.exe"
+Generate-BinFile "ghrn" "$packageFolder\Tools\GitHubReleaseNotes.exe"
