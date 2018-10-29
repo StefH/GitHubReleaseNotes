@@ -10,6 +10,8 @@ namespace GitHubReleaseNotes.Logic
 {
     public static class RepositoryHelper
     {
+        private const int deltaSeconds = 30;
+
         private static readonly GitHubClient Client = new GitHubClient(new ProductHeaderValue("GitHubReleaseNotes"));
 
         internal static async Task<IEnumerable<ReleaseInfo>> GetReleaseInfoAsync(string repositoryPath)
@@ -20,17 +22,19 @@ namespace GitHubReleaseNotes.Logic
             Console.WriteLine($"Analyzing Git Repository at '{repositoryPath}'");
             var orderedReleaseInfos = GetOrderedReleaseInfos(repo);
 
-            Console.WriteLine($"Getting Issues and PullRequest from '{url}'");
+            Console.WriteLine($"Getting Issues and PullRequests from '{url}'");
             (List<Issue> issuesFromProject, List<PullRequest> pullRequestsFromProject) = await GetAllIssuesAndPullRequestsAsync(url);
 
             // Loop all orderedReleaseInfos and add the correct Pull Requests and Issues
             int idx = 0;
             foreach (var releaseInfo in orderedReleaseInfos)
             {
-                var previousReleaseInfo = idx > 0 ? orderedReleaseInfos[idx - 1] : null;
+                bool issueTimeIsLessThenReleaseTime(DateTimeOffset releaseTime, DateTimeOffset? issueClosedTime) => issueClosedTime < releaseTime.AddSeconds(deltaSeconds);
+                bool issueTimeIsGreaterThenPreviousReleaseTime(DateTimeOffset? issueClosedTime) => idx > 0 ? issueClosedTime > orderedReleaseInfos[idx - 1].When.AddSeconds(deltaSeconds) : true;
+                bool issueLinkedToRelease(DateTimeOffset? issueClosedAtTime) => issueTimeIsLessThenReleaseTime(releaseInfo.When, issueClosedAtTime) && issueTimeIsGreaterThenPreviousReleaseTime(issueClosedAtTime);
 
                 // Process Issues
-                var issuesForThisTag = issuesFromProject.Where(issue => issue.ClosedAt < releaseInfo.When && (previousReleaseInfo == null || issue.ClosedAt > previousReleaseInfo.When));
+                var issuesForThisTag = issuesFromProject.Where(issue => issueLinkedToRelease(issue.ClosedAt));
                 var issueInfos = issuesForThisTag.Select(issue => new IssueInfo
                 {
                     Number = issue.Number,
@@ -42,7 +46,7 @@ namespace GitHubReleaseNotes.Logic
                 });
 
                 // Process PullRequests
-                var pullsForThisTag = pullRequestsFromProject.Where(pull => pull.ClosedAt < releaseInfo.When && (previousReleaseInfo == null || pull.ClosedAt > previousReleaseInfo.When));
+                var pullsForThisTag = pullRequestsFromProject.Where(issue => issueLinkedToRelease(issue.ClosedAt));
                 var pullInfos = pullsForThisTag.Select(pull => new IssueInfo
                 {
                     Number = pull.Number,
@@ -126,7 +130,7 @@ namespace GitHubReleaseNotes.Logic
         {
             if (Version.TryParse(friendlyName, out Version version))
             {
-                return version.Major * 1000000000L + version.Minor * 1000000L + version.Build * 1000L + version.Revision;
+                return version.Major * 1000000000L + version.Minor * 1000000L + version.Build * 1000L + (version.Revision > 0 ? version.Revision : 0);
             }
 
             return null;
