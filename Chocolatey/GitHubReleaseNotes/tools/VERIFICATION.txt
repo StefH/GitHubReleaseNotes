@@ -1,7 +1,16 @@
 ﻿VERIFICATION
 
-Author:  Stef Heyenrath
-Version: 1.0.1.0
-Name:    GitHubReleaseNotes.exe
-Size:    1060864 bytes (1 MB)
-SHA256:  D83FDE65162707927DF967A1617FFBCC7B9E73A17A5A74B58CDE9EB165ED7592
+To verify this package, follow these steps:
+
+1] Right click the GitHubReleaseNotes.exe in Windows file explorer and go to the "Details" tab and check the following properties:
+   - File version		1.0.2.0
+   - Product name		GitHubReleaseNotes
+   - Copyright			Stef Heyenrath
+   - Size				1.01 MB
+   - Original filename	GitHubReleaseNotes.exe
+
+2] Verify the SHA256 from the GitHubReleaseNotes.exe file (7zip can be used for this)
+   - SHA256				D83FDE65162707927DF967A1617FFBCC7B9E73A17A5A74B58CDE9EB165ED7592
+
+
+Note that this application is build with the .NET 4.5.2 framework and uses Fody and Fody.Costura to include all dependencies to generate a single exe file.
