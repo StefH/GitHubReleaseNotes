@@ -1,4 +1,4 @@
-# next (29 October 2018)
+# 1.0.4.18 (30 October 2018)
 - [#207](https://github.com/WireMock-Net/WireMock.Net/pull/207) - Rewrite some unit-integration-tests to unit-tests (#206) contributed by [StefH](https://github.com/StefH)
 - [#208](https://github.com/WireMock-Net/WireMock.Net/pull/208) - Refactor contributed by [StefH](https://github.com/StefH)
 - [#209](https://github.com/WireMock-Net/WireMock.Net/pull/209) - NET Core 2.1 + support for Service Fabric commandline parameters contributed by [StefH](https://github.com/StefH)
@@ -150,8 +150,6 @@
 - [#113](https://github.com/WireMock-Net/WireMock.Net/issues/113) - Feature: Add BodyAsJsonIndented for response message
 - [#114](https://github.com/WireMock-Net/WireMock.Net/issues/114) - Feature: Add PathSegments in Transform
 
-# 1.0.3.13 (24 March 2018)
-
 # 1.0.3.12 (24 March 2018)
 - [#100](https://github.com/WireMock-Net/WireMock.Net/issues/100) - Issue: JsonPathMatcher - not working for rootless jsons?
 
@@ -169,10 +167,6 @@
 
 # 1.0.3.7 (09 March 2018)
 - [#104](https://github.com/WireMock-Net/WireMock.Net/issues/104) - Issue: PlatformNotSupportedException
-
-# 1.0.3.6 (08 March 2018)
-
-# 1.0.3.5 (08 March 2018)
 
 # 1.0.3.4 (04 March 2018)
 - [#95](https://github.com/WireMock-Net/WireMock.Net/pull/95) - Unittest fix contributed by [StefH](https://github.com/StefH)
@@ -285,10 +279,6 @@
 - [#23](https://github.com/WireMock-Net/WireMock.Net/issues/23) - Consider port to .Net Core
 - [#25](https://github.com/WireMock-Net/WireMock.Net/issues/25) - Upgrade to vs2017
 
-# 1.0.1.5 (21 March 2017)
-
-# 1.0.1.3 (20 March 2017)
-
 # 1.0.1.2 (27 February 2017)
 - [#24](https://github.com/WireMock-Net/WireMock.Net/pull/24) - Body Encoding contributed by [sbebrys](https://github.com/sbebrys)
 - [#8](https://github.com/WireMock-Net/WireMock.Net/issues/8) - admin rest api
@@ -311,6 +301,4 @@
 - [#16](https://github.com/WireMock-Net/WireMock.Net/issues/16) - Stub priority
 - [#17](https://github.com/WireMock-Net/WireMock.Net/issues/17) - Add JsonBody to response
 - [#18](https://github.com/WireMock-Net/WireMock.Net/issues/18) - Listen on more ip-address/ports
-
-# 1.0.0.0 (17 January 2017)
 

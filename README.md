@@ -14,12 +14,15 @@ This will use [Chocolatey](http://chocolatey.org) to install **GitHubReleaseNote
 ## Usage
 GitHubReleaseNotes can be run inside a git repository.
 ```
-GitHubReleaseNotes.exe --path . --output ReleaseNotes.md
+GitHubReleaseNotes.exe --path . --output ReleaseNotes.md --version 1.0.4.17 --language en --skip-empty-releases
 ```
 
 Arguments:
 - `--path`: The path from the git repository. If not supplied, the current folder is used.
-- `--output`: The path from the generated Release Notes. If not supplied, the output is written to the console.
+- `--output`: The location from the generated Release Notes. If not supplied, the output is written to the console.
+- `--version`: Define a custom version name for the latest release instead of the value "next".
+- `--language`: Provide the language (two letter according to [ISO-639-1](https://en.wikipedia.org/wiki/ISO_639-1)) which is used to format the dates. If not provided, "en" is used. It's also possible to use a value like "system", which takes the current system ui language.
+- `--skip-empty-releases`: Define this optional argument to skip writing releases which have no associated Issues or Pull Requests.
 
 ## Output
 The generated Release Notes ([Markdown](https://en.wikipedia.org/wiki/Markdown) formatted) will look like:
