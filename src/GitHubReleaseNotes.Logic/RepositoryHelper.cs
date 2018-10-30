@@ -30,14 +30,14 @@ namespace GitHubReleaseNotes.Logic
             Console.WriteLine($"Analyzing Git Repository at '{_configuration.RepositoryPath}'");
             var orderedReleaseInfos = GetOrderedReleaseInfos(repository);
 
-            Console.WriteLine($"Getting Issues and PullRequests from '{url}'");
-            (List<Issue> issuesFromProject, List<PullRequest> pullRequestsFromProject) = await GetAllIssuesAndPullRequestsAsync(url);
+            Console.WriteLine($"Getting Issues and Pull Requests from '{url}'");
+            var (issuesFromProject, pullRequestsFromProject) = await GetAllIssuesAndPullRequestsAsync(url);
 
-            // Loop all orderedReleaseInfos and add the correct Pull Requests and Issues
             bool IssueTimeIsLessThenReleaseTime(DateTimeOffset releaseTime, DateTimeOffset? issueClosedTime) => issueClosedTime < releaseTime.AddSeconds(DeltaSeconds);
             bool IssueTimeIsGreaterThenPreviousReleaseTime(int idx, DateTimeOffset? issueClosedTime) => idx <= 0 || issueClosedTime > orderedReleaseInfos[idx - 1].When.AddSeconds(DeltaSeconds);
             bool IssueLinkedToRelease(int idx, ReleaseInfo releaseInfo, DateTimeOffset? issueClosedAtTime) => IssueTimeIsLessThenReleaseTime(releaseInfo.When, issueClosedAtTime) && IssueTimeIsGreaterThenPreviousReleaseTime(idx, issueClosedAtTime);
 
+            // Loop all orderedReleaseInfos and add the correct Pull Requests and Issues
             int index = 0;
             foreach (var releaseInfo in orderedReleaseInfos)
             {

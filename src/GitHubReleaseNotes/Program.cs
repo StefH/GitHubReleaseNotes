@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 using GitHubReleaseNotes.Logic;
 
@@ -15,6 +17,7 @@ namespace GitHubReleaseNotes
         {
             var configuration = ParseConfiguration(args);
 
+            Console.WriteLine($"GitHubReleaseNotes ({Assembly.GetExecutingAssembly().GetName().Version}) by Stef Heyenrath");
             return new Generator(configuration).GenerateAsync();
         }
 
@@ -29,7 +32,7 @@ namespace GitHubReleaseNotes
                 OutputFile = parser.GetStringValue("output"),
                 Culture = parser.GetCultureInfo("language"),
                 Version = parser.GetStringValue("version", "next"),
-                SkipEmptyReleases = parser.Contains("skip-empty-releases")
+                SkipEmptyReleases = parser.GetBoolValue("skip-empty-releases") || parser.Contains("skip-empty-releases") // "--skip-empty-releases true" and "--skip-empty-releases" both qualify
             };
         }
     }
