@@ -12,21 +12,23 @@ namespace GitHubReleaseNotes.Logic
     {
         private const int DeltaSeconds = 30;
 
-        private readonly GitHubClient Client = new GitHubClient(new ProductHeaderValue("GitHubReleaseNotes"));
         private readonly Configuration _configuration;
+        private readonly GitHubClient _client;
 
         public RepositoryHelper(Configuration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+
+            _client = new GitHubClient(new ProductHeaderValue("GitHubReleaseNotes"));
         }
 
         internal async Task<IEnumerable<ReleaseInfo>> GetReleaseInfoAsync()
         {
-            var repoitory = new LibGit2Sharp.Repository(_configuration.RepositoryPath);
-            string url = repoitory.Network.Remotes.First(r => r.Name == "origin").Url;
+            var repository = new LibGit2Sharp.Repository(_configuration.RepositoryPath);
+            string url = repository.Network.Remotes.First(r => r.Name == "origin").Url;
 
             Console.WriteLine($"Analyzing Git Repository at '{_configuration.RepositoryPath}'");
-            var orderedReleaseInfos = GetOrderedReleaseInfos(repoitory);
+            var orderedReleaseInfos = GetOrderedReleaseInfos(repository);
 
             Console.WriteLine($"Getting Issues and PullRequests from '{url}'");
             (List<Issue> issuesFromProject, List<PullRequest> pullRequestsFromProject) = await GetAllIssuesAndPullRequestsAsync(url);
@@ -67,6 +69,11 @@ namespace GitHubReleaseNotes.Logic
                 releaseInfo.IssueInfos = allIssues.OrderByDescending(issue => issue.IsPulRequest).ThenBy(issue => issue.Number).ToList();
 
                 index++;
+            }
+
+            if (_configuration.SkipEmptyReleases)
+            {
+                orderedReleaseInfos = orderedReleaseInfos.Where(r => r.IssueInfos.Count > 0).ToList();
             }
 
             return orderedReleaseInfos.OrderByDescending(r => r.Version);
@@ -113,7 +120,7 @@ namespace GitHubReleaseNotes.Logic
                 Filter = IssueFilter.All,
                 State = ItemStateFilter.Closed
             };
-            var issuesFromRepository = (await Client.Issue.GetAllForRepository(owner, project, closedIssuesRequest)).Where(issue => issue.PullRequest == null).ToList();
+            var issuesFromRepository = (await _client.Issue.GetAllForRepository(owner, project, closedIssuesRequest)).Where(issue => issue.PullRequest == null).ToList();
 
             // Do a request to GitHub using Octokit.GitHubClient to get all Closed and Merged Pull Requests
             var closedPullRequestsRequest = new PullRequestRequest
@@ -121,7 +128,7 @@ namespace GitHubReleaseNotes.Logic
                 SortDirection = SortDirection.Ascending,
                 State = ItemStateFilter.Closed
             };
-            var pullRequestsFromRepository = (await Client.PullRequest.GetAllForRepository(owner, project, closedPullRequestsRequest)).Where(pull => pull.Merged).ToList();
+            var pullRequestsFromRepository = (await _client.PullRequest.GetAllForRepository(owner, project, closedPullRequestsRequest)).Where(pull => pull.Merged).ToList();
 
             return (issuesFromRepository, pullRequestsFromRepository);
         }

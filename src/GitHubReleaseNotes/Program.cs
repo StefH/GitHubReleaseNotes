@@ -27,8 +27,9 @@ namespace GitHubReleaseNotes
             {
                 RepositoryPath = Path.Combine(parser.GetStringValue("path", string.Empty), ".git"),
                 OutputFile = parser.GetStringValue("output"),
-                Language = parser.GetStringValue("language", "en"),
-                Version = parser.GetStringValue("version", "next")
+                Culture = parser.GetCultureInfo("language"),
+                Version = parser.GetStringValue("version", "next"),
+                SkipEmptyReleases = parser.Contains("skip-empty-releases")
             };
         }
     }

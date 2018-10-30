@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace GitHubReleaseNotes
@@ -82,6 +83,16 @@ namespace GitHubReleaseNotes
         public string GetStringValue(string name, string defaultValue = null)
         {
             return GetValue(name, values => values.FirstOrDefault() ?? defaultValue, defaultValue);
+        }
+
+        public CultureInfo GetCultureInfo(string name)
+        {
+            return GetValue(name, values =>
+            {
+                string value = values.FirstOrDefault() ?? "en";
+
+                return value == "system" ? CultureInfo.CurrentCulture : new CultureInfo(value);
+            });
         }
     }
 }

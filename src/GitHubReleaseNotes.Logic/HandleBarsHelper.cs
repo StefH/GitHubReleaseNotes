@@ -7,7 +7,7 @@ namespace GitHubReleaseNotes.Logic
 {
     internal class HandleBarsHelper
     {
-        private const string templateText =
+        private const string TemplateText =
             "{{#each releaseInfos}}# {{ FriendlyName }} ({{formatDate When \"dd MMMM yyyy\"}})\r\n{{#each issueInfos}}- {{Text}}\r\n{{/each}}\r\n\r\n{{/each}}";
 
         private readonly Configuration _configuration;
@@ -21,7 +21,7 @@ namespace GitHubReleaseNotes.Logic
         {
             RegisterHelper();
 
-            var template = Handlebars.Compile(templateText);
+            var template = Handlebars.Compile(TemplateText);
 
             return template(new { releaseInfos });
         }
@@ -33,11 +33,11 @@ namespace GitHubReleaseNotes.Logic
                 switch (arguments[0])
                 {
                     case DateTimeOffset value:
-                        writer.WriteSafeString(value.ToString(arguments[1] as string));
+                        writer.WriteSafeString(value.ToString(arguments[1] as string, _configuration.Culture));
                         break;
 
                     case DateTime value:
-                        writer.WriteSafeString(value.ToString(arguments[1] as string));
+                        writer.WriteSafeString(value.ToString(arguments[1] as string, _configuration.Culture));
                         break;
                 }
             });

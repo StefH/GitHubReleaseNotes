@@ -1,4 +1,6 @@
-﻿namespace GitHubReleaseNotes.Logic
+﻿using System.Globalization;
+
+namespace GitHubReleaseNotes.Logic
 {
     public class Configuration
     {
@@ -8,6 +10,8 @@
 
         public string Version { get; set; }
 
-        public string Language { get; set; }
+        public CultureInfo Culture { get; set; }
+
+        public bool SkipEmptyReleases { get; set; }
     }
 }
