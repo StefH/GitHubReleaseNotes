@@ -10,7 +10,7 @@ To verify this package, follow these steps:
    - Original filename	GitHubReleaseNotes.exe
 
 2] Verify the SHA256 from the GitHubReleaseNotes.exe file (7zip can be used for this)
-   - SHA256				07BA88B27D6DE259C2006CEA817E8B2A15309DC4D683282AB4640C7ACC2C73FE
+   - SHA256				6CA8DB793C4D34AB5EE325DF91056A402AE4B022A8F3D58A4A86CDC4E2A036ED
 
 
 Note that this application is build with the .NET 4.5.2 framework and uses Fody and Fody.Costura to include all dependencies to generate a single exe file.
