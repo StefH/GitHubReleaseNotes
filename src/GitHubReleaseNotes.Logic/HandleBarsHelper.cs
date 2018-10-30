@@ -5,12 +5,28 @@ using HandlebarsDotNet;
 
 namespace GitHubReleaseNotes.Logic
 {
-    internal static class HandleBarsHelper
+    internal class HandleBarsHelper
     {
-        private static string templateText =
+        private const string templateText =
             "{{#each releaseInfos}}# {{ FriendlyName }} ({{formatDate When \"dd MMMM yyyy\"}})\r\n{{#each issueInfos}}- {{Text}}\r\n{{/each}}\r\n\r\n{{/each}}";
 
-        static HandleBarsHelper()
+        private readonly Configuration _configuration;
+
+        public HandleBarsHelper(Configuration configuration)
+        {
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+        }
+
+        internal string Generate(IEnumerable<ReleaseInfo> releaseInfos)
+        {
+            RegisterHelper();
+
+            var template = Handlebars.Compile(templateText);
+
+            return template(new { releaseInfos });
+        }
+
+        private void RegisterHelper()
         {
             Handlebars.RegisterHelper("formatDate", (writer, context, arguments) =>
             {
@@ -25,13 +41,6 @@ namespace GitHubReleaseNotes.Logic
                         break;
                 }
             });
-        }
-
-        internal static string Generate(IEnumerable<ReleaseInfo> releaseInfos)
-        {
-            var template = Handlebars.Compile(templateText);
-
-            return template(new { releaseInfos });
         }
     }
 }

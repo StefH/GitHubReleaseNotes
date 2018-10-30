@@ -8,19 +8,25 @@ using Octokit;
 
 namespace GitHubReleaseNotes.Logic
 {
-    public static class RepositoryHelper
+    public class RepositoryHelper
     {
         private const int DeltaSeconds = 30;
 
-        private static readonly GitHubClient Client = new GitHubClient(new ProductHeaderValue("GitHubReleaseNotes"));
+        private readonly GitHubClient Client = new GitHubClient(new ProductHeaderValue("GitHubReleaseNotes"));
+        private readonly Configuration _configuration;
 
-        internal static async Task<IEnumerable<ReleaseInfo>> GetReleaseInfoAsync(Configuration configuration)
+        public RepositoryHelper(Configuration configuration)
         {
-            var repo = new LibGit2Sharp.Repository(configuration.RepositoryPath);
-            string url = repo.Network.Remotes.First(r => r.Name == "origin").Url;
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+        }
 
-            Console.WriteLine($"Analyzing Git Repository at '{configuration.RepositoryPath}'");
-            var orderedReleaseInfos = GetOrderedReleaseInfos(repo);
+        internal async Task<IEnumerable<ReleaseInfo>> GetReleaseInfoAsync()
+        {
+            var repoitory = new LibGit2Sharp.Repository(_configuration.RepositoryPath);
+            string url = repoitory.Network.Remotes.First(r => r.Name == "origin").Url;
+
+            Console.WriteLine($"Analyzing Git Repository at '{_configuration.RepositoryPath}'");
+            var orderedReleaseInfos = GetOrderedReleaseInfos(repoitory);
 
             Console.WriteLine($"Getting Issues and PullRequests from '{url}'");
             (List<Issue> issuesFromProject, List<PullRequest> pullRequestsFromProject) = await GetAllIssuesAndPullRequestsAsync(url);
@@ -66,7 +72,7 @@ namespace GitHubReleaseNotes.Logic
             return orderedReleaseInfos.OrderByDescending(r => r.Version);
         }
 
-        private static List<ReleaseInfo> GetOrderedReleaseInfos(LibGit2Sharp.Repository repo)
+        private List<ReleaseInfo> GetOrderedReleaseInfos(LibGit2Sharp.Repository repo)
         {
             var orderedReleaseInfos = repo.Tags
 
@@ -89,14 +95,14 @@ namespace GitHubReleaseNotes.Logic
             orderedReleaseInfos.Add(new ReleaseInfo
             {
                 Version = long.MaxValue,
-                FriendlyName = "next",
+                FriendlyName = _configuration.Version,
                 When = DateTimeOffset.Now
             });
 
             return orderedReleaseInfos;
         }
 
-        private static async Task<(List<Issue> Issues, List<PullRequest> PullRequests)> GetAllIssuesAndPullRequestsAsync(string url)
+        private async Task<(List<Issue> Issues, List<PullRequest> PullRequests)> GetAllIssuesAndPullRequestsAsync(string url)
         {
             (string owner, string project) = GetOwnerAndProject(url);
 

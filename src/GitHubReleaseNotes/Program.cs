@@ -15,7 +15,7 @@ namespace GitHubReleaseNotes
         {
             var configuration = ParseConfiguration(args);
 
-            return Generator.GenerateAsync(configuration);
+            return new Generator(configuration).GenerateAsync();
         }
 
         private static Configuration ParseConfiguration(string[] args)
@@ -28,7 +28,7 @@ namespace GitHubReleaseNotes
                 RepositoryPath = Path.Combine(parser.GetStringValue("path", string.Empty), ".git"),
                 OutputFile = parser.GetStringValue("output"),
                 Language = parser.GetStringValue("language", "en"),
-                Version = parser.GetStringValue("version")
+                Version = parser.GetStringValue("version", "next")
             };
         }
     }
