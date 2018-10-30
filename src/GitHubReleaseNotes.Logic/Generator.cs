@@ -26,7 +26,7 @@ namespace GitHubReleaseNotes.Logic
 
             if (!string.IsNullOrEmpty(_configuration.OutputFile))
             {
-                Console.WriteLine($"Writing Release Notes to '{new FileInfo(_configuration.OutputFile).FullName}'");
+                Console.WriteLine($"Release Notes written to '{new FileInfo(_configuration.OutputFile).FullName}'");
                 File.WriteAllText(_configuration.OutputFile, result);
             }
             else

@@ -87,12 +87,8 @@ namespace GitHubReleaseNotes
 
         public CultureInfo GetCultureInfo(string name)
         {
-            return GetValue(name, values =>
-            {
-                string value = values.FirstOrDefault() ?? "en";
-
-                return value == "system" ? CultureInfo.CurrentCulture : new CultureInfo(value);
-            });
+            string value = GetStringValue(name, "en");
+            return value == "system" ? CultureInfo.CurrentCulture : new CultureInfo(value);
         }
     }
 }

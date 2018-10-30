@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace GitHubReleaseNotes.Logic
             var repository = new LibGit2Sharp.Repository(_configuration.RepositoryPath);
             string url = repository.Network.Remotes.First(r => r.Name == "origin").Url;
 
-            Console.WriteLine($"Analyzing Git Repository at '{_configuration.RepositoryPath}'");
+            Console.WriteLine($"Analyzing Git Repository at '{new FileInfo(_configuration.RepositoryPath).FullName}'");
             var orderedReleaseInfos = GetOrderedReleaseInfos(repository);
 
             Console.WriteLine($"Getting Issues and Pull Requests from '{url}'");
