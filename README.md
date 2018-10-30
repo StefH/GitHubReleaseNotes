@@ -20,7 +20,7 @@ GitHubReleaseNotes.exe --path . --output ReleaseNotes.md --version 1.0.4.17 --la
 Arguments:
 - `--path`: The path from the git repository. If not supplied, the current folder is used.
 - `--output`: The location from the generated Release Notes. If not supplied, the output is written to the console.
-- `--version`: Use a defined version name for the latest release instead of the value "next".
+- `--version`: Define a custom version name for the latest release instead of the value "next".
 - `--language`: Provide the language (two letter according to [ISO-639-1](https://en.wikipedia.org/wiki/ISO_639-1)) which is used to format the dates. If not provided, "en" is used. It's also possible to use a value like "system", which takes the current system ui language.
 - `--skip-empty-releases`: Define this optional argument to skip writing releases which have no associated Issues or Pull Requests.
 
