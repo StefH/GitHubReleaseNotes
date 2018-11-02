@@ -2,8 +2,8 @@
 Generate Release Notes from GitHub.
 
 ## Information
-![Chocolatey downloads](https://img.shields.io/chocolatey/dt/githubreleasenotes.svg)
-[![Chocolatey](https://img.shields.io/chocolatey/v/githubreleasenotes.svg)](https://chocolatey.org/packages/GitHubReleaseNotes.Portable)
+[![Chocolatey downloads](https://img.shields.io/chocolatey/dt/githubreleasenotes.svg)]()
+[![Chocolatey](https://img.shields.io/chocolatey/v/githubreleasenotes.svg)](https://chocolatey.org/packages/GitHubReleaseNotes)
 
 ## Install
 ```
