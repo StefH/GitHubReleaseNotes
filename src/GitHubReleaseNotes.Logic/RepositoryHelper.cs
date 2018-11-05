@@ -42,8 +42,8 @@ namespace GitHubReleaseNotes.Logic
             int index = 0;
             foreach (var releaseInfo in orderedReleaseInfos)
             {
-                // Process Issues
-                var issuesForThisTag = issuesFromProject.Where(issue => IssueLinkedToRelease(index, releaseInfo, issue.ClosedAt));
+                // Process only Issues
+                var issuesForThisTag = issuesFromProject.Where(issue => issue.PullRequest == null && IssueLinkedToRelease(index, releaseInfo, issue.ClosedAt));
                 var issueInfos = issuesForThisTag.Select(issue => new IssueInfo
                 {
                     Number = issue.Number,
@@ -51,7 +51,8 @@ namespace GitHubReleaseNotes.Logic
                     IssueUrl = issue.HtmlUrl,
                     Title = issue.Title,
                     User = issue.User.Login,
-                    UserUrl = issue.User.HtmlUrl
+                    UserUrl = issue.User.HtmlUrl,
+                    Labels = issue.Labels.Select(label => label.Name)
                 });
 
                 // Process PullRequests
@@ -63,7 +64,8 @@ namespace GitHubReleaseNotes.Logic
                     IssueUrl = pull.HtmlUrl,
                     Title = pull.Title,
                     User = pull.User.Login,
-                    UserUrl = pull.User.HtmlUrl
+                    UserUrl = pull.User.HtmlUrl,
+                    Labels = issuesFromProject.First(issue => issue.Number == pull.Number).Labels.Select(label => label.Name) // Get the labels from the Issues (because this is not present in the 'PullRequest')
                 });
 
                 var allIssues = issueInfos.Union(pullInfos).Distinct();
@@ -114,14 +116,14 @@ namespace GitHubReleaseNotes.Logic
         {
             (string owner, string project) = GetOwnerAndProject(url);
 
-            // Do a request to GitHub using Octokit.GitHubClient to get all Closed Issues
+            // Do a request to GitHub using Octokit.GitHubClient to get all Closed Issues (this does also include Closed and Merged Pull Requests)
             var closedIssuesRequest = new RepositoryIssueRequest
             {
                 SortDirection = SortDirection.Ascending,
                 Filter = IssueFilter.All,
                 State = ItemStateFilter.Closed
             };
-            var issuesFromRepository = (await _client.Issue.GetAllForRepository(owner, project, closedIssuesRequest)).Where(issue => issue.PullRequest == null).ToList();
+            var issuesFromRepository = (await _client.Issue.GetAllForRepository(owner, project, closedIssuesRequest)).ToList();
 
             // Do a request to GitHub using Octokit.GitHubClient to get all Closed and Merged Pull Requests
             var closedPullRequestsRequest = new PullRequestRequest

@@ -1,4 +1,7 @@
-﻿namespace GitHubReleaseNotes.Logic.Models
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace GitHubReleaseNotes.Logic.Models
 {
     internal class IssueInfo
     {
@@ -14,15 +17,17 @@
 
         public string UserUrl { get; set; }
 
+        public IEnumerable<string> Labels { get; set; }
+
         public string Text
         {
             get
             {
-                {
-                    string extra = IsPulRequest ? $" contributed by [{User}]({UserUrl})" : "";
+                string labels = Labels != null && Labels.Any() ? $" [{string.Join(", ", Labels)}]" : string.Empty;
+                string extra = IsPulRequest ? $" contributed by [{User}]({UserUrl})" : "";
 
-                    return $"[#{Number}]({IssueUrl}) - {Title}{extra}";
-                }
+                return $"[#{Number}]({IssueUrl}) - {Title}{labels}{extra}";
+
             }
         }
     }
