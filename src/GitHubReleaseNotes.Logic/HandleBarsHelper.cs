@@ -36,7 +36,7 @@ namespace GitHubReleaseNotes.Logic
             }
 
             // Use default embedded Template
-            var assembly = Assembly.GetAssembly(typeof(HandleBarsHelper));
+            var assembly = typeof(HandleBarsHelper).GetTypeInfo().Assembly;
             using (Stream stream = assembly.GetManifestResourceStream(TemplateFilename))
             using (StreamReader reader = new StreamReader(stream))
             {

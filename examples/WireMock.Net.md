@@ -1,5 +1,7 @@
 # 1.0.4.20 (06 November 2018)
 - [#222](https://github.com/WireMock-Net/WireMock.Net/pull/222) - Codecov contributed by [StefH](https://github.com/StefH)
+- [#224](https://github.com/WireMock-Net/WireMock.Net/pull/224) - Fixed issue 223: Example for WireMock as Windows Service throws Exception because of WireMockConsoleLogger contributed by [paulssn](https://github.com/paulssn)
+- [#223](https://github.com/WireMock-Net/WireMock.Net/issues/223) - Bug: Example for WireMock as Windows Service throws Exception because of WireMockConsoleLogger [bug]
 
 # 1.0.4.19 (31 October 2018)
 - [#220](https://github.com/WireMock-Net/WireMock.Net/pull/220) - Update SimpleCommandLineParser to handle arguments with key and value contributed by [StefH](https://github.com/StefH)
