@@ -1,4 +1,4 @@
-# 1.0.4.20 (05 November 2018)
+# 1.0.4.20 (06 November 2018)
 - [#222](https://github.com/WireMock-Net/WireMock.Net/pull/222) - Codecov contributed by [StefH](https://github.com/StefH)
 
 # 1.0.4.19 (31 October 2018)

@@ -13,5 +13,7 @@ namespace GitHubReleaseNotes.Logic
         public CultureInfo Culture { get; set; }
 
         public bool SkipEmptyReleases { get; set; }
+
+        public string TemplatePath { get; set; }
     }
 }

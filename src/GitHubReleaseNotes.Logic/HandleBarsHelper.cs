@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using GitHubReleaseNotes.Logic.Models;
 using HandlebarsDotNet;
 
@@ -7,12 +9,7 @@ namespace GitHubReleaseNotes.Logic
 {
     internal class HandleBarsHelper
     {
-        private const string PartialHeader = "# {{ FriendlyName }} ({{formatDate When \"dd MMMM yyyy\"}})\r\n";
-        private const string PartialIssueLabels = "{{#if Labels}} [{{join Labels \", \"}}]{{/if}}";
-        private const string PartialIssueContributed = "{{#if IsPulRequest}} contributed by [{{User}}]({{UserUrl}}){{/if}}";
-        private const string PartialIssueText = "- [#{{Number}}]({{IssueUrl}}) - {{Title}}{{> IssueLabels}}{{> IssueContributed}}";
-        private const string PartialIssues = "{{#each issueInfos}}{{> IssueText}}\r\n{{/each}}\r\n\r\n";
-        private const string TemplateText = "{{#each releaseInfos}}{{> Header}}{{> Issues}}{{/each}}";
+        private const string TemplateFilename = "GitHubReleaseNotes.Logic.Template.txt";
 
         private readonly Configuration _configuration;
 
@@ -23,20 +20,28 @@ namespace GitHubReleaseNotes.Logic
 
         internal string Generate(IEnumerable<ReleaseInfo> releaseInfos)
         {
-            RegisterTemplates();
             RegisterHelpers();
 
-            var template = Handlebars.Compile(TemplateText);
+            var template = Handlebars.Compile(GetTemplateAsString());
+
             return template(new { releaseInfos });
         }
 
-        private void RegisterTemplates()
+        private string GetTemplateAsString()
         {
-            Handlebars.RegisterTemplate("Header", PartialHeader);
-            Handlebars.RegisterTemplate("Issues", PartialIssues);
-            Handlebars.RegisterTemplate("IssueText", PartialIssueText);
-            Handlebars.RegisterTemplate("IssueLabels", PartialIssueLabels);
-            Handlebars.RegisterTemplate("IssueContributed", PartialIssueContributed);
+            // If provided, read custom Template
+            if (!string.IsNullOrEmpty(_configuration.TemplatePath))
+            {
+                return File.ReadAllText(_configuration.TemplatePath);
+            }
+
+            // Use default embedded Template
+            var assembly = Assembly.GetAssembly(typeof(HandleBarsHelper));
+            using (Stream stream = assembly.GetManifestResourceStream(TemplateFilename))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
+            }
         }
 
         private void RegisterHelpers()
