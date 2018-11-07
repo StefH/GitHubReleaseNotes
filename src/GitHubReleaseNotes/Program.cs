@@ -17,7 +17,7 @@ namespace GitHubReleaseNotes
         {
             var configuration = ParseConfiguration(args);
 
-            Console.WriteLine($"GitHubReleaseNotes ({Assembly.GetExecutingAssembly().GetName().Version}) by Stef Heyenrath");
+            Console.WriteLine($"GitHubReleaseNotes ({Assembly.GetExecutingAssembly().GetName().Version})");
             return new Generator(configuration).GenerateAsync();
         }
 
