@@ -1,4 +1,6 @@
-﻿namespace GitHubReleaseNotes.Logic.Models
+﻿using System.Collections.Generic;
+
+namespace GitHubReleaseNotes.Logic.Models
 {
     internal class IssueInfo
     {
@@ -14,16 +16,6 @@
 
         public string UserUrl { get; set; }
 
-        public string Text
-        {
-            get
-            {
-                {
-                    string extra = IsPulRequest ? $" contributed by [{User}]({UserUrl})" : "";
-
-                    return $"[#{Number}]({IssueUrl}) - {Title}{extra}";
-                }
-            }
-        }
+        public IEnumerable<string> Labels { get; set; }
     }
 }

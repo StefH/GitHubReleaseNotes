@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using GitHubReleaseNotes.Logic.Models;
 using HandlebarsDotNet;
 
@@ -7,8 +9,7 @@ namespace GitHubReleaseNotes.Logic
 {
     internal class HandleBarsHelper
     {
-        private const string TemplateText =
-            "{{#each releaseInfos}}# {{ FriendlyName }} ({{formatDate When \"dd MMMM yyyy\"}})\r\n{{#each issueInfos}}- {{Text}}\r\n{{/each}}\r\n\r\n{{/each}}";
+        private const string TemplateFilename = "GitHubReleaseNotes.Logic.Template.txt";
 
         private readonly Configuration _configuration;
 
@@ -19,15 +20,41 @@ namespace GitHubReleaseNotes.Logic
 
         internal string Generate(IEnumerable<ReleaseInfo> releaseInfos)
         {
-            RegisterHelper();
+            RegisterHelpers();
 
-            var template = Handlebars.Compile(TemplateText);
+            var template = Handlebars.Compile(GetTemplateAsString());
 
             return template(new { releaseInfos });
         }
 
-        private void RegisterHelper()
+        private string GetTemplateAsString()
         {
+            // If provided, read custom Template
+            if (!string.IsNullOrEmpty(_configuration.TemplatePath))
+            {
+                return File.ReadAllText(_configuration.TemplatePath);
+            }
+
+            // Use default embedded Template
+            var assembly = typeof(HandleBarsHelper).GetTypeInfo().Assembly;
+            using (Stream stream = assembly.GetManifestResourceStream(TemplateFilename))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
+            }
+        }
+
+        private void RegisterHelpers()
+        {
+            Handlebars.RegisterHelper("join", (writer, context, arguments) =>
+            {
+                if (arguments[0] is IEnumerable<object> enumerable)
+                {
+                    string concatenatedString = string.Join(arguments[1] as string, enumerable);
+                    writer.WriteSafeString(concatenatedString);
+                }
+            });
+
             Handlebars.RegisterHelper("formatDate", (writer, context, arguments) =>
             {
                 switch (arguments[0])
