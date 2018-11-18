@@ -1,3 +1,7 @@
+# 1.0.3.0 (18 November 2018)
+- [#7](https://github.com/StefH/GitHubReleaseNotes/pull/7) - Add Labels and command-line option to provide your own template [feature] contributed by [StefH](https://github.com/StefH)
+- [#6](https://github.com/StefH/GitHubReleaseNotes/issues/6) - Group issues by label
+
 # 1.0.2.0 (30 October 2018)
 - [#5](https://github.com/StefH/GitHubReleaseNotes/pull/5) - Added additional commandline options --version, --language and --skip-empty-releases contributed by [StefH](https://github.com/StefH)
 - [#2](https://github.com/StefH/GitHubReleaseNotes/issues/2) - Release notes seems to leave the last merged PR out of the version
