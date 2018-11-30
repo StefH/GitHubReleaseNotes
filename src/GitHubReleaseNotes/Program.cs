@@ -33,7 +33,10 @@ namespace GitHubReleaseNotes
                 Culture = parser.GetCultureInfo("language"),
                 Version = parser.GetStringValue("version", "next"),
                 TemplatePath = parser.GetStringValue("template"),
-                SkipEmptyReleases = parser.GetBoolValue("skip-empty-releases") || parser.Contains("skip-empty-releases") // "--skip-empty-releases true" and "--skip-empty-releases" both qualify
+                SkipEmptyReleases = parser.GetBoolValue("skip-empty-releases") || parser.Contains("skip-empty-releases"), // "--skip-empty-releases true" and "--skip-empty-releases" both qualify
+                Token = parser.GetStringValue("token"),
+                Login = parser.GetStringValue("login"),
+                Password = parser.GetStringValue("password")
             };
         }
     }

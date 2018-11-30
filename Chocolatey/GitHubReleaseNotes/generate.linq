@@ -39,3 +39,5 @@ To verify this package, follow these steps:
 Note that this application is build with the .NET 4.5.2 framework and uses Fody and Fody.Costura to include all dependencies to generate a single exe file.";
 
 File.WriteAllText(Path.Combine(chocolateyFolder, "tools", "VERIFICATION.txt"), text, Encoding.UTF8);
+
+"Done".Dump();
