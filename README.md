@@ -24,6 +24,10 @@ Arguments:
 - `--language`: Provide the language (two letter according to [ISO-639-1](https://en.wikipedia.org/wiki/ISO_639-1)) which is used to format the dates. If not provided, "en" is used. It's also possible to use a value like "system", which takes the current system ui language.
 - `--skip-empty-releases`: Define this optional argument to skip writing releases which have no associated Issues or Pull Requests.
 - `--template`: Provide a custom Handlebars template instead of the default template to generate the Release Notes.
+- `--token`: Provide the GitHub API token as authentication for connecting to private repositories. **@**
+- `--login` and `--password`: Provide the GitHub API login and password as authentication for connecting to private repositories. **@**
+
+**@** you only can use one authentication method
 
 ## Output
 The generated Release Notes ([Markdown](https://en.wikipedia.org/wiki/Markdown) formatted) will look like:
@@ -41,7 +45,7 @@ This project is based on [GitTools/GitReleaseNotes](https://github.com/GitTools/
 
 ### Dependencies
 -  [Oktokit](https://github.com/octokit/octokit.net)
--  [LibGit2Sharp](https://github.com/libgit2/libgit2sharp)
+-  [LibGit2Sharp.Portable](https://github.com/aarnott/libgit2sharp)
 -  [Handlebars.Net](https://github.com/rexm/Handlebars.Net)
 -  [Fody](https://github.com/Fody/Fody)
 -  [Fody.Costura](https://github.com/Fody/Costura)

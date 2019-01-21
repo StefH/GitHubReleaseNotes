@@ -14,13 +14,13 @@ namespace GitHubReleaseNotes.Logic
         private const int DeltaSeconds = 30;
 
         private readonly Configuration _configuration;
-        private readonly GitHubClient _client;
+        private readonly IGitHubClient _client;
 
         public RepositoryHelper(Configuration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
 
-            _client = new GitHubClient(new ProductHeaderValue("GitHubReleaseNotes"));
+            _client = GitHubClientFactory.CreateClient(_configuration);
         }
 
         internal async Task<IEnumerable<ReleaseInfo>> GetReleaseInfoAsync()
