@@ -1,3 +1,6 @@
+# 1.0.4.0 (21 January 2019)
+- [#8](https://github.com/StefH/GitHubReleaseNotes/pull/8) - Add token and login+password authentication [feature] contributed by [StefH](https://github.com/StefH)
+
 # 1.0.3.0 (18 November 2018)
 - [#7](https://github.com/StefH/GitHubReleaseNotes/pull/7) - Add Labels and command-line option to provide your own template [feature] contributed by [StefH](https://github.com/StefH)
 - [#6](https://github.com/StefH/GitHubReleaseNotes/issues/6) - Group issues by label
