@@ -32,18 +32,22 @@ namespace GitHubReleaseNotes.Logic
             var orderedReleaseInfos = GetOrderedReleaseInfos(repository);
 
             Console.WriteLine($"Getting Issues and Pull Requests from '{url}'");
-            var (issuesFromProject, pullRequestsFromProject) = await GetAllIssuesAndPullRequestsAsync(url);
+            var (issuesFromProject, pullRequestsFromProject) = await GetAllIssuesAndPullRequestsAsync(url).ConfigureAwait(false);
 
-            bool IssueTimeIsLessThenReleaseTime(DateTimeOffset releaseTime, DateTimeOffset? issueClosedTime) => issueClosedTime < releaseTime.AddSeconds(DeltaSeconds);
-            bool IssueTimeIsGreaterThenPreviousReleaseTime(int idx, DateTimeOffset? issueClosedTime) => idx <= 0 || issueClosedTime > orderedReleaseInfos[idx - 1].When.AddSeconds(DeltaSeconds);
-            bool IssueLinkedToRelease(int idx, ReleaseInfo releaseInfo, DateTimeOffset? issueClosedAtTime) => IssueTimeIsLessThenReleaseTime(releaseInfo.When, issueClosedAtTime) && IssueTimeIsGreaterThenPreviousReleaseTime(idx, issueClosedAtTime);
+            bool IssueTimeIsLessThenReleaseTime(DateTimeOffset releaseTime, DateTimeOffset? issueClosedTime)
+                => issueClosedTime < releaseTime.AddSeconds(DeltaSeconds);
+
+            bool IssueTimeIsGreaterThenPreviousReleaseTime(int idx, DateTimeOffset? issueClosedTime) =>
+                idx <= 0 || issueClosedTime > orderedReleaseInfos[idx - 1].When.AddSeconds(DeltaSeconds);
+
+            bool IssueLinkedToRelease(int idx, ReleaseInfo releaseInfo, DateTimeOffset? issueClosedAtTime) =>
+                IssueTimeIsLessThenReleaseTime(releaseInfo.When, issueClosedAtTime) && IssueTimeIsGreaterThenPreviousReleaseTime(idx, issueClosedAtTime);
 
             // Loop all orderedReleaseInfos and add the correct Pull Requests and Issues
-            int index = 0;
-            foreach (var releaseInfo in orderedReleaseInfos)
+            foreach (var x in orderedReleaseInfos.Select((releaseInfo, index) => new { index, releaseInfo }))
             {
                 // Process only Issues
-                var issuesForThisTag = issuesFromProject.Where(issue => issue.PullRequest == null && IssueLinkedToRelease(index, releaseInfo, issue.ClosedAt));
+                var issuesForThisTag = issuesFromProject.Where(issue => issue.PullRequest == null && IssueLinkedToRelease(x.index, x.releaseInfo, issue.ClosedAt));
                 var issueInfos = issuesForThisTag.Select(issue => new IssueInfo
                 {
                     Number = issue.Number,
@@ -56,7 +60,7 @@ namespace GitHubReleaseNotes.Logic
                 });
 
                 // Process PullRequests
-                var pullsForThisTag = pullRequestsFromProject.Where(issue => IssueLinkedToRelease(index, releaseInfo, issue.ClosedAt));
+                var pullsForThisTag = pullRequestsFromProject.Where(issue => IssueLinkedToRelease(x.index, x.releaseInfo, issue.ClosedAt));
                 var pullInfos = pullsForThisTag.Select(pull => new IssueInfo
                 {
                     Number = pull.Number,
@@ -65,13 +69,17 @@ namespace GitHubReleaseNotes.Logic
                     Title = pull.Title,
                     User = pull.User.Login,
                     UserUrl = pull.User.HtmlUrl,
-                    Labels = issuesFromProject.First(issue => issue.Number == pull.Number).Labels.Select(label => label.Name) // Get the labels from the Issues (because this is not present in the 'PullRequest')
+                    Labels = issuesFromProject
+                        .First(issue => issue.Number == pull.Number).Labels // Get the labels from the Issues (because this is not present in the 'PullRequest')
+                        .Select(label => label.Name)
                 });
 
-                var allIssues = issueInfos.Union(pullInfos).Distinct();
-                releaseInfo.IssueInfos = allIssues.OrderByDescending(issue => issue.IsPulRequest).ThenBy(issue => issue.Number).ToList();
+                var allIssues = issueInfos.Union(pullInfos)
+                    .Where(issueInfo => _configuration.ExcludeLabels == null ||
+                                        !issueInfo.Labels.All(label => _configuration.ExcludeLabels.Contains(label, StringComparer.OrdinalIgnoreCase)))
+                    .Distinct();
 
-                index++;
+                x.releaseInfo.IssueInfos = allIssues.OrderByDescending(issue => issue.IsPulRequest).ThenBy(issue => issue.Number).ToList();
             }
 
             if (_configuration.SkipEmptyReleases)
@@ -123,7 +131,7 @@ namespace GitHubReleaseNotes.Logic
                 Filter = IssueFilter.All,
                 State = ItemStateFilter.Closed
             };
-            var issuesFromRepository = (await _client.Issue.GetAllForRepository(owner, project, closedIssuesRequest)).ToList();
+            var issuesFromRepository = await _client.Issue.GetAllForRepository(owner, project, closedIssuesRequest).ConfigureAwait(false);
 
             // Do a request to GitHub using Octokit.GitHubClient to get all Closed and Merged Pull Requests
             var closedPullRequestsRequest = new PullRequestRequest
@@ -131,9 +139,9 @@ namespace GitHubReleaseNotes.Logic
                 SortDirection = SortDirection.Ascending,
                 State = ItemStateFilter.Closed
             };
-            var pullRequestsFromRepository = (await _client.PullRequest.GetAllForRepository(owner, project, closedPullRequestsRequest)).Where(pull => pull.Merged).ToList();
+            var pullRequestsFromRepository = await _client.PullRequest.GetAllForRepository(owner, project, closedPullRequestsRequest).ConfigureAwait(false);
 
-            return (issuesFromRepository, pullRequestsFromRepository);
+            return (issuesFromRepository.ToList(), pullRequestsFromRepository.Where(pull => pull.Merged).ToList());
         }
 
         private static (string owner, string project) GetOwnerAndProject(string url)
