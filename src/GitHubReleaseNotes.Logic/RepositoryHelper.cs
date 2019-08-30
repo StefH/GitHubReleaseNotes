@@ -56,7 +56,7 @@ namespace GitHubReleaseNotes.Logic
                     Title = issue.Title,
                     User = issue.User.Login,
                     UserUrl = issue.User.HtmlUrl,
-                    Labels = issue.Labels.Select(label => label.Name)
+                    Labels = issue.Labels.Select(label => label.Name).ToArray()
                 });
 
                 // Process PullRequests
@@ -72,11 +72,14 @@ namespace GitHubReleaseNotes.Logic
                     Labels = issuesFromProject
                         .First(issue => issue.Number == pull.Number).Labels // Get the labels from the Issues (because this is not present in the 'PullRequest')
                         .Select(label => label.Name)
+                        .ToArray()
                 });
 
+                bool IncludeInList(string[] labels) => labels.Length == 0 || _configuration.ExcludeLabels == null ||
+                                                       labels.Count(label => _configuration.ExcludeLabels.Contains(label, StringComparer.OrdinalIgnoreCase)) != labels.Length;
+
                 var allIssues = issueInfos.Union(pullInfos)
-                    .Where(issueInfo => _configuration.ExcludeLabels == null ||
-                                        !issueInfo.Labels.All(label => _configuration.ExcludeLabels.Contains(label, StringComparer.OrdinalIgnoreCase)))
+                    .Where(issueInfo => IncludeInList(issueInfo.Labels))
                     .Distinct();
 
                 x.releaseInfo.IssueInfos = allIssues.OrderByDescending(issue => issue.IsPulRequest).ThenBy(issue => issue.Number).ToList();
