@@ -60,7 +60,7 @@ namespace GitHubReleaseNotes.Logic
                 });
 
                 // Process PullRequests
-                var pullsForThisTag = pullRequestsFromProject.Where(issue => IssueLinkedToRelease(x.index, x.releaseInfo, issue.ClosedAt));
+                var pullsForThisTag = pullRequestsFromProject.Where(pullRequest => IssueLinkedToRelease(x.index, x.releaseInfo, pullRequest.ClosedAt));
                 var pullInfos = pullsForThisTag.Select(pull => new IssueInfo
                 {
                     Number = pull.Number,
@@ -76,11 +76,11 @@ namespace GitHubReleaseNotes.Logic
                 });
 
                 bool IncludeInList(string[] labels) => labels.Length == 0 || _configuration.ExcludeLabels == null ||
-                                                       labels.Count(label => _configuration.ExcludeLabels.Contains(label, StringComparer.OrdinalIgnoreCase)) != labels.Length;
+                                                       labels.Count(label => _configuration.ExcludeLabels.Distinct().Contains(label, StringComparer.OrdinalIgnoreCase)) != labels.Length;
 
                 var allIssues = issueInfos.Union(pullInfos)
-                    .Where(issueInfo => IncludeInList(issueInfo.Labels))
-                    .Distinct();
+                    .Distinct()
+                    .Where(issueInfo => IncludeInList(issueInfo.Labels));
 
                 x.releaseInfo.IssueInfos = allIssues.OrderByDescending(issue => issue.IsPulRequest).ThenBy(issue => issue.Number).ToList();
             }
