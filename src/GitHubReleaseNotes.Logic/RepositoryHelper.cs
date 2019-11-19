@@ -1,11 +1,11 @@
-﻿using System;
+﻿using GitHubReleaseNotes.Logic.Models;
+using Octokit;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using GitHubReleaseNotes.Logic.Models;
-using Octokit;
 
 namespace GitHubReleaseNotes.Logic
 {
@@ -75,12 +75,12 @@ namespace GitHubReleaseNotes.Logic
                         .ToArray()
                 });
 
-                bool IncludeInList(string[] labels) => labels.Length == 0 || _configuration.ExcludeLabels == null ||
-                                                       labels.Count(label => _configuration.ExcludeLabels.Distinct().Contains(label, StringComparer.OrdinalIgnoreCase)) != labels.Length;
+                bool ExcludeIssue(string[] labels) => _configuration.ExcludeLabels != null &&
+                                                      _configuration.ExcludeLabels.Any(s => labels.Contains(s, StringComparer.OrdinalIgnoreCase));
 
                 var allIssues = issueInfos.Union(pullInfos)
                     .Distinct()
-                    .Where(issueInfo => IncludeInList(issueInfo.Labels));
+                    .Where(issueInfo => !ExcludeIssue(issueInfo.Labels));
 
                 x.releaseInfo.IssueInfos = allIssues.OrderByDescending(issue => issue.IsPulRequest).ThenBy(issue => issue.Number).ToList();
             }
