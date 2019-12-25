@@ -26,13 +26,14 @@ namespace GitHubReleaseNotes.Logic
         internal async Task<IEnumerable<ReleaseInfo>> GetReleaseInfoAsync()
         {
             var repository = new LibGit2Sharp.Repository(_configuration.RepositoryPath);
-            string url = repository.Network.Remotes.First(r => r.Name == "origin").Url;
+            string origin = repository.Network.Remotes.First(r => r.Name == "origin").Url;
+            string url = !origin.EndsWith(".git") ? $"{origin}.git" : origin;
 
             Console.WriteLine($"Analyzing Git Repository at '{new FileInfo(_configuration.RepositoryPath).FullName}'");
             var orderedReleaseInfos = GetOrderedReleaseInfos(repository);
 
             Console.WriteLine($"Getting Issues and Pull Requests from '{url}'");
-            var (issuesFromProject, pullRequestsFromProject) = await GetAllIssuesAndPullRequestsAsync(url).ConfigureAwait(false);
+            var result = await GetAllIssuesAndPullRequestsAsync(url).ConfigureAwait(false);
 
             bool IssueTimeIsLessThenReleaseTime(DateTimeOffset releaseTime, DateTimeOffset? issueClosedTime)
                 => issueClosedTime < releaseTime.AddSeconds(DeltaSeconds);
@@ -47,7 +48,7 @@ namespace GitHubReleaseNotes.Logic
             foreach (var x in orderedReleaseInfos.Select((releaseInfo, index) => new { index, releaseInfo }))
             {
                 // Process only Issues
-                var issuesForThisTag = issuesFromProject.Where(issue => issue.PullRequest == null && IssueLinkedToRelease(x.index, x.releaseInfo, issue.ClosedAt));
+                var issuesForThisTag = result.Issues.Where(issue => issue.PullRequest == null && IssueLinkedToRelease(x.index, x.releaseInfo, issue.ClosedAt));
                 var issueInfos = issuesForThisTag.Select(issue => new IssueInfo
                 {
                     Number = issue.Number,
@@ -60,7 +61,7 @@ namespace GitHubReleaseNotes.Logic
                 });
 
                 // Process PullRequests
-                var pullsForThisTag = pullRequestsFromProject.Where(pullRequest => IssueLinkedToRelease(x.index, x.releaseInfo, pullRequest.ClosedAt));
+                var pullsForThisTag = result.PullRequests.Where(pullRequest => IssueLinkedToRelease(x.index, x.releaseInfo, pullRequest.ClosedAt));
                 var pullInfos = pullsForThisTag.Select(pull => new IssueInfo
                 {
                     Number = pull.Number,
@@ -69,7 +70,7 @@ namespace GitHubReleaseNotes.Logic
                     Title = pull.Title,
                     User = pull.User.Login,
                     UserUrl = pull.User.HtmlUrl,
-                    Labels = issuesFromProject
+                    Labels = result.Issues
                         .First(issue => issue.Number == pull.Number).Labels // Get the labels from the Issues (because this is not present in the 'PullRequest')
                         .Select(label => label.Name)
                         .ToArray()
@@ -123,9 +124,9 @@ namespace GitHubReleaseNotes.Logic
             return orderedReleaseInfos;
         }
 
-        private async Task<(List<Issue> Issues, List<PullRequest> PullRequests)> GetAllIssuesAndPullRequestsAsync(string url)
+        private async Task<IssuesAndPullRequestsModel> GetAllIssuesAndPullRequestsAsync(string url)
         {
-            (string owner, string project) = GetOwnerAndProject(url);
+            GetOwnerAndProject(url, out string owner, out string project);
 
             // Do a request to GitHub using Octokit.GitHubClient to get all Closed Issues (this does also include Closed and Merged Pull Requests)
             var closedIssuesRequest = new RepositoryIssueRequest
@@ -144,13 +145,19 @@ namespace GitHubReleaseNotes.Logic
             };
             var pullRequestsFromRepository = await _client.PullRequest.GetAllForRepository(owner, project, closedPullRequestsRequest).ConfigureAwait(false);
 
-            return (issuesFromRepository.ToList(), pullRequestsFromRepository.Where(pull => pull.Merged).ToList());
+            return new IssuesAndPullRequestsModel
+            {
+                Issues = issuesFromRepository.ToList(),
+                PullRequests = pullRequestsFromRepository.Where(pull => pull.Merged).ToList()
+            };
         }
 
-        private static (string owner, string project) GetOwnerAndProject(string url)
+        private static void GetOwnerAndProject(string url, out string owner, out string project)
         {
             var regex = new Regex(@"^https:\/\/github.com\/(?<owner>.+)\/(?<project>.+).git$", RegexOptions.Compiled);
-            return (regex.Match(url).Groups["owner"].Value, regex.Match(url).Groups["project"].Value);
+
+            owner = regex.Match(url).Groups["owner"].Value;
+            project = regex.Match(url).Groups["project"].Value;
         }
 
         private static long? GetVersionAsLong(string friendlyName)
