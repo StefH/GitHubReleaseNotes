@@ -1,3 +1,7 @@
+# 1.0.5.0 (25 December 2019)
+- [#9](https://github.com/StefH/GitHubReleaseNotes/pull/9) - Exclude tags [feature] contributed by [StefH](https://github.com/StefH)
+- [#10](https://github.com/StefH/GitHubReleaseNotes/pull/10) - Fix for `-` in project name. [bug] contributed by [StefH](https://github.com/StefH)
+
 # 1.0.4.0 (21 January 2019)
 - [#8](https://github.com/StefH/GitHubReleaseNotes/pull/8) - Add token and login+password authentication [feature] contributed by [StefH](https://github.com/StefH)
 
