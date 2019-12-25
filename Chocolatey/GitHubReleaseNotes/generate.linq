@@ -50,4 +50,4 @@ Note that this application is build with the .NET 4.5.2 framework and uses Fody 
 
 File.WriteAllText(Path.Combine(chocolateyFolder, "tools", "VERIFICATION.txt"), text, Encoding.UTF8);
 
-"Done".Dump();
+$"'VERIFICATION.txt' is generated for {version}".Dump();
