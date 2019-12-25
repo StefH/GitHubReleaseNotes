@@ -14,7 +14,7 @@ This will use [Chocolatey](http://chocolatey.org) to install **GitHubReleaseNote
 ## Usage
 GitHubReleaseNotes can be run inside a git repository.
 ```
-GitHubReleaseNotes.exe --path . --output ReleaseNotes.md --version 1.0.4.17 --language en --skip-empty-releases
+GitHubReleaseNotes.exe --path . --output ReleaseNotes.md --version 1.0.4.17 --language en --skip-empty-releases --exclude-labels question
 ```
 
 Arguments:
@@ -24,6 +24,7 @@ Arguments:
 - `--language`: Provide the language (two letter according to [ISO-639-1](https://en.wikipedia.org/wiki/ISO_639-1)) which is used to format the dates. If not provided, "en" is used. It's also possible to use a value like "system", which takes the current system ui language.
 - `--skip-empty-releases`: Define this optional argument to skip writing releases which have no associated Issues or Pull Requests.
 - `--template`: Provide a custom Handlebars template instead of the default template to generate the Release Notes.
+- `--exclude-labels`: To exclude issues from the generated output, provide a space separated string list from label-names you want to exclude.
 - `--token`: Provide the GitHub API token as authentication for connecting to private repositories. **@**
 - `--login` and `--password`: Provide the GitHub API login and password as authentication for connecting to private repositories. **@**
 

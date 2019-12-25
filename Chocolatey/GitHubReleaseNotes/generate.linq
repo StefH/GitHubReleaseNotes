@@ -20,16 +20,26 @@ string CreateSHA256()
 	return hash.ToString().ToUpperInvariant();
 }
 
+var fi = new FileInfo(exe);
+long length = fi.Length;
+double lengthInMb = Math.Floor(100.0 * length / (1024 * 1024)) / 100;
+string dateModified = fi.LastWriteTime.ToString("yyyy-MM-dd HH:mm");
+
 string text =
 $@"VERIFICATION
 
 To verify this package, follow these steps:
 
 1] Right click the GitHubReleaseNotes.exe in Windows file explorer and go to the ""Details"" tab and check the following properties:
+   - File description   GitHubReleaseNotes
+   - Type               Application
    - File version       {version}
    - Product name       GitHubReleaseNotes
+   - Product version    {version}
    - Copyright          Stef Heyenrath
-   - Size               {new FileInfo(exe).Length} bytes
+   - Size               {lengthInMb} MB
+   - Date modified      {dateModified}
+   - Language           Language Neutral
    - Original filename  GitHubReleaseNotes.exe
 
 2] Verify the SHA256 from the GitHubReleaseNotes.exe file (7zip can be used for this)

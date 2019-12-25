@@ -21,5 +21,7 @@ namespace GitHubReleaseNotes.Logic
         public string Password { get; set; }
 
         public string Token { get; set; }
+
+        public string[] ExcludeLabels { get; set; }
     }
 }

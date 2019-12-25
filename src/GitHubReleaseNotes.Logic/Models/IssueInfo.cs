@@ -16,6 +16,6 @@ namespace GitHubReleaseNotes.Logic.Models
 
         public string UserUrl { get; set; }
 
-        public IEnumerable<string> Labels { get; set; }
+        public string[] Labels { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace GitHubReleaseNotes.Logic
 
         public async Task GenerateAsync()
         {
-            var releaseInfos = await _repositoryHelper.GetReleaseInfoAsync();
+            var releaseInfos = await _repositoryHelper.GetReleaseInfoAsync().ConfigureAwait(false);
 
             string result = _handleBarsHelper.Generate(releaseInfos);
 

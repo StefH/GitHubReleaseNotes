@@ -36,7 +36,8 @@ namespace GitHubReleaseNotes
                 SkipEmptyReleases = parser.GetBoolValue("skip-empty-releases") || parser.Contains("skip-empty-releases"), // "--skip-empty-releases true" and "--skip-empty-releases" both qualify
                 Token = parser.GetStringValue("token"),
                 Login = parser.GetStringValue("login"),
-                Password = parser.GetStringValue("password")
+                Password = parser.GetStringValue("password"),
+                ExcludeLabels = parser.GetValues("exclude-labels")
             };
         }
     }
