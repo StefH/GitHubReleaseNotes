@@ -6,10 +6,12 @@
 - Update release in this file
 
 ## Build
-Build in release mode.
+Build in release mode
 
 ## Generate VERIFICATION
 Use LinqPad to generate VERIFICATION.txt
+
+## Generate the release-notes
 
 ## Pack
 Run as **Administrator**:
