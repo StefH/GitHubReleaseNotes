@@ -10,7 +10,7 @@ To verify this package, follow these steps:
    - Product version    1.0.5.0
    - Copyright          Stef Heyenrath
    - Size               1.01 MB
-   - Date modified      2019-12-25 12:05
+   - Date modified      2019-12-25 12:15
    - Language           Language Neutral
    - Original filename  GitHubReleaseNotes.exe
 
