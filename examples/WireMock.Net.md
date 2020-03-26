@@ -1,37 +1,169 @@
+# 1.2.2.0 (25 March 2020)
+- [#446](https://github.com/WireMock-Net/WireMock.Net/pull/446) - When port is provided: WireMockServer still takes a random port [bug] contributed by [StefH](https://github.com/StefH)
+- [#445](https://github.com/WireMock-Net/WireMock.Net/issues/445) - Port where WireMockServer listens to - v1.2x [bug]
+
+# 1.2.1.0 (17 March 2020)
+- [#440](https://github.com/WireMock-Net/WireMock.Net/pull/440) - Add .net 472 example for WireMock.Net.RestClient [doc] contributed by [StefH](https://github.com/StefH)
+- [#442](https://github.com/WireMock-Net/WireMock.Net/pull/442) - Fix Null body in handlebars transformation [bug] contributed by [StefH](https://github.com/StefH)
+
+# 1.2.0.0 (14 March 2020)
+- [#417](https://github.com/WireMock-Net/WireMock.Net/pull/417) - Let the .NET core/standard WebHostBuilder use a random port [bug] contributed by [StefH](https://github.com/StefH)
+- [#422](https://github.com/WireMock-Net/WireMock.Net/pull/422) - AllowOnlyDefinedHttpStatusCodeInResponse [bug] contributed by [StefH](https://github.com/StefH)
+- [#379](https://github.com/WireMock-Net/WireMock.Net/issues/379) - Trusting the self signed certificate to enable SSL on dotnet core [bug]
+- [#420](https://github.com/WireMock-Net/WireMock.Net/issues/420) - Updating to 1.1.6+ breaks tests because new AllowAnyHttpStatusCodeInResponse option defaults to false [bug]
+
+# 1.1.10 (05 March 2020)
+- [#427](https://github.com/WireMock-Net/WireMock.Net/pull/427) - Add UsingOptions, UsingConnect and UsingTrace [feature] contributed by [StefH](https://github.com/StefH)
+- [#434](https://github.com/WireMock-Net/WireMock.Net/pull/434) - Option to disable JSON deserialization [feature] contributed by [sebastianmattar](https://github.com/sebastianmattar)
+- [#435](https://github.com/WireMock-Net/WireMock.Net/pull/435) - Also call HandlebarsRegistrationCallback when using WithCallback(..) [feature] contributed by [StefH](https://github.com/StefH)
+- [#408](https://github.com/WireMock-Net/WireMock.Net/issues/408) - Intermittent threading errors with FindLogEntries [bug]
+- [#433](https://github.com/WireMock-Net/WireMock.Net/issues/433) - HandlebarsRegistrationCallback not fired [feature]
+
+# 1.1.9.0 (25 February 2020)
+- [#431](https://github.com/WireMock-Net/WireMock.Net/pull/431) - Fix LinqMatcher for JSON int64 [bug] contributed by [StefH](https://github.com/StefH)
+- [#425](https://github.com/WireMock-Net/WireMock.Net/issues/425) - Allow 64 bit numbers in JSON [bug]
+- [#428](https://github.com/WireMock-Net/WireMock.Net/issues/428) - Can't update the wiki [doc]
+
+# 1.1.8.0 (22 February 2020)
+- [#419](https://github.com/WireMock-Net/WireMock.Net/pull/419) - Support multi line wild card matching [bug] contributed by [NoahLerner](https://github.com/NoahLerner)
+- [#421](https://github.com/WireMock-Net/WireMock.Net/pull/421) - Fix: do not return empty matchers array when Func has been used [bug] contributed by [StefH](https://github.com/StefH)
+- [#423](https://github.com/WireMock-Net/WireMock.Net/pull/423) - Fixes for Cookie and Header Reject on Match [bug] contributed by [StefH](https://github.com/StefH)
+- [#424](https://github.com/WireMock-Net/WireMock.Net/pull/424) - Don't return empty dictionary object for response headers in JSON mapping [feature] contributed by [StefH](https://github.com/StefH)
+- [#418](https://github.com/WireMock-Net/WireMock.Net/issues/418) - Body matching fails if body has newline [bug]
+
+# 1.1.7.0 (06 February 2020)
+- [#409](https://github.com/WireMock-Net/WireMock.Net/pull/409) - Admin Delete with mappings in body [feature] contributed by [NoahLerner](https://github.com/NoahLerner)
+- [#411](https://github.com/WireMock-Net/WireMock.Net/pull/411) - Improved relative path checking based on file existence [feature] contributed by [NoahLerner](https://github.com/NoahLerner)
+- [#413](https://github.com/WireMock-Net/WireMock.Net/pull/413) - Fix new Delete with body missing from IWireMockAdminApi interface contributed by [NoahLerner](https://github.com/NoahLerner)
+- [#414](https://github.com/WireMock-Net/WireMock.Net/pull/414) - Fix logger in StandAlone [bug] contributed by [StefH](https://github.com/StefH)
+- [#410](https://github.com/WireMock-Net/WireMock.Net/issues/410) - Some request attributes not documented in wiki [doc]
+- [#412](https://github.com/WireMock-Net/WireMock.Net/issues/412) - WireMock Standalone - null reference exception since settings.Logger [bug]
+
+# 1.1.6.0 (27 January 2020)
+- [#407](https://github.com/WireMock-Net/WireMock.Net/pull/407) - AllowAnyHttpStatusCodeInResponse [feature] contributed by [StefH](https://github.com/StefH)
+
+# 1.1.5.0 (25 January 2020)
+- [#405](https://github.com/WireMock-Net/WireMock.Net/pull/405) - Fix logging an Exception Message (linux docker on azure) [bug] contributed by [StefH](https://github.com/StefH)
+- [#406](https://github.com/WireMock-Net/WireMock.Net/pull/406) - Fixed StatusCode = null or &lt; 0 [bug] contributed by [StefH](https://github.com/StefH)
+
+# 1.1.3.0 (22 January 2020)
+- [#403](https://github.com/WireMock-Net/WireMock.Net/pull/403) - Fix for invalid cast exception contributed by [kashifsoofi](https://github.com/kashifsoofi)
+- [#402](https://github.com/WireMock-Net/WireMock.Net/issues/402) - Invalid Cast Exception  [bug]
+
+# 1.1.2.0 (09 January 2020)
+- [#399](https://github.com/WireMock-Net/WireMock.Net/pull/399) - ResponseModel.StatusCode is deserialized as either string or long. [bug] contributed by [vitaliydavydiak](https://github.com/vitaliydavydiak)
+- [#400](https://github.com/WireMock-Net/WireMock.Net/issues/400) - StatusCode not built correctly when loaded from mapping file. [bug]
+
+# 1.1.1.0 (09 January 2020)
+- [#398](https://github.com/WireMock-Net/WireMock.Net/pull/398) - Feature/xpath transformer [feature] contributed by [kashifsoofi](https://github.com/kashifsoofi)
+- [#397](https://github.com/WireMock-Net/WireMock.Net/issues/397) - Question/Feature: Add support for selecting XPath in response template [feature]
+
+# 1.1.0.0 (27 December 2019)
+- [#363](https://github.com/WireMock-Net/WireMock.Net/pull/363) - WireMock.Net version 1.1.x contributed by [StefH](https://github.com/StefH)
+
+# 1.0.43.0 (26 December 2019)
+- [#385](https://github.com/WireMock-Net/WireMock.Net/pull/385) - StatusCode as string [feature] contributed by [StefH](https://github.com/StefH)
+- [#380](https://github.com/WireMock-Net/WireMock.Net/issues/380) - StatusCode is defined as integer (string is not possible) [bug]
+- [#382](https://github.com/WireMock-Net/WireMock.Net/issues/382) - Return same request body [feature]
+
+# 1.0.42.0 (15 December 2019)
+- [#391](https://github.com/WireMock-Net/WireMock.Net/pull/391) - Correctly support DateTime pattern as string in ExactMatcher [bug] contributed by [StefH](https://github.com/StefH)
+- [#383](https://github.com/WireMock-Net/WireMock.Net/issues/383) - ExactMatcher does not accept ISO8601 DateTime? [bug]
+
+# 1.0.41.0 (14 December 2019)
+- [#392](https://github.com/WireMock-Net/WireMock.Net/pull/392) - Fix array in JsonMatcher [bug] contributed by [StefH](https://github.com/StefH)
+- [#390](https://github.com/WireMock-Net/WireMock.Net/issues/390) - JsonMatcher does not match a body containing an array of strings [bug]
+
+# 1.0.40.0 (09 December 2019)
+- [#389](https://github.com/WireMock-Net/WireMock.Net/pull/389) - Fix QueryStringParser [bug] contributed by [StefH](https://github.com/StefH)
+- [#387](https://github.com/WireMock-Net/WireMock.Net/issues/387) - Query string parameter value which contains %26 does not work with ExactMatcher [bug]
+
+# 1.0.39.0 (07 December 2019)
+- [#370](https://github.com/WireMock-Net/WireMock.Net/pull/370) - Add WebProxySettings (use when proxying requests) [feature] contributed by [StefH](https://github.com/StefH)
+- [#388](https://github.com/WireMock-Net/WireMock.Net/pull/388) - Transform body as file [bug] contributed by [StefH](https://github.com/StefH)
+- [#369](https://github.com/WireMock-Net/WireMock.Net/issues/369) - Question: Is there a way to provide a corporate proxy configuration? [feature]
+- [#375](https://github.com/WireMock-Net/WireMock.Net/issues/375) - Proxying does not follow redirects : make this configurable [feature]
+- [#386](https://github.com/WireMock-Net/WireMock.Net/issues/386) - Is transforming contents of XML file supported.? [bug]
+
+# 1.0.38.0 (30 November 2019)
+- [#376](https://github.com/WireMock-Net/WireMock.Net/pull/376) - Support int values for states and scenario naming [feature] contributed by [NoahLerner](https://github.com/NoahLerner)
+- [#378](https://github.com/WireMock-Net/WireMock.Net/pull/378) - Set handlebars dependency for .net 4.5.1 to fixed value [bug] contributed by [StefH](https://github.com/StefH)
+- [#381](https://github.com/WireMock-Net/WireMock.Net/pull/381) - Use dotnet default development certificate for .NET Core 2.x [feature] contributed by [StefH](https://github.com/StefH)
+- [#377](https://github.com/WireMock-Net/WireMock.Net/issues/377) - Unable to build against .NET 4.5.1 because of Handlebars [bug]
+
+# 1.0.37.0 (08 November 2019)
+- [#373](https://github.com/WireMock-Net/WireMock.Net/pull/373) - Make Sonar and WhiteSource optional in the Azure pipelines build [feature] contributed by [StefH](https://github.com/StefH)
+- [#374](https://github.com/WireMock-Net/WireMock.Net/pull/374) - WatchStaticMappingsInSubdirectories [feature] contributed by [StefH](https://github.com/StefH)
+- [#372](https://github.com/WireMock-Net/WireMock.Net/issues/372) - Reset in WireMock admin API not working fine. [feature]
+
+# 1.0.36.0 (26 October 2019)
+- [#360](https://github.com/WireMock-Net/WireMock.Net/pull/360) - Add support for Faults [feature] contributed by [StefH](https://github.com/StefH)
+- [#343](https://github.com/WireMock-Net/WireMock.Net/issues/343) - Feature: Please provide support for Bad responses. [feature]
+
+# 1.0.35.0 (25 October 2019)
+- [#367](https://github.com/WireMock-Net/WireMock.Net/pull/367) - No symbol NuGets [feature] contributed by [StefH](https://github.com/StefH)
+- [#368](https://github.com/WireMock-Net/WireMock.Net/pull/368) - Remove Obsolete annotations [feature] contributed by [StefH](https://github.com/StefH)
+
+# 1.0.34.0 (22 October 2019)
+- [#354](https://github.com/WireMock-Net/WireMock.Net/pull/354) - AllowBodyForAllHttpMethods [bug, feature] contributed by [StefH](https://github.com/StefH)
+- [#365](https://github.com/WireMock-Net/WireMock.Net/pull/365) - Bump Microsoft.AspNetCore.All from 2.0.8 to 2.0.9 in /examples/WireMock.Net.WebApplication [dependencies] contributed by [dependabot[bot]](https://github.com/apps/dependabot)
+- [#366](https://github.com/WireMock-Net/WireMock.Net/pull/366) - Update ObsoleteAnnotations [feature] contributed by [StefH](https://github.com/StefH)
+- [#352](https://github.com/WireMock-Net/WireMock.Net/issues/352) - DELETE request drops the body [feature]
+
+# 1.0.33.0 (12 October 2019)
+- [#311](https://github.com/WireMock-Net/WireMock.Net/pull/311) - fix jsonpath matcher [bug] contributed by [StefH](https://github.com/StefH)
+- [#324](https://github.com/WireMock-Net/WireMock.Net/pull/324) - Add CSharpCodeMatcher [feature] contributed by [StefH](https://github.com/StefH)
+- [#335](https://github.com/WireMock-Net/WireMock.Net/pull/335) - Mark some classes and methods obsolete for version 1.1.0 [doc] contributed by [StefH](https://github.com/StefH)
+- [#353](https://github.com/WireMock-Net/WireMock.Net/pull/353) - Fixed failing admin requests when content type includes a charset (based on idea from Paul Roub) [bug] contributed by [StefH](https://github.com/StefH)
+- [#355](https://github.com/WireMock-Net/WireMock.Net/pull/355) - Add Try-Catch to the event LogEntriesChanged [feature] contributed by [StefH](https://github.com/StefH)
+- [#357](https://github.com/WireMock-Net/WireMock.Net/pull/357) - Add Proxy Setting for: SaveMappingForStatusCodePattern to only save the mapping when the status code matches the pattern [feature] contributed by [StefH](https://github.com/StefH)
+- [#358](https://github.com/WireMock-Net/WireMock.Net/pull/358) - Fix JsonMatcher (parsing DateTimeOffset) contributed by [StefH](https://github.com/StefH)
+- [#306](https://github.com/WireMock-Net/WireMock.Net/issues/306) - Writing to the response body is invalid for responses with status code 204 [bug]
+- [#307](https://github.com/WireMock-Net/WireMock.Net/issues/307) - JsonPathMatcher always convert to JArray before matching [bug]
+- [#329](https://github.com/WireMock-Net/WireMock.Net/issues/329) - Feature: Add support for CSharpCodeMatcher [feature]
+- [#350](https://github.com/WireMock-Net/WireMock.Net/issues/350) - Admin requests fail when content type includes a charset [bug]
+- [#356](https://github.com/WireMock-Net/WireMock.Net/issues/356) - JsonMatcher not working when JSON contains a DateTimeOffset [bug]
+
+# 1.0.32.0 (20 September 2019)
+- [#348](https://github.com/WireMock-Net/WireMock.Net/pull/348) - When posting new mapping, use DateParseHandling.None [bug] contributed by [StefH](https://github.com/StefH)
+- [#347](https://github.com/WireMock-Net/WireMock.Net/issues/347) - Query string match on DateTimeOffset is not working [bug]
+
+# 1.0.31.0 (19 September 2019)
+- [#334](https://github.com/WireMock-Net/WireMock.Net/pull/334) - Fix issues with Proxy mode and Binary Request Bodies [bug] contributed by [andi0b](https://github.com/andi0b)
+- [#338](https://github.com/WireMock-Net/WireMock.Net/pull/338) - Fix ContentType with parameters in Proxy Mode [bug] contributed by [StefH](https://github.com/StefH)
+- [#339](https://github.com/WireMock-Net/WireMock.Net/pull/339) - Fix ConcurrentObservableCollection [bug] contributed by [StefH](https://github.com/StefH)
+- [#345](https://github.com/WireMock-Net/WireMock.Net/pull/345) - Fix CompareTo in RequestMatchResult [bug] contributed by [StefH](https://github.com/StefH)
+- [#346](https://github.com/WireMock-Net/WireMock.Net/pull/346) - Fix recorded requests skipped by request logger contributed by [vitaliydavydiak](https://github.com/vitaliydavydiak)
+- [#337](https://github.com/WireMock-Net/WireMock.Net/issues/337) - Proxy Missing header Content-Type - tried with Recording [bug]
+- [#344](https://github.com/WireMock-Net/WireMock.Net/issues/344) - Mapping adding order matters for multiple mappings? [bug]
+
 # 1.0.29.0 (29 August 2019)
 - [#328](https://github.com/WireMock-Net/WireMock.Net/pull/328) - Fix LogRequest : Index Out Of Bounds [bug] contributed by [StefH](https://github.com/StefH)
 - [#331](https://github.com/WireMock-Net/WireMock.Net/pull/331) - Fix: Collection was modified exception [bug] contributed by [theramis](https://github.com/theramis)
 - [#333](https://github.com/WireMock-Net/WireMock.Net/pull/333) - JsonMatcher support IgnoreCase [feature] contributed by [StefH](https://github.com/StefH)
-- [#327](https://github.com/WireMock-Net/WireMock.Net/issues/327) - Index must be within the bounds of the List - Bug [bug]
 - [#332](https://github.com/WireMock-Net/WireMock.Net/issues/332) - Case sensitive true is ignored for JsonMatcher [feature]
 
 # 1.0.28.0 (20 August 2019)
+- [#309](https://github.com/WireMock-Net/WireMock.Net/pull/309) - Fix LogEntries: collection was modified exception [bug] contributed by [StefH](https://github.com/StefH)
+- [#314](https://github.com/WireMock-Net/WireMock.Net/pull/314) - RequestLogExpirationDuration : use DateTime.UtcNow [bug] contributed by [StefH](https://github.com/StefH)
+- [#316](https://github.com/WireMock-Net/WireMock.Net/pull/316) - Handles case where parameter value contains == [feature] contributed by [lobsteropteryx](https://github.com/lobsteropteryx)
 - [#317](https://github.com/WireMock-Net/WireMock.Net/pull/317) - Make SaveMapping and SaveMappingToFile settings independent. [feature] contributed by [vitaliydavydiak](https://github.com/vitaliydavydiak)
 - [#319](https://github.com/WireMock-Net/WireMock.Net/pull/319) - Add blacklist for Request Cookies. contributed by [vitaliydavydiak](https://github.com/vitaliydavydiak)
 - [#320](https://github.com/WireMock-Net/WireMock.Net/pull/320) - Remove coverlet folder from source control [doc] contributed by [StefH](https://github.com/StefH)
 - [#322](https://github.com/WireMock-Net/WireMock.Net/pull/322) - Fix MappingMatcher in case of an exception in LinqMatcher. [bug] contributed by [StefH](https://github.com/StefH)
 - [#323](https://github.com/WireMock-Net/WireMock.Net/pull/323) - Refactor MappingConverter &amp; MatcherMapper [refactor] contributed by [StefH](https://github.com/StefH)
 - [#326](https://github.com/WireMock-Net/WireMock.Net/pull/326) - Fix Parsing Guid in PUT Mapping [bug] contributed by [StefH](https://github.com/StefH)
-- [#318](https://github.com/WireMock-Net/WireMock.Net/issues/318) - Documentation: Add valid CLI parameters [doc, question]
-- [#325](https://github.com/WireMock-Net/WireMock.Net/issues/325) - Admin API: PUT Mapping, FormatException because of wrong parsing of the Query  [bug]
-
-# 1.0.27.0 (14 August 2019)
-- [#316](https://github.com/WireMock-Net/WireMock.Net/pull/316) - Handles case where parameter value contains == [feature] contributed by [lobsteropteryx](https://github.com/lobsteropteryx)
-- [#287](https://github.com/WireMock-Net/WireMock.Net/issues/287) - Error with parameter that contains a &quot;=&quot; character [bug, question]
-- [#315](https://github.com/WireMock-Net/WireMock.Net/issues/315) - Wiki - Proxying: AtPriority() example not set on right object [doc]
-
-# 1.0.26.0 (11 August 2019)
-- [#309](https://github.com/WireMock-Net/WireMock.Net/pull/309) - Fix LogEntries: collection was modified exception [bug] contributed by [StefH](https://github.com/StefH)
-- [#314](https://github.com/WireMock-Net/WireMock.Net/pull/314) - RequestLogExpirationDuration : use DateTime.UtcNow [bug] contributed by [StefH](https://github.com/StefH)
+- [#252](https://github.com/WireMock-Net/WireMock.Net/issues/252) - Proxy with Transform
 - [#308](https://github.com/WireMock-Net/WireMock.Net/issues/308) - __admin/requests - &quot;Collection was modified&quot; exception [bug]
 - [#313](https://github.com/WireMock-Net/WireMock.Net/issues/313) - RequestLogExpirationDuration - bug [bug]
+- [#315](https://github.com/WireMock-Net/WireMock.Net/issues/315) - Wiki - Proxying: AtPriority() example not set on right object [doc]
+- [#325](https://github.com/WireMock-Net/WireMock.Net/issues/325) - Admin API: PUT Mapping, FormatException because of wrong parsing of the Query  [bug]
 
 # 1.0.25.0 (23 July 2019)
 - [#304](https://github.com/WireMock-Net/WireMock.Net/pull/304) - Support WithBody with multiple matchers [feature] contributed by [StefH](https://github.com/StefH)
 
 # 1.0.24.0 (22 July 2019)
 - [#302](https://github.com/WireMock-Net/WireMock.Net/pull/302) - Fixed bug 301 by not setting BodyAsFile to null after first use [bug] contributed by [rwwilden](https://github.com/rwwilden)
-- [#299](https://github.com/WireMock-Net/WireMock.Net/issues/299) - Get Mappings models instead of just IMapping interface [feature, question]
 - [#301](https://github.com/WireMock-Net/WireMock.Net/issues/301) - Error thrown when calling mocked endpoint second time when using file-based response body [bug]
 
 # 1.0.23.0 (16 July 2019)
@@ -39,15 +171,12 @@
 
 # 1.0.22.0 (15 July 2019)
 - [#297](https://github.com/WireMock-Net/WireMock.Net/pull/297) - FixNullRef (#295) contributed by [StefH](https://github.com/StefH)
-- [#178](https://github.com/WireMock-Net/WireMock.Net/issues/178) - Bug: Path matching fails when the URL contains encoded parts [bug, question]
 - [#295](https://github.com/WireMock-Net/WireMock.Net/issues/295) - NullRef in 1.0.21 [bug]
 
 # 1.0.21.0 (03 July 2019)
 - [#286](https://github.com/WireMock-Net/WireMock.Net/pull/286) - Handlebars Extension [feature] contributed by [StefH](https://github.com/StefH)
 - [#293](https://github.com/WireMock-Net/WireMock.Net/pull/293) - workaround for AppContext.BaseDirectory being null on some platforms contributed by [eli-darkly](https://github.com/eli-darkly)
 - [#294](https://github.com/WireMock-Net/WireMock.Net/pull/294) - don't strip request body if we don't recognize the request method contributed by [eli-darkly](https://github.com/eli-darkly)
-- [#285](https://github.com/WireMock-Net/WireMock.Net/issues/285) - Need ability to add custom ResponseMessageTransformers [feature, question]
-- [#288](https://github.com/WireMock-Net/WireMock.Net/issues/288) - Allow setting root folder in LocalFileSystemHandler [feature, question]
 - [#289](https://github.com/WireMock-Net/WireMock.Net/issues/289) - Bug:  When WatchStaticMappings=true throws exceptions on updating the mapping files [bug]
 - [#290](https://github.com/WireMock-Net/WireMock.Net/issues/290) - Request body is dropped if verb is REPORT [bug]
 - [#292](https://github.com/WireMock-Net/WireMock.Net/issues/292) - Can't start server in Xamarin Android [bug]
@@ -73,7 +202,6 @@
 - [#271](https://github.com/WireMock-Net/WireMock.Net/pull/271) - Support Dynamic response files using Handlebars templating [bug, feature] contributed by [StefH](https://github.com/StefH)
 - [#272](https://github.com/WireMock-Net/WireMock.Net/pull/272) - Add unit test for JsonPath and BodyAsFile mapping contributed by [denstorti](https://github.com/denstorti)
 - [#273](https://github.com/WireMock-Net/WireMock.Net/pull/273) - Dynamic response handlebars templating (2) [bug, feature] contributed by [StefH](https://github.com/StefH)
-- [#270](https://github.com/WireMock-Net/WireMock.Net/issues/270) - Dynamic response files using Handlebars templating [bug, question]
 
 # 1.0.14.0 (20 April 2019)
 - [#269](https://github.com/WireMock-Net/WireMock.Net/pull/269) - Add JmesPath matcher [feature] contributed by [StefH](https://github.com/StefH)
@@ -104,6 +232,7 @@
 # 1.0.7.0 (19 January 2019)
 - [#244](https://github.com/WireMock-Net/WireMock.Net/pull/244) - Fix BodyAsFile to also allow relative paths [feature] contributed by [StefH](https://github.com/StefH)
 - [#240](https://github.com/WireMock-Net/WireMock.Net/issues/240) - How to submit mappings for multiple request, responses [feature]
+- [#243](https://github.com/WireMock-Net/WireMock.Net/issues/243) - Not able to read response from file [bug]
 
 # 1.0.6.1 (10 January 2019)
 - [#247](https://github.com/WireMock-Net/WireMock.Net/pull/247) - Issue 225 improve logging in example for wire mock as windows service contributed by [paulssn](https://github.com/paulssn)
@@ -262,9 +391,7 @@
 - [#134](https://github.com/WireMock-Net/WireMock.Net/pull/134) - Stef negate matcher contributed by [alastairtree](https://github.com/alastairtree)
 - [#135](https://github.com/WireMock-Net/WireMock.Net/pull/135) - Merge into the stef_negate_matcher branch (solves issue #133) contributed by [StefH](https://github.com/StefH)
 - [#138](https://github.com/WireMock-Net/WireMock.Net/pull/138) - Added Negate matcher logic contributed by [StefH](https://github.com/StefH)
-- [#128](https://github.com/WireMock-Net/WireMock.Net/issues/128) - Feature: Negate a matcher [feature, question]
 - [#130](https://github.com/WireMock-Net/WireMock.Net/issues/130) - ...
-- [#133](https://github.com/WireMock-Net/WireMock.Net/issues/133) - Issue: Wildcard matching a json body does not work? [bug, question]
 
 # 1.0.3.16 (17 April 2018)
 - [#121](https://github.com/WireMock-Net/WireMock.Net/pull/121) - Fix for issue #118 [bug] contributed by [raghavendrabankapur](https://github.com/raghavendrabankapur)
