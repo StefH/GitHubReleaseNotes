@@ -19,7 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{5B
 	ProjectSection(SolutionItems) = preProject
 		..\examples\RestEase-Client-Generator.md = ..\examples\RestEase-Client-Generator.md
 		..\examples\System.Linq.Dynamic.Core.md = ..\examples\System.Linq.Dynamic.Core.md
+		..\examples\System.Linq.Dynamic.Core.txt = ..\examples\System.Linq.Dynamic.Core.txt
 		..\examples\WireMock.Net.md = ..\examples\WireMock.Net.md
+		..\examples\WireMock.Net.txt = ..\examples\WireMock.Net.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubReleaseNotes.Logic", "GitHubReleaseNotes.Logic\GitHubReleaseNotes.Logic.csproj", "{B6269AAC-170A-43D0-8B9B-579DED3D9A99}"

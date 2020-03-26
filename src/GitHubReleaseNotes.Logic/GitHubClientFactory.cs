@@ -7,14 +7,15 @@ namespace GitHubReleaseNotes.Logic
     {
         private const string AppName = "GitHubReleaseNotes";
 
-        public static IGitHubClient CreateClient(Configuration configuration)
+        public static IGitHubClient CreateClient(Configuration configuration, string owner)
         {
             if (configuration == null)
             {
                 throw new ArgumentNullException(nameof(configuration));
             }
 
-            var client = CreateClient();
+            string product = !string.IsNullOrEmpty(owner) ? owner : AppName;
+            var client = new GitHubClient(new ProductHeaderValue(product));
 
             if (!string.IsNullOrEmpty(configuration.Token))
             {
@@ -26,11 +27,6 @@ namespace GitHubReleaseNotes.Logic
             }
 
             return client;
-        }
-
-        private static GitHubClient CreateClient()
-        {
-            return new GitHubClient(new ProductHeaderValue(AppName));
         }
     }
 }

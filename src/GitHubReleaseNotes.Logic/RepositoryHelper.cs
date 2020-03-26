@@ -1,26 +1,24 @@
-﻿using GitHubReleaseNotes.Logic.Models;
-using Octokit;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using GitHubReleaseNotes.Logic.Models;
+using Octokit;
 
 namespace GitHubReleaseNotes.Logic
 {
     public class RepositoryHelper
     {
+        private const int GitHubClientApiOptionsPageSize = 100;
         private const int DeltaSeconds = 30;
 
         private readonly Configuration _configuration;
-        private readonly IGitHubClient _client;
 
         public RepositoryHelper(Configuration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-
-            _client = GitHubClientFactory.CreateClient(_configuration);
         }
 
         internal async Task<IEnumerable<ReleaseInfo>> GetReleaseInfoAsync()
@@ -128,6 +126,19 @@ namespace GitHubReleaseNotes.Logic
         {
             GetOwnerAndProject(url, out string owner, out string project);
 
+            var client = GitHubClientFactory.CreateClient(_configuration, owner);
+
+            return new IssuesAndPullRequestsModel
+            {
+                Issues = await GetIssuesForRepositoryAsync(client, owner, project).ConfigureAwait(false),
+                PullRequests = await GetMergedPullRequestsForRepositoryAsync(client, owner, project).ConfigureAwait(false)
+            };
+        }
+
+        private async Task<ICollection<Issue>> GetIssuesForRepositoryAsync(IGitHubClient client, string owner, string name)
+        {
+            var allIssues = new List<Issue>();
+
             // Do a request to GitHub using Octokit.GitHubClient to get all Closed Issues (this does also include Closed and Merged Pull Requests)
             var closedIssuesRequest = new RepositoryIssueRequest
             {
@@ -135,21 +146,56 @@ namespace GitHubReleaseNotes.Logic
                 Filter = IssueFilter.All,
                 State = ItemStateFilter.Closed
             };
-            var issuesFromRepository = await _client.Issue.GetAllForRepository(owner, project, closedIssuesRequest).ConfigureAwait(false);
 
-            // Do a request to GitHub using Octokit.GitHubClient to get all Closed and Merged Pull Requests
+            bool getNextPage;
+            int page = 1;
+            do
+            {
+                var options = new ApiOptions
+                {
+                    PageSize = GitHubClientApiOptionsPageSize,
+                    StartPage = page
+                };
+                var issues = await client.Issue.GetAllForRepository(owner, name, closedIssuesRequest, options).ConfigureAwait(false);
+                allIssues.AddRange(issues);
+
+                getNextPage = issues.Count >= GitHubClientApiOptionsPageSize;
+                page++;
+            } while (getNextPage);
+
+            // Return all issues
+            return allIssues;
+        }
+
+        private async Task<ICollection<PullRequest>> GetMergedPullRequestsForRepositoryAsync(IGitHubClient client, string owner, string name)
+        {
+            var allPullRequests = new List<PullRequest>();
+
+            // Do a request to GitHub using Octokit.GitHubClient to get all Closed Pull Requests
             var closedPullRequestsRequest = new PullRequestRequest
             {
                 SortDirection = SortDirection.Ascending,
                 State = ItemStateFilter.Closed
             };
-            var pullRequestsFromRepository = await _client.PullRequest.GetAllForRepository(owner, project, closedPullRequestsRequest).ConfigureAwait(false);
 
-            return new IssuesAndPullRequestsModel
+            bool getNextPage;
+            int page = 1;
+            do
             {
-                Issues = issuesFromRepository.ToList(),
-                PullRequests = pullRequestsFromRepository.Where(pull => pull.Merged).ToList()
-            };
+                var options = new ApiOptions
+                {
+                    PageSize = GitHubClientApiOptionsPageSize,
+                    StartPage = page
+                };
+                var pullRequests = await client.PullRequest.GetAllForRepository(owner, name, closedPullRequestsRequest, options).ConfigureAwait(false);
+                allPullRequests.AddRange(pullRequests);
+
+                getNextPage = pullRequests.Count >= GitHubClientApiOptionsPageSize;
+                page++;
+            } while (getNextPage);
+
+            // Return only Merged PullRequests
+            return allPullRequests.Where(pull => pull.Merged).ToList();
         }
 
         private static void GetOwnerAndProject(string url, out string owner, out string project)
