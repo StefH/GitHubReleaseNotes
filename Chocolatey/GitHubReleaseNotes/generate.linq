@@ -1,8 +1,10 @@
 <Query Kind="Statements" />
 
 // LinqPad script to generate the `VERIFICATION.txt` file
-string projectFolder = @"C:\Users\StefHeyenrath\Documents\GitHub\GitHubReleaseNotes";
-string chocolateyFolder = Path.Combine(projectFolder, "Chocolatey", "GitHubReleaseNotes");
+
+// Get the folder where this LinqPad script is located (https://stackoverflow.com/questions/3802779/linqpad-script-directory)
+string chocolateyFolder = Path.GetDirectoryName(Util.CurrentQueryPath);
+string projectFolder = Path.Combine(chocolateyFolder, "../", "../");
 
 var doc = new XmlDocument(); doc.Load(Path.Combine(chocolateyFolder, "GitHubReleaseNotes.nuspec"));
 string version = doc["package"]["metadata"]["version"].FirstChild.Value;
@@ -45,6 +47,7 @@ To verify this package, follow these steps:
 2] Verify the SHA256 from the GitHubReleaseNotes.exe file (7zip can be used for this)
    - SHA256             {CreateSHA256()}
 
+3] For the changes in this release, see ReleaseNotes.md
 
 Note that this application is build with the .NET 4.5.2 framework and uses Fody and Fody.Costura to include all dependencies to generate a single exe file.";
 
