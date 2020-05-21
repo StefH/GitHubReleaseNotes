@@ -1,0 +1,13 @@
+﻿Id: GitHubReleaseNotes.GitHubReleaseNotes
+Name: GitHubReleaseNotes
+Version: 1.0.5.3
+Publisher: Stef Heyenrath
+Homepage: https://github.com/StefH/GitHubReleaseNotes
+License: MIT
+LicenseUrl: https://github.com/StefH/GitHubReleaseNotes/blob/master/LICENSE
+Description: Generate Release Notes from a GitHub project.
+InstallerType: Msi
+Installers:
+  - Arch: x64
+    Url: https://github.com/StefH/GitHubReleaseNotes/releases/download/1.0.5.3/Setup.msi
+    Sha256: F08F2D2292E15A9B9BA90E8B6CC4C3C412D6B1069D1EF9EDC7DA67337566F567
