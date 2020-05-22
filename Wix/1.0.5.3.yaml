@@ -1,11 +1,13 @@
-﻿Id: GitHubReleaseNotes.GitHubReleaseNotes
-Name: GitHubReleaseNotes
+﻿Id: StefHeyenrath.GitHubReleaseNotes
 Version: 1.0.5.3
+Name: GitHubReleaseNotes
+AppMoniker: GitHubReleaseNotes
 Publisher: Stef Heyenrath
-Homepage: https://github.com/StefH/GitHubReleaseNotes
 License: MIT
 LicenseUrl: https://github.com/StefH/GitHubReleaseNotes/blob/master/LICENSE
-Description: Generate Release Notes from a GitHub project.
+Homepage: https://github.com/StefH/GitHubReleaseNotes
+Description: Generate Release Notes in MarkDown format from a GitHub project.
+Tags: "github, markdown, releasenotes, changelog, tags, generate, md"
 InstallerType: Msi
 Installers:
   - Arch: x64

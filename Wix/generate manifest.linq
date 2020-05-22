@@ -1,6 +1,6 @@
 <Query Kind="Statements" />
 
-// LinqPad script to generate the `VERIFICATION.txt` file
+// LinqPad script to generate the `manifest.yaml` file
 
 // Get the folder where this LinqPad script is located (https://stackoverflow.com/questions/3802779/linqpad-script-directory)
 string folder = Path.GetDirectoryName(Util.CurrentQueryPath);
@@ -23,14 +23,16 @@ string CreateSHA256()
 }
 
 string text =
-$@"Id: GitHubReleaseNotes.GitHubReleaseNotes
-Name: GitHubReleaseNotes
+$@"Id: StefHeyenrath.GitHubReleaseNotes
 Version: {version}
+Name: GitHubReleaseNotes
+AppMoniker: GitHubReleaseNotes
 Publisher: Stef Heyenrath
-Homepage: https://github.com/StefH/GitHubReleaseNotes
 License: MIT
 LicenseUrl: https://github.com/StefH/GitHubReleaseNotes/blob/master/LICENSE
+Homepage: https://github.com/StefH/GitHubReleaseNotes
 Description: Generate Release Notes in MarkDown format from a GitHub project.
+Tags: ""github, markdown, releasenotes, changelog, tags, generate, md""
 InstallerType: Msi
 Installers:
   - Arch: x64
@@ -39,4 +41,4 @@ Installers:
 
 File.WriteAllText(Path.Combine(folder, $"{version}.yaml"), text, Encoding.UTF8);
 
-$"'manifest' is generated for {version}".Dump();
+$"Manifest yaml is generated for {version}".Dump();
