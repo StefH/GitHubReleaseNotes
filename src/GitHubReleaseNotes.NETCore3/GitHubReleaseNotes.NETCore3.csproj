@@ -12,6 +12,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\GitHubReleaseNotes\ConfigurationParser.cs" Link="ConfigurationParser.cs" />
+    <Compile Include="..\GitHubReleaseNotes\SimpleCommandLineParser.cs" Link="SimpleCommandLineParser.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GitHubReleaseNotes.Logic\GitHubReleaseNotes.Logic.csproj" />
   </ItemGroup>
 
