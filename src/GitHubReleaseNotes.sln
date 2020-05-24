@@ -50,6 +50,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wix and winget-pkgs", "Wix 
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Setup", "..\Wix\Setup\Setup.wixproj", "{9456D153-CBDD-470B-9BFF-17C145ED9C24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubReleaseNotes.NETCore3", "GitHubReleaseNotes.NETCore3\GitHubReleaseNotes.NETCore3.csproj", "{E851802A-C1F1-47BB-8725-1FD1868CC6EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +82,14 @@ Global
 		{9456D153-CBDD-470B-9BFF-17C145ED9C24}.Release|Any CPU.ActiveCfg = Release|x86
 		{9456D153-CBDD-470B-9BFF-17C145ED9C24}.Release|x86.ActiveCfg = Release|x86
 		{9456D153-CBDD-470B-9BFF-17C145ED9C24}.Release|x86.Build.0 = Release|x86
+		{E851802A-C1F1-47BB-8725-1FD1868CC6EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E851802A-C1F1-47BB-8725-1FD1868CC6EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E851802A-C1F1-47BB-8725-1FD1868CC6EB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E851802A-C1F1-47BB-8725-1FD1868CC6EB}.Debug|x86.Build.0 = Debug|Any CPU
+		{E851802A-C1F1-47BB-8725-1FD1868CC6EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E851802A-C1F1-47BB-8725-1FD1868CC6EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E851802A-C1F1-47BB-8725-1FD1868CC6EB}.Release|x86.ActiveCfg = Release|Any CPU
+		{E851802A-C1F1-47BB-8725-1FD1868CC6EB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +99,7 @@ Global
 		{B6269AAC-170A-43D0-8B9B-579DED3D9A99} = {EF77BB40-C919-4644-81A3-968854FB9B23}
 		{EC3EE34B-AC6A-4051-90D8-BECA56E110CE} = {13B407F6-F183-4D36-8218-497AF9C05280}
 		{9456D153-CBDD-470B-9BFF-17C145ED9C24} = {1D8E407B-B13C-4377-8D6E-76521411105D}
+		{E851802A-C1F1-47BB-8725-1FD1868CC6EB} = {EF77BB40-C919-4644-81A3-968854FB9B23}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A791AAB-CF55-4174-A6B7-C2AC7E7DECB2}
