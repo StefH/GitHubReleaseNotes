@@ -13,6 +13,7 @@ namespace GitHubReleaseNotes.Logic
     {
         private const int GitHubClientApiOptionsPageSize = 100;
         private const int DeltaSeconds = 30;
+        private const int GetIssuesForRepositoryDelayInSeconds = 30;
 
         private readonly IConfiguration _configuration;
 
@@ -161,6 +162,9 @@ namespace GitHubReleaseNotes.Logic
 
                 getNextPage = issues.Count >= GitHubClientApiOptionsPageSize;
                 page++;
+
+                Console.WriteLine("Waiting {0} seconds to avoid API Rate Limit Exceeded error.", GetIssuesForRepositoryDelayInSeconds);
+                await Task.Delay(TimeSpan.FromSeconds(GetIssuesForRepositoryDelayInSeconds));
             } while (getNextPage);
 
             // Return all issues
