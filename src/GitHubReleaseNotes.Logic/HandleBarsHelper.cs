@@ -60,11 +60,11 @@ namespace GitHubReleaseNotes.Logic
                 switch (arguments[0])
                 {
                     case DateTimeOffset value:
-                        writer.WriteSafeString(value.ToString(arguments[1] as string, _configuration.CultureInfo));
+                        writer.WriteSafeString(value.ToString(arguments[1] as string, _configuration.Culture));
                         break;
 
                     case DateTime value:
-                        writer.WriteSafeString(value.ToString(arguments[1] as string, _configuration.CultureInfo));
+                        writer.WriteSafeString(value.ToString(arguments[1] as string, _configuration.Culture));
                         break;
                 }
             });

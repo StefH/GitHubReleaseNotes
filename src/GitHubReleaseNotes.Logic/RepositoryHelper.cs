@@ -11,9 +11,7 @@ namespace GitHubReleaseNotes.Logic
 {
     public class RepositoryHelper
     {
-        private const int GitHubClientApiOptionsPageSize = 100;
         private const int DeltaSeconds = 30;
-        private const int GetIssuesForRepositoryDelayInSeconds = 30;
 
         private readonly IConfiguration _configuration;
 
@@ -129,6 +127,13 @@ namespace GitHubReleaseNotes.Logic
 
             var client = GitHubClientFactory.CreateClient(_configuration, owner);
 
+            var miscellaneousRateLimit = await client.Miscellaneous.GetRateLimits();
+
+            if (miscellaneousRateLimit.Resources.Core.Remaining < 50)
+            {
+                throw new Exception($"You have only {miscellaneousRateLimit.Resources.Core.Remaining} Core Requests remaining.");
+            }
+
             return new IssuesAndPullRequestsModel
             {
                 Issues = await GetIssuesForRepositoryAsync(client, owner, project).ConfigureAwait(false),
@@ -143,32 +148,12 @@ namespace GitHubReleaseNotes.Logic
             // Do a request to GitHub using Octokit.GitHubClient to get all Closed Issues (this does also include Closed and Merged Pull Requests)
             var closedIssuesRequest = new RepositoryIssueRequest
             {
-                SortDirection = SortDirection.Ascending,
                 Filter = IssueFilter.All,
                 State = ItemStateFilter.Closed
             };
 
-            bool getNextPage;
-            int page = 1;
-            do
-            {
-                var options = new ApiOptions
-                {
-                    PageSize = GitHubClientApiOptionsPageSize,
-                    StartPage = page
-                };
-                var issues = await client.Issue.GetAllForRepository(owner, name, closedIssuesRequest, options).ConfigureAwait(false);
-                allIssues.AddRange(issues);
-
-                getNextPage = issues.Count >= GitHubClientApiOptionsPageSize;
-                page++;
-
-                Console.WriteLine("Waiting {0} seconds to avoid API Rate Limit Exceeded error.", GetIssuesForRepositoryDelayInSeconds);
-                await Task.Delay(TimeSpan.FromSeconds(GetIssuesForRepositoryDelayInSeconds));
-            } while (getNextPage);
-
-            // Return all issues
-            return allIssues;
+            // Return all Closed issues
+            return (await client.Issue.GetAllForRepository(owner, name, closedIssuesRequest).ConfigureAwait(false)).OrderBy(i => i.Id).ToList().AsReadOnly();
         }
 
         private async Task<ICollection<PullRequest>> GetMergedPullRequestsForRepositoryAsync(IGitHubClient client, string owner, string name)
@@ -178,28 +163,16 @@ namespace GitHubReleaseNotes.Logic
             // Do a request to GitHub using Octokit.GitHubClient to get all Closed Pull Requests
             var closedPullRequestsRequest = new PullRequestRequest
             {
-                SortDirection = SortDirection.Ascending,
+                //SortDirection = SortDirection.Ascending,
                 State = ItemStateFilter.Closed
             };
 
-            bool getNextPage;
-            int page = 1;
-            do
-            {
-                var options = new ApiOptions
-                {
-                    PageSize = GitHubClientApiOptionsPageSize,
-                    StartPage = page
-                };
-                var pullRequests = await client.PullRequest.GetAllForRepository(owner, name, closedPullRequestsRequest, options).ConfigureAwait(false);
-                allPullRequests.AddRange(pullRequests);
-
-                getNextPage = pullRequests.Count >= GitHubClientApiOptionsPageSize;
-                page++;
-            } while (getNextPage);
-
-            // Return only Merged PullRequests
-            return allPullRequests.Where(pull => pull.Merged).ToList();
+            // Return only Closes and Merged PullRequests
+            return (await client.PullRequest.GetAllForRepository(owner, name, closedPullRequestsRequest).ConfigureAwait(false))
+                .Where(pull => pull.Merged)
+                .OrderBy(pull => pull.Id)
+                .ToList()
+                .AsReadOnly();
         }
 
         private static void GetOwnerAndProject(string url, out string owner, out string project)
@@ -212,7 +185,7 @@ namespace GitHubReleaseNotes.Logic
 
         private static long? GetVersionAsLong(string friendlyName)
         {
-            var versionAsString = Regex.Match(friendlyName, @"(\.|\d)*").Value;
+            var versionAsString = new string(friendlyName.Where(c => char.IsDigit(c) || c == '.').ToArray());
             if (Version.TryParse(versionAsString, out Version version))
             {
                 return version.Major * 1000000000L + version.Minor * 1000000L + (version.Build > 0 ? version.Build : 0) * 1000L + (version.Revision > 0 ? version.Revision : 0);

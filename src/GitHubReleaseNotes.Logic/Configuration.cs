@@ -11,7 +11,7 @@ namespace GitHubReleaseNotes.Logic
 
         public string Version { get; set; }
 
-        public CultureInfo CultureInfo { get; set; }
+        public CultureInfo Culture { get; set; }
 
         public bool SkipEmptyReleases { get; set; }
 

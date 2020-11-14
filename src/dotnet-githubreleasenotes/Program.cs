@@ -31,7 +31,7 @@ namespace CoverageConverter
             [Option("language", Required = true, Default = "en")]
             public string Language { get; set; }
 
-            public CultureInfo CultureInfo => string.IsNullOrEmpty(Language) || Language == "system" ? CultureInfo.CurrentCulture : new CultureInfo(Language);
+            public CultureInfo Culture => string.IsNullOrEmpty(Language) || Language == "system" ? CultureInfo.CurrentCulture : new CultureInfo(Language);
 
             [Option("skip-empty-releases")]
             public bool SkipEmptyReleases { get; set; }
