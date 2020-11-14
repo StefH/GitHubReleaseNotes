@@ -1,1 +1,1 @@
---path "C:\Users\StefHeyenrath\Documents\Github\System.Linq.Dynamic.Core" --output  ../../../../../examples/System.Linq.Dynamic.Core.md --skip-empty-releases --exclude-labels invalid question --language en --version 1.0.22.0
+--path "C:\Users\StefHeyenrath\Documents\Github\System.Linq.Dynamic.Core" --output  ../../../../../examples/System.Linq.Dynamic.Core.md --skip-empty-releases --exclude-labels invalid question --language en --version v1.2.5

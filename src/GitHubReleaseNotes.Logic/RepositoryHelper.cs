@@ -208,7 +208,8 @@ namespace GitHubReleaseNotes.Logic
 
         private static long? GetVersionAsLong(string friendlyName)
         {
-            if (Version.TryParse(friendlyName, out Version version))
+            var versionAsString = Regex.Match(friendlyName, @"(\.|\d)*").Value;
+            if (Version.TryParse(versionAsString, out Version version))
             {
                 return version.Major * 1000000000L + version.Minor * 1000000L + (version.Build > 0 ? version.Build : 0) * 1000L + (version.Revision > 0 ? version.Revision : 0);
             }

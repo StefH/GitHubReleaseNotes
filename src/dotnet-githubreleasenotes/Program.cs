@@ -17,26 +17,26 @@ namespace CoverageConverter
                 SkipEmptyReleases = parser.GetBoolValue("skip-empty-releases") || parser.Contains("skip-empty-releases"), // "--skip-empty-releases true" and "--skip-empty-releases" both qualify
             */
 
-            [Option('p', "path", Required = true, Default = "")]
+            [Option("path", Required = true, Default = "")]
             public string Path { get; set; }
 
             public string RepositoryPath => System.IO.Path.Combine(Path, ".git");
 
-            [Option('o', "output", Required = true, Default = "")]
+            [Option("output", Required = true, Default = "")]
             public string OutputFile { get; set; }
 
-            [Option('v', "version", Required = true, Default = "next")]
+            [Option("version", Required = true, Default = "next")]
             public string Version { get; set; }
 
-            [Option('l', "language", Required = true, Default = "en")]
+            [Option("language", Required = true, Default = "en")]
             public string Language { get; set; }
 
             public CultureInfo CultureInfo => string.IsNullOrEmpty(Language) || Language == "system" ? CultureInfo.CurrentCulture : new CultureInfo(Language);
 
-            [Option('s', "skip-empty-releases")]
+            [Option("skip-empty-releases")]
             public bool SkipEmptyReleases { get; set; }
 
-            [Option('t', "template")]
+            [Option("template")]
             public string TemplatePath { get; set; }
 
             [Option("login")]
@@ -48,7 +48,7 @@ namespace CoverageConverter
             [Option("token")]
             public string Token { get; set; }
 
-            [Option('l', "exclude-labels")]
+            [Option("exclude-labels")]
             public IEnumerable<string> ExcludeLabels { get; set; }
         }
 
