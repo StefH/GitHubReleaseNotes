@@ -1,11 +1,20 @@
 # GitHubReleaseNotes
 Generate Release Notes from GitHub.
 
-## Information
+## As dotnet tool
+[![NuGet Badge GitHubReleaseNotes](https://buildstats.info/nuget/GitHubReleaseNotes)](https://www.nuget.org/packages/GitHubReleaseNotes)
+
+### Installation
+Install locally:
+``` cmd
+dotnet tool install --global GitHubReleaseNotes
+```
+
+## Chocolatey
 [![Chocolatey downloads](https://img.shields.io/chocolatey/dt/githubreleasenotes.svg)]()
 [![Chocolatey](https://img.shields.io/chocolatey/v/githubreleasenotes.svg)](https://chocolatey.org/packages/GitHubReleaseNotes)
 
-## Install
+### Installation
 ```
 choco install GitHubReleaseNotes
 ```
