@@ -1,3 +1,7 @@
+# 1.0.5.3 (27 March 2020)
+- [#13](https://github.com/StefH/GitHubReleaseNotes/pull/13) - Fixed: &quot;System.InvalidOperationException: Sequence contains no matching element&quot; [bug] contributed by [StefH](https://github.com/StefH)
+- [#12](https://github.com/StefH/GitHubReleaseNotes/issues/12) - System.InvalidOperationException: Sequence contains no matching element [bug]
+
 # 1.0.5.2 (25 December 2019)
 - [#11](https://github.com/StefH/GitHubReleaseNotes/pull/11) - Fix file load exception [bug] contributed by [StefH](https://github.com/StefH)
 

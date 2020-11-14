@@ -1,21 +1,21 @@
 <Project>
-  <PropertyGroup>
-    <MsBuildAllProjects>$(MsBuildAllProjects);$(MsBuildThisFileFullPath)</MsBuildAllProjects>
-  </PropertyGroup>
+	<PropertyGroup>
+		<MsBuildAllProjects>$(MsBuildAllProjects);$(MsBuildThisFileFullPath)</MsBuildAllProjects>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <Version>1.0.5.3</Version>
-    <Description>Generate Release Notes from a GitHub project.</Description>
-    <Summary>Generate Release Notes from a GitHub project.</Summary>
-    <Authors>Stef Heyenrath</Authors>
-    <Owners>Stef Heyenrath</Owners>
-    <Copyright>Stef Heyenrath</Copyright>
-    <PackageIconUrl>https://raw.githubusercontent.com/StefH/GitHubReleaseNotes/master/icon.png</PackageIconUrl>
-    <PackageTags>GitHubReleaseNotes;Release;ReleaseNotes;Notes;GitHub;Generate;Octokit;libgit2sharp;MarkDown;Project</PackageTags>
-    <PackageReleaseNotes>See ReleaseNotes.md</PackageReleaseNotes>
-    <PackageProjectUrl>https://github.com/StefH/GitHubReleaseNotes</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/StefH/GitHubReleaseNotes/master/LICENSE</PackageLicenseUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/StefH/GitHubReleaseNotes</RepositoryUrl>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Version>1.0.6</Version>
+		<Description>Generate Release Notes from a GitHub project.</Description>
+		<Summary>Generate Release Notes from a GitHub project.</Summary>
+		<Authors>Stef Heyenrath</Authors>
+		<Owners>Stef Heyenrath</Owners>
+		<Copyright>Stef Heyenrath</Copyright>
+		<PackageIconUrl>https://raw.githubusercontent.com/StefH/GitHubReleaseNotes/master/icon.png</PackageIconUrl>
+		<PackageTags>GitHubReleaseNotes;Release;ReleaseNotes;Notes;GitHub;Generate;Octokit;libgit2sharp;MarkDown;Project</PackageTags>
+		<PackageReleaseNotes>See ReleaseNotes.md</PackageReleaseNotes>
+		<PackageProjectUrl>https://github.com/StefH/GitHubReleaseNotes</PackageProjectUrl>
+		<PackageLicenseUrl>https://raw.githubusercontent.com/StefH/GitHubReleaseNotes/master/LICENSE</PackageLicenseUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/StefH/GitHubReleaseNotes</RepositoryUrl>
+	</PropertyGroup>
 </Project>

@@ -6,11 +6,11 @@ namespace GitHubReleaseNotes.Logic
 {
     public class Generator
     {
-        private readonly Configuration _configuration;
+        private readonly IConfiguration _configuration;
         private readonly RepositoryHelper _repositoryHelper;
         private readonly HandleBarsHelper _handleBarsHelper;
 
-        public Generator(Configuration configuration)
+        public Generator(IConfiguration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
 

@@ -30,7 +30,7 @@ namespace GitHubReleaseNotes
             {
                 RepositoryPath = Path.Combine(parser.GetStringValue("path", string.Empty), ".git"),
                 OutputFile = parser.GetStringValue("output"),
-                Culture = parser.GetCultureInfo("language"),
+                CultureInfo = parser.GetCultureInfo("language"),
                 Version = parser.GetStringValue("version", "next"),
                 TemplatePath = parser.GetStringValue("template"),
                 SkipEmptyReleases = parser.GetBoolValue("skip-empty-releases") || parser.Contains("skip-empty-releases"), // "--skip-empty-releases true" and "--skip-empty-releases" both qualify

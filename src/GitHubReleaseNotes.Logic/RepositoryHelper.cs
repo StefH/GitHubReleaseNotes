@@ -14,9 +14,9 @@ namespace GitHubReleaseNotes.Logic
         private const int GitHubClientApiOptionsPageSize = 100;
         private const int DeltaSeconds = 30;
 
-        private readonly Configuration _configuration;
+        private readonly IConfiguration _configuration;
 
-        public RepositoryHelper(Configuration configuration)
+        public RepositoryHelper(IConfiguration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }

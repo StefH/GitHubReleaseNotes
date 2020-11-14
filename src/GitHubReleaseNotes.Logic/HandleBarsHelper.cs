@@ -11,9 +11,9 @@ namespace GitHubReleaseNotes.Logic
     {
         private const string TemplateFilename = "GitHubReleaseNotes.Logic.Template.txt";
 
-        private readonly Configuration _configuration;
+        private readonly IConfiguration _configuration;
 
-        public HandleBarsHelper(Configuration configuration)
+        public HandleBarsHelper(IConfiguration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
@@ -60,11 +60,11 @@ namespace GitHubReleaseNotes.Logic
                 switch (arguments[0])
                 {
                     case DateTimeOffset value:
-                        writer.WriteSafeString(value.ToString(arguments[1] as string, _configuration.Culture));
+                        writer.WriteSafeString(value.ToString(arguments[1] as string, _configuration.CultureInfo));
                         break;
 
                     case DateTime value:
-                        writer.WriteSafeString(value.ToString(arguments[1] as string, _configuration.Culture));
+                        writer.WriteSafeString(value.ToString(arguments[1] as string, _configuration.CultureInfo));
                         break;
                 }
             });

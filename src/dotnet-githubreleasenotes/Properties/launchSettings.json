@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GitHubReleaseNotes.Tool": {
+      "commandName": "Project",
+      "commandLineArgs": "--path C:\\\\Users\\\\StefHeyenrath\\\\Documents\\\\Github\\\\RestEase-Client-Generator --output ../../../../../examples/RestEase-Client-Generator.md --language en --version 1.0.8 --skip-empty-releases  --exclude-labels question invalid help_wanted"
+    }
+  }
+}
