@@ -1,1 +1,1 @@
-GitHubReleaseNotes.exe --output ReleaseNotes.md --version 1.0.5.2 --skip-empty-releases
+GitHubReleaseNotes.exe --output ReleaseNotes.md --version 1.0.6 --skip-empty-releases

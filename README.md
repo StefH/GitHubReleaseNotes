@@ -1,20 +1,32 @@
 # GitHubReleaseNotes
 Generate Release Notes from GitHub.
 
-## Information
+## dotnet tool
+[![NuGet Badge GitHubReleaseNotes](https://buildstats.info/nuget/GitHubReleaseNotes)](https://www.nuget.org/packages/GitHubReleaseNotes)
+
+### Installation
+``` cmd
+dotnet tool install --global GitHubReleaseNotes
+```
+
+## WinGet
+``` cmd
+winget install GitHubReleaseNotes
+```
+
+## Chocolatey
 [![Chocolatey downloads](https://img.shields.io/chocolatey/dt/githubreleasenotes.svg)]()
 [![Chocolatey](https://img.shields.io/chocolatey/v/githubreleasenotes.svg)](https://chocolatey.org/packages/GitHubReleaseNotes)
 
-## Install
+### Installation
 ```
 choco install GitHubReleaseNotes
 ```
-This will use [Chocolatey](http://chocolatey.org) to install **GitHubReleaseNotes** into your `%path%`, ready to be used for any project
 
 ## Usage
 GitHubReleaseNotes can be run inside a git repository.
 ```
-GitHubReleaseNotes.exe --path . --output ReleaseNotes.md --version 1.0.4.17 --language en --skip-empty-releases --exclude-labels question
+GitHubReleaseNotes --path . --output ReleaseNotes.md --version 1.0.4.17 --language en --skip-empty-releases --exclude-labels question
 ```
 
 Arguments:
@@ -24,6 +36,7 @@ Arguments:
 - `--language`: Provide the language (two letter according to [ISO-639-1](https://en.wikipedia.org/wiki/ISO_639-1)) which is used to format the dates. If not provided, "en" is used. It's also possible to use a value like "system", which takes the current system ui language.
 - `--skip-empty-releases`: Define this optional argument to skip writing releases which have no associated Issues or Pull Requests.
 - `--template`: Provide a custom Handlebars template instead of the default template to generate the Release Notes.
+- `--exclude-labels`: Exclude Issues and Pull Requests which have these labels set.
 - `--exclude-labels`: To exclude issues from the generated output, provide a space separated string list from label-names you want to exclude.
 - `--token`: Provide the GitHub API token as authentication for connecting to private repositories. **@**
 - `--login` and `--password`: Provide the GitHub API login and password as authentication for connecting to private repositories. **@**

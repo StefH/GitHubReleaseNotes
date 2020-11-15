@@ -8,7 +8,7 @@ string projectFolder = Path.Combine(chocolateyFolder, "../", "../");
 
 var doc = new XmlDocument(); doc.Load(Path.Combine(chocolateyFolder, "GitHubReleaseNotes.nuspec"));
 string version = doc["package"]["metadata"]["version"].FirstChild.Value;
-string exe = Path.Combine(projectFolder, "src", "GitHubReleaseNotes", "bin", "release", "net452", "GitHubReleaseNotes.exe");
+string exe = Path.Combine(projectFolder, "src", "GitHubReleaseNotes", "bin", "release", "net472", "GitHubReleaseNotes.exe");
 
 string CreateSHA256()
 {
@@ -49,7 +49,7 @@ To verify this package, follow these steps:
 
 3] For the changes in this release, see ReleaseNotes.md
 
-Note that this application is build with the .NET 4.5.2 framework and uses Fody and Fody.Costura to include all dependencies to generate a single exe file.";
+Note that this application is build with the .NET 4.7.2 framework and uses Fody and Fody.Costura to include all dependencies to generate a single exe file.";
 
 File.WriteAllText(Path.Combine(chocolateyFolder, "tools", "VERIFICATION.txt"), text, Encoding.UTF8);
 

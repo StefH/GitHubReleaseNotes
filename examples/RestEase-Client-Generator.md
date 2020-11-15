@@ -1,3 +1,6 @@
+# 1.0.8 (14 November 2020)
+- [#21](https://github.com/StefH/RestEase-Client-Generator/pull/21) - Add Blazor WASM Example [documentation] contributed by [StefH](https://github.com/StefH)
+
 # 1.0.8 (29 February 2020)
 - [#20](https://github.com/StefH/RestEase-Client-Generator/pull/20) - Add RAML + update Enum support contributed by [StefH](https://github.com/StefH)
 

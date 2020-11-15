@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Version>0.0.2</Version>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net5</TargetFramework>
+		<PackAsTool>true</PackAsTool>
+		<ToolCommandName>GitHubReleaseNotes</ToolCommandName>
+		<Title>GitHubReleaseNotes</Title>
+		<AssemblyName>GitHubReleaseNotes</AssemblyName>
+		<RootNamespace>GitHubReleaseNotes</RootNamespace>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommandLineParser" Version="2.8.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\GitHubReleaseNotes.Logic\GitHubReleaseNotes.Logic.csproj" />
+	</ItemGroup>
+
+</Project>

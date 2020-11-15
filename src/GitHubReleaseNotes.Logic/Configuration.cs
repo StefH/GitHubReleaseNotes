@@ -1,8 +1,9 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 
 namespace GitHubReleaseNotes.Logic
 {
-    public class Configuration
+    public class Configuration : IConfiguration
     {
         public string RepositoryPath { get; set; }
 
@@ -22,6 +23,6 @@ namespace GitHubReleaseNotes.Logic
 
         public string Token { get; set; }
 
-        public string[] ExcludeLabels { get; set; }
+        public IEnumerable<string> ExcludeLabels { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net452</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <ProjectGuid>{B6269AAC-170A-43D0-8B9B-579DED3D9A00}</ProjectGuid>
     <StartupObject>GitHubReleaseNotes.Program</StartupObject>
   </PropertyGroup>
@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GitHubReleaseNotes.Logic\GitHubReleaseNotes.Logic.csproj">
-      <AdditionalProperties>TargetFramework=net452</AdditionalProperties>
+      <AdditionalProperties>TargetFramework=net472</AdditionalProperties>
     </ProjectReference>
   </ItemGroup>
 

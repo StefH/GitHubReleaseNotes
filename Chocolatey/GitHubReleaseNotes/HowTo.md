@@ -28,5 +28,5 @@ choco apikey --key {KEY} --source https://push.chocolatey.org/
 
 Then push:
 ``` cmd
-choco push githubreleasenotes.1.0.5.3.nupkg --source https://push.chocolatey.org/
+choco push githubreleasenotes.1.0.6.nupkg --source https://push.chocolatey.org/
 ```
