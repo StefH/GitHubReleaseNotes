@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Version>0.0.2</Version>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net5</TargetFramework>
 		<PackAsTool>true</PackAsTool>
@@ -20,7 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\GitHubReleaseNotes.Logic\GitHubReleaseNotes.Logic.csproj" />
+		<ProjectReference Include="..\GitHubReleaseNotes.Logic\GitHubReleaseNotes.Logic.csproj" />
 	</ItemGroup>
 
 </Project>
