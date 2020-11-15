@@ -11,9 +11,9 @@ namespace GitHubReleaseNotes.Logic
     {
         private const string TemplateFilename = "GitHubReleaseNotes.Logic.Template.txt";
 
-        private readonly Configuration _configuration;
+        private readonly IConfiguration _configuration;
 
-        public HandleBarsHelper(Configuration configuration)
+        public HandleBarsHelper(IConfiguration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }

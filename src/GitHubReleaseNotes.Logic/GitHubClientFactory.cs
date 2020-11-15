@@ -7,7 +7,7 @@ namespace GitHubReleaseNotes.Logic
     {
         private const string AppName = "GitHubReleaseNotes";
 
-        public static IGitHubClient CreateClient(Configuration configuration, string owner)
+        public static IGitHubClient CreateClient(IConfiguration configuration, string owner)
         {
             if (configuration == null)
             {
