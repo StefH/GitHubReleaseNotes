@@ -8,7 +8,7 @@ string projectFolder = Path.Combine(chocolateyFolder, "../", "../");
 
 var doc = new XmlDocument(); doc.Load(Path.Combine(chocolateyFolder, "GitHubReleaseNotes.nuspec"));
 string version = doc["package"]["metadata"]["version"].FirstChild.Value;
-string exe = Path.Combine(projectFolder, "src", "GitHubReleaseNotes", "bin", "release", "net452", "GitHubReleaseNotes.exe");
+string exe = Path.Combine(projectFolder, "src", "GitHubReleaseNotes", "bin", "release", "net472", "GitHubReleaseNotes.exe");
 
 string CreateSHA256()
 {

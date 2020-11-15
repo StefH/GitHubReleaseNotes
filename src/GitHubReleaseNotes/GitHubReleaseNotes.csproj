@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GitHubReleaseNotes.Logic\GitHubReleaseNotes.Logic.csproj">
-      <AdditionalProperties>TargetFramework=net452</AdditionalProperties>
+      <AdditionalProperties>TargetFramework=net472</AdditionalProperties>
     </ProjectReference>
   </ItemGroup>
 
