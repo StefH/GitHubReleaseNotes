@@ -6,7 +6,7 @@
     <AssemblyName>GitHubReleaseNotes</AssemblyName>
     <RootNamespace>GitHubReleaseNotes</RootNamespace>
     <PackageIcon>icon.png</PackageIcon>
-    <ProjectGuid>{B6269AAC-170A-43D0-8B9B-579DED3D9A99}</ProjectGuid>
+    <ProjectGuid>{E851802A-C1F1-47BB-8725-1FD1868CC6EB}</ProjectGuid>
     <SelfContained>True</SelfContained>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
