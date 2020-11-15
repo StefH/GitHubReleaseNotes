@@ -1,4 +1,4 @@
-# v1.2.5 (14 November 2020)
+# v1.2.5 (15 November 2020)
 - [#443](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/443) - Fix MethodCallExpression when using NullPropagating (np) contributed by [StefH](https://github.com/StefH)
 - [#445](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/445) - Add GitHub action for ci build + unit tests contributed by [StefH](https://github.com/StefH)
 - [#446](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/446) - Remove MyGet links from Readme.md contributed by [StefH](https://github.com/StefH)

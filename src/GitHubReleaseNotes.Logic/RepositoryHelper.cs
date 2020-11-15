@@ -127,12 +127,11 @@ namespace GitHubReleaseNotes.Logic
 
             var client = GitHubClientFactory.CreateClient(_configuration, owner);
 
-            var miscellaneousRateLimit = await client.Miscellaneous.GetRateLimits();
-
-            if (miscellaneousRateLimit.Resources.Core.Remaining < 50)
-            {
-                throw new Exception($"You have only {miscellaneousRateLimit.Resources.Core.Remaining} Core Requests remaining.");
-            }
+            //var miscellaneousRateLimit = await client.Miscellaneous.GetRateLimits();
+            //if (miscellaneousRateLimit.Resources.Core.Remaining < 21)
+            //{
+            //    throw new Exception($"You have only {miscellaneousRateLimit.Resources.Core.Remaining} Core Requests remaining.");
+            //}
 
             return new IssuesAndPullRequestsModel
             {
@@ -143,8 +142,6 @@ namespace GitHubReleaseNotes.Logic
 
         private async Task<ICollection<Issue>> GetIssuesForRepositoryAsync(IGitHubClient client, string owner, string name)
         {
-            var allIssues = new List<Issue>();
-
             // Do a request to GitHub using Octokit.GitHubClient to get all Closed Issues (this does also include Closed and Merged Pull Requests)
             var closedIssuesRequest = new RepositoryIssueRequest
             {
@@ -158,8 +155,6 @@ namespace GitHubReleaseNotes.Logic
 
         private async Task<ICollection<PullRequest>> GetMergedPullRequestsForRepositoryAsync(IGitHubClient client, string owner, string name)
         {
-            var allPullRequests = new List<PullRequest>();
-
             // Do a request to GitHub using Octokit.GitHubClient to get all Closed Pull Requests
             var closedPullRequestsRequest = new PullRequestRequest
             {

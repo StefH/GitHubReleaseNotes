@@ -2,7 +2,7 @@
   "profiles": {
     "GitHubReleaseNotes.Tool": {
       "commandName": "Project",
-      "commandLineArgs": "--path \"C:\\Users\\StefHeyenrath\\Documents\\Github\\System.Linq.Dynamic.Core\" --output  ../../../../../examples/System.Linq.Dynamic.Core.md --skip-empty-releases --exclude-labels invalid question --language en --version v1.2.5 --token bac500c81de2ae8924b333afd9e8ff39828fbd8d"
+      "commandLineArgs": "--path \"C:\\Users\\StefHeyenrath\\Documents\\Github\\System.Linq.Dynamic.Core\" --output  ../../../../../examples/System.Linq.Dynamic.Core.md --skip-empty-releases --exclude-labels invalid question --language en --version v1.2.5"
     }
   }
 }
