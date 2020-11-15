@@ -45,7 +45,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wix and winget-pkgs", "Wix and winget-pkgs", "{1D8E407B-B13C-4377-8D6E-76521411105D}"
 	ProjectSection(SolutionItems) = preProject
 		..\Wix\1.0.5.3.yaml = ..\Wix\1.0.5.3.yaml
+		..\Wix\1.0.6.yaml = ..\Wix\1.0.6.yaml
 		..\Wix\generate manifest.linq = ..\Wix\generate manifest.linq
+		..\Wix\HowTo.md = ..\Wix\HowTo.md
 	EndProjectSection
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Setup", "..\Wix\Setup\Setup.wixproj", "{9456D153-CBDD-470B-9BFF-17C145ED9C24}"
