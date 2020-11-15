@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 using CommandLine;
 using GitHubReleaseNotes.Logic;
@@ -49,6 +50,8 @@ namespace CoverageConverter
 
         static async Task Main(string[] args)
         {
+            Console.WriteLine($"GitHubReleaseNotes ({Assembly.GetExecutingAssembly().GetName().Version})");
+
             await new Parser(cfg =>
             {
                 cfg.AutoVersion = false;
