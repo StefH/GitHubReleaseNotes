@@ -172,11 +172,19 @@ namespace GitHubReleaseNotes.Logic
 
         private static void GetOwnerAndProject(string url, out string owner, out string project)
         {
-            var regex = new Regex(@"^https:\/\/github.com\/(?<owner>.+)\/(?<project>.+).git$", RegexOptions.Compiled);
+            string pattern = @"^https:\/\/github.com\/(?<owner>.+)\/(?<project>.+).git$";
+
+            if (url.StartsWith("git@github.com:"))
+            {
+                pattern = @"^git@github.com:(?<owner>.+)\/(?<project>.+).git$";
+            }
+
+            var regex = new Regex(pattern, RegexOptions.Compiled);
 
             owner = regex.Match(url).Groups["owner"].Value;
             project = regex.Match(url).Groups["project"].Value;
         }
+
 
         private static long? GetVersionAsLong(string friendlyName)
         {
