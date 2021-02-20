@@ -5,17 +5,17 @@ To verify this package, follow these steps:
 1] Right click the GitHubReleaseNotes.exe in Windows file explorer and go to the "Details" tab and check the following properties:
    - File description   GitHubReleaseNotes
    - Type               Application
-   - File version       1.0.6
+   - File version       1.0.7
    - Product name       GitHubReleaseNotes
-   - Product version    1.0.6
+   - Product version    1.0.7
    - Copyright          Stef Heyenrath
    - Size               1.02 MB
-   - Date modified      2020-11-15 11:49
+   - Date modified      2021-02-20 08:55
    - Language           Language Neutral
    - Original filename  GitHubReleaseNotes.exe
 
 2] Verify the SHA256 from the GitHubReleaseNotes.exe file (7zip can be used for this)
-   - SHA256             118F41303D1BA7AB8A833CD062F6A426752382E06EA37651AB2E1D67B03F5453
+   - SHA256             BFC5C38D2AD1BEFD1D74CD2C95D64D32C237F0AC80A1E2A15974F29C2E3DA6FA
 
 3] For the changes in this release, see ReleaseNotes.md
 

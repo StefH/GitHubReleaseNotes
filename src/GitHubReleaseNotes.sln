@@ -46,6 +46,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wix and winget-pkgs", "Wix 
 	ProjectSection(SolutionItems) = preProject
 		..\Wix\1.0.5.3.yaml = ..\Wix\1.0.5.3.yaml
 		..\Wix\1.0.6.yaml = ..\Wix\1.0.6.yaml
+		..\Wix\1.0.7.yaml = ..\Wix\1.0.7.yaml
 		..\Wix\generate manifest.linq = ..\Wix\generate manifest.linq
 		..\Wix\HowTo.md = ..\Wix\HowTo.md
 	EndProjectSection

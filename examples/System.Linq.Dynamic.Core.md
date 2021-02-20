@@ -1,13 +1,37 @@
-# v1.2.5 (15 November 2020)
+# v1.2.8 (20 February 2021)
+- [#455](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/455) - Ensure action delegate allows call to void methods contributed by [glopesdev](https://github.com/glopesdev)
+- [#480](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/480) - Fix DynamicIndex implementation [bug] contributed by [StefH](https://github.com/StefH)
+- [#481](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/481) - Xamarin fix Enum [bug] contributed by [StefH](https://github.com/StefH)
+- [#484](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/484) - Implement support for anonymous types as dynamic objects [bug] contributed by [hazzik](https://github.com/hazzik)
+- [#448](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/448) - Dynamic.DynamicIndex is exposed in the expression [bug]
+- [#457](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/457) - Allow use of `as` and `is` on arbitrary expressions, not just the parameter [wontfix]
+- [#458](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/458) - Documentation: `Is` and `As` should be documented with the rest of the expression language [documentation]
+- [#479](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/479) - Xamarin.Forms - DynamicExpressionParser.ParseLambda fails when comparing enum properties by their int value [bug]
+
+# v1.2.7 (26 December 2020)
+- [#462](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/462) - Add PatchVersion [feature] contributed by [StefH](https://github.com/StefH)
+- [#463](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/463) - Add extension method Where&lt;TSource&gt;(...) with LambdaExpression  [feature] contributed by [StefH](https://github.com/StefH)
+- [#464](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/464) - NullPropagation operator: support nullable DateTime contributed by [StefH](https://github.com/StefH)
+- [#466](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/466) - Fix Android issue (Could not load the file 'System.Private.Corelib') [bug] contributed by [StefH](https://github.com/StefH)
+- [#467](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/467) - Support 'System.Type' in As, Is, Cast and OfType [feature] contributed by [StefH](https://github.com/StefH)
+- [#470](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/470) - Add EF 5 NuGet package [feature] contributed by [StefH](https://github.com/StefH)
+- [#424](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/424) - How to GroupBy Nullable DateTime Year? [bug]
+- [#459](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/459) - Allow `as` and `is` to use instances of `System.Type` [feature]
+- [#465](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/465) - Crash on Android (regression in 1.2.6) [bug]
+- [#468](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/468) - net5.0 OrderBy problem [bug]
+- [#473](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/473) - Exception in System.Linq.Dynamic.Core.Parser.EnumerationsFromMscorlib after update to 1.2.6 [bug]
+
+# v1.2.6 (22 November 2020)
 - [#443](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/443) - Fix MethodCallExpression when using NullPropagating (np) contributed by [StefH](https://github.com/StefH)
 - [#445](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/445) - Add GitHub action for ci build + unit tests contributed by [StefH](https://github.com/StefH)
 - [#446](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/446) - Remove MyGet links from Readme.md contributed by [StefH](https://github.com/StefH)
 - [#447](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/447) - Fix Unit tests for net452 and net461 contributed by [StefH](https://github.com/StefH)
 - [#449](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/449) - Fix DateTime constructor using ticks [bug] contributed by [StefH](https://github.com/StefH)
 - [#450](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/450) - Support the enum UriKind [feature] contributed by [StefH](https://github.com/StefH)
-- [#392](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/392) - Dynamic LINQ - Repository Future
+- [#284](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/284) - String(Null) raises Ambiguous error [bug]
 - [#432](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/432) - Clarify error message when using np with instance methods [bug]
 - [#439](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/439) - Question: DateTime constructor using ticks [bug]
+- [#442](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/442) - UriKind is not recognized in Uri constructor [bug]
 
 # v1.2.5 (24 October 2020)
 - [#430](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/430) - Documentation: internal links are broken [documentation]
@@ -18,11 +42,10 @@
 # v1.2.3 (11 October 2020)
 - [#428](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/428) - Add support for IQueryable.Min and .Max contributed by [gregfullman](https://github.com/gregfullman)
 - [#230](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/230) - Request for contribution
-- [#403](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/403) - Expression is missing an 'as' clause
+- [#403](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/403) - Expression is missing an 'as' clause [bug]
 - [#406](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/406) - Expression parameter should be case sensitive
-- [#410](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/410) - Methods on type 'JsonElement' are not accessible'.
+- [#410](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/410) - Methods on type 'JsonElement' are not accessible'. [wontfix]
 - [#411](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/411) - Can't apply the library while using reflection emit with dynamic linq
-- [#413](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/413) - Requested value not found error on List&lt;Enums&gt;
 - [#414](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/414) - Contains search in an Enum
 - [#416](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/416) - &quot;Target object is not an ExpandoObject&quot; exception being thrown when using GroupBy
 - [#417](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/417) - Expression is missing an 'as' clause
@@ -69,12 +92,11 @@
 - [#380](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/380) - save contributed by [Lempireqc](https://github.com/Lempireqc)
 - [#381](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/381) - save contributed by [Lempireqc](https://github.com/Lempireqc)
 - [#383](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/383) - Fixed : calling methods which return a nullable [bug] contributed by [StefH](https://github.com/StefH)
-- [#334](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/334) - Shadow properties
-- [#378](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/378) - Versioning Issue in Latest NUGET packages
+- [#378](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/378) - Versioning Issue in Latest NUGET packages [bug]
 
 # v1.1.1 (14 May 2020)
 - [#54](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/54) - Documentation for expression syntax [documentation]
-- [#110](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/110) - Complex query, like in ParseLambda_Complex_2, internal could only be used once
+- [#110](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/110) - Complex query, like in ParseLambda_Complex_2, internal could only be used once [wontfix]
 
 # 1.1.0.0 (25 April 2020)
 - [#326](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/326) - Fixes for parsing escaped / quoted strings [bug] contributed by [StefH](https://github.com/StefH)

@@ -13,6 +13,8 @@ namespace GitHubReleaseNotes.Logic
     {
         private const int DeltaSeconds = 30;
 
+        private static readonly Regex OwnerAndProjectRegex = new Regex("(^https:\\/\\/github\\.com\\/(?<ownerHttps>.+)\\/(?<projectHttps>.+)\\.git)|(^git@github\\.com:(?<ownerSSH>.+)\\/(?<projectSSH>.+)\\.git$)$", RegexOptions.Compiled);
+
         private readonly IConfiguration _configuration;
 
         public RepositoryHelper(IConfiguration configuration)
@@ -172,19 +174,13 @@ namespace GitHubReleaseNotes.Logic
 
         private static void GetOwnerAndProject(string url, out string owner, out string project)
         {
-            string pattern = @"^https:\/\/github.com\/(?<owner>.+)\/(?<project>.+).git$";
+            var groups = OwnerAndProjectRegex.Match(url).Groups;
 
-            if (url.StartsWith("git@github.com:"))
+            if (!TryGetValue(groups, "ownerHttps", "ownerSSH", out owner) || !TryGetValue(groups, "projectHttps", "projectSSH", out project))
             {
-                pattern = @"^git@github.com:(?<owner>.+)\/(?<project>.+).git$";
+                throw new UriFormatException($"The url '{url}' is not a valid GitHub url, the Owner and or Project are not present.");
             }
-
-            var regex = new Regex(pattern, RegexOptions.Compiled);
-
-            owner = regex.Match(url).Groups["owner"].Value;
-            project = regex.Match(url).Groups["project"].Value;
         }
-
 
         private static long? GetVersionAsLong(string friendlyName)
         {
@@ -195,6 +191,23 @@ namespace GitHubReleaseNotes.Logic
             }
 
             return null;
+        }
+
+        private static bool TryGetValue(GroupCollection groups, string groupName1, string groupName2, out string value)
+        {
+            value = groups[groupName1].Value;
+            if (!string.IsNullOrEmpty(value))
+            {
+                return true;
+            }
+
+            value = groups[groupName2].Value;
+            if (!string.IsNullOrEmpty(value))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

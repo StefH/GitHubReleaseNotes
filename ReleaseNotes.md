@@ -1,5 +1,10 @@
+# 1.0.7 (20 February 2021)
+- [#17](https://github.com/StefH/GitHubReleaseNotes/pull/17) - Fix issue where ssh remote urls don't work [bug] contributed by [jpann](https://github.com/jpann)
+- [#16](https://github.com/StefH/GitHubReleaseNotes/issues/16) - String cannot be empty [bug]
+
 # 1.0.6 (15 November 2020)
 - [#14](https://github.com/StefH/GitHubReleaseNotes/pull/14) - Support tag prefix and create dotnet tool contributed by [StefH](https://github.com/StefH)
+- [#15](https://github.com/StefH/GitHubReleaseNotes/pull/15) - Add WinGet project contributed by [StefH](https://github.com/StefH)
 
 # 1.0.5.3 (27 March 2020)
 - [#13](https://github.com/StefH/GitHubReleaseNotes/pull/13) - Fixed: &quot;System.InvalidOperationException: Sequence contains no matching element&quot; [bug] contributed by [StefH](https://github.com/StefH)
