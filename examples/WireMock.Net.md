@@ -1,4 +1,4 @@
-# 9.9.9 (21 June 2021)
+# 1.4.16 (05 June 2021)
 - [#616](https://github.com/WireMock-Net/WireMock.Net/pull/616) - Upgrade Handlebars.Net.Helpers to 2.19 [feature] contributed by [StefH](https://github.com/StefH)
 
 # 1.4.15 (19 May 2021)
