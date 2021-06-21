@@ -9,7 +9,7 @@
 Build in release mode
 
 ## Generate VERIFICATION
-Use LinqPad to generate VERIFICATION.txt
+Use LinqPad on `.\Chocolatey\generate.linq` to generate VERIFICATION.txt
 
 ## Generate the release-notes
 
@@ -28,5 +28,5 @@ choco apikey --key {KEY} --source https://push.chocolatey.org/
 
 Then push:
 ``` cmd
-choco push githubreleasenotes.1.0.7.nupkg --source https://push.chocolatey.org/
+choco push githubreleasenotes.1.0.7.1.nupkg --source https://push.chocolatey.org/
 ```
