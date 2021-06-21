@@ -324,7 +324,7 @@
 # 1.0.8.0 (16 December 2017)
 - [#127](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/127) - Refactored Parser contributed by [StefH](https://github.com/StefH)
 
-# 1.0.7.13 (29 November 2017)
+# 1.0.7.1.13 (29 November 2017)
 - [#117](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/117) -  New features contributed by [jogibear9988](https://github.com/jogibear9988)
 - [#123](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/123) - appveyor contributed by [StefH](https://github.com/StefH)
 - [#114](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/114) - Dynamic Linq Query not usable with ORM Provider [bug]
@@ -333,7 +333,7 @@
 - [#124](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/124) -  OrderBy produces error.
 - [#125](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/125) - Not compatable with dotnet Core 2. [bug]
 
-# 1.0.7.12 (09 November 2017)
+# 1.0.7.1.12 (09 November 2017)
 - [#115](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/115) - Dynamic Linq Query not usable with ORM Provider (fix for #114) contributed by [jogibear9988](https://github.com/jogibear9988)
 - [#116](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/116) - Bugfix DynamicLinq when using IQueryable contributed by [jogibear9988](https://github.com/jogibear9988)
 - [#108](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/108) - [Question] Nullable property inside Join statement
@@ -342,7 +342,7 @@
 - [#112](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/112) - Support NETStandard 2.0 [feature]
 - [#113](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/113) - .pdb is missing in nuget [bug]
 
-# 1.0.7.10 (27 October 2017)
+# 1.0.7.1.10 (27 October 2017)
 - [#8](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/8) - Remove useless dependences [feature] contributed by [yyjdelete](https://github.com/yyjdelete)
 - [#37](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/37) - Support strings as Enum Parameter Objects contributed by [jogibear9988](https://github.com/jogibear9988)
 - [#38](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/38) - Support more comparisons with strings contributed by [jogibear9988](https://github.com/jogibear9988)

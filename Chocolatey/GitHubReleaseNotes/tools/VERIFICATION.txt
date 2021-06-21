@@ -5,9 +5,9 @@ To verify this package, follow these steps:
 1] Right click the GitHubReleaseNotes.exe in Windows file explorer and go to the "Details" tab and check the following properties:
    - File description   GitHubReleaseNotes
    - Type               Application
-   - File version       1.0.7
+   - File version       1.0.7.1
    - Product name       GitHubReleaseNotes
-   - Product version    1.0.7
+   - Product version    1.0.7.1
    - Copyright          Stef Heyenrath
    - Size               1.02 MB
    - Date modified      2021-02-20 08:55
