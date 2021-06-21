@@ -9,7 +9,7 @@
 Build in release mode
 
 ## Generate VERIFICATION
-Use LinqPad to generate VERIFICATION.txt
+Use LinqPad on `.\Chocolatey\generate.linq` to generate VERIFICATION.txt
 
 ## Generate the release-notes
 
