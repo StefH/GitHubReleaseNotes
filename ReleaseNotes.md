@@ -1,4 +1,4 @@
-# 1.0.7.1 (21 June 2021)
+# 1.0.7.1 (23 June 2021)
 - [#20](https://github.com/StefH/GitHubReleaseNotes/pull/20) - Fix version from setup.exe [bug] contributed by [StefH](https://github.com/StefH)
 - [#18](https://github.com/StefH/GitHubReleaseNotes/issues/18) - Wrong Display Version in Windows [bug]
 
