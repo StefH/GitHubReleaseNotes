@@ -47,7 +47,8 @@ Installers:
   InstallerSha256: {CreateSHA256()}
 PackageLocale: en-US
 ManifestType: singleton
-ManifestVersion: {version}";
+ManifestVersion: 1.0.0
+";
 
 File.WriteAllText(Path.Combine(folder, $"{version}.yaml"), text, Encoding.UTF8);
 
