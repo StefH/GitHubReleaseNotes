@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="LibGit2Sharp.Portable" Version="0.24.10" />
+    <PackageReference Include="LibGit2Sharp" Version="0.26.2" />
     <PackageReference Include="Octokit" Version="0.48.0" />
     <PackageReference Include="Handlebars.Net" Version="1.9.5" />
   </ItemGroup>

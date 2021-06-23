@@ -1,4 +1,8 @@
-# 1.0.7.1 (20 February 2021)
+# 1.0.7.1 (23 June 2021)
+- [#20](https://github.com/StefH/GitHubReleaseNotes/pull/20) - Fix version from setup.exe [bug] contributed by [StefH](https://github.com/StefH)
+- [#18](https://github.com/StefH/GitHubReleaseNotes/issues/18) - Wrong Display Version in Windows [bug]
+
+# 1.0.7 (20 February 2021)
 - [#17](https://github.com/StefH/GitHubReleaseNotes/pull/17) - Fix issue where ssh remote urls don't work [bug] contributed by [jpann](https://github.com/jpann)
 - [#16](https://github.com/StefH/GitHubReleaseNotes/issues/16) - String cannot be empty [bug]
 
