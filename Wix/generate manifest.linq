@@ -23,21 +23,31 @@ string CreateSHA256()
 }
 
 string text =
-$@"Id: StefHeyenrath.GitHubReleaseNotes
-Version: {version}
-Name: GitHubReleaseNotes
-AppMoniker: GitHubReleaseNotes
+$@"PackageIdentifier: StefHeyenrath.GitHubReleaseNotes
+PackageVersion: {version}
+PackageName: GitHubReleaseNotes
+Moniker: GitHubReleaseNotes
 Publisher: Stef Heyenrath
 License: MIT
 LicenseUrl: https://github.com/StefH/GitHubReleaseNotes/blob/master/LICENSE
-Homepage: https://github.com/StefH/GitHubReleaseNotes
-Description: Generate Release Notes in MarkDown format from a GitHub project.
-Tags: ""github, markdown, releasenotes, changelog, tags, generate, md""
-InstallerType: Msi
+PackageUrl: https://github.com/StefH/GitHubReleaseNotes
+ShortDescription: Generate Release Notes in MarkDown format from a GitHub project.
+Tags:
+- github
+- markdown
+- releasenotes
+- changelog
+- tags
+- generate
+- md
+InstallerType: msi
 Installers:
-  - Arch: x64
-    Url: https://github.com/StefH/GitHubReleaseNotes/releases/download/{version}/Setup.msi
-    Sha256: {CreateSHA256()}";
+- Architecture: x64
+  InstallerUrl: https://github.com/StefH/GitHubReleaseNotes/releases/download/{version}/Setup.msi
+  InstallerSha256: {CreateSHA256()}
+PackageLocale: en-US
+ManifestType: singleton
+ManifestVersion: {version}";
 
 File.WriteAllText(Path.Combine(folder, $"{version}.yaml"), text, Encoding.UTF8);
 
