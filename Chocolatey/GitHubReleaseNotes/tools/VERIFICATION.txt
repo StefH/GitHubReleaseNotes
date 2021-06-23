@@ -9,13 +9,13 @@ To verify this package, follow these steps:
    - Product name       GitHubReleaseNotes
    - Product version    1.0.7.1
    - Copyright          Stef Heyenrath
-   - Size               1.02 MB
-   - Date modified      2021-06-21 15:28
+   - Size               1.05 MB
+   - Date modified      2021-06-23 08:36
    - Language           Language Neutral
    - Original filename  GitHubReleaseNotes.exe
 
 2] Verify the SHA256 from the GitHubReleaseNotes.exe file (7zip can be used for this)
-   - SHA256             4277F06B40748DAE328023CDB1F50C7987825CEE9782A90FE87980941F331B8A
+   - SHA256             3F0D02FCB2AFE90C7CA8E6CA3DFDD756E6A602E65B8CA34AED8F5011EF6972E8
 
 3] For the changes in this release, see ReleaseNotes.md
 

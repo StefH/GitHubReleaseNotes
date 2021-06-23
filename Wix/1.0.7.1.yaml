@@ -19,7 +19,7 @@ InstallerType: msi
 Installers:
 - Architecture: x64
   InstallerUrl: https://github.com/StefH/GitHubReleaseNotes/releases/download/1.0.7.1/Setup.msi
-  InstallerSha256: 54D9CDC1381C0BE43C01104B5BB14EDA5D7F8143E05B4C3321B9D463A400CA76
+  InstallerSha256: 02F70E0C909DF04543743192DD24321CE364A0F60790129662F5A14850551C6E
 PackageLocale: en-US
 ManifestType: singleton
 ManifestVersion: 1.0.7.1
