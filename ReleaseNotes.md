@@ -2,6 +2,7 @@
 - [#20](https://github.com/StefH/GitHubReleaseNotes/pull/20) - Fix version from setup.exe [bug] contributed by [StefH](https://github.com/StefH)
 - [#21](https://github.com/StefH/GitHubReleaseNotes/pull/21) - Replace LibGit2Sharp.Portable with latest LibGit2Sharp [bug] contributed by [StefH](https://github.com/StefH)
 - [#22](https://github.com/StefH/GitHubReleaseNotes/pull/22) - Update generator for winpkg manifest [bug] contributed by [StefH](https://github.com/StefH)
+- [#23](https://github.com/StefH/GitHubReleaseNotes/pull/23) - Fix ManifestVersion [bug] contributed by [StefH](https://github.com/StefH)
 - [#18](https://github.com/StefH/GitHubReleaseNotes/issues/18) - Wrong Display Version in Windows [bug]
 - [#19](https://github.com/StefH/GitHubReleaseNotes/issues/19) - LibGit2Sharp.Portable is deprecated and has issues running on Linux. [bug]
 
