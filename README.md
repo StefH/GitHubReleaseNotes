@@ -59,7 +59,7 @@ This project is based on [GitTools/GitReleaseNotes](https://github.com/GitTools/
 
 ### Dependencies
 -  [Oktokit](https://github.com/octokit/octokit.net)
--  [LibGit2Sharp.Portable](https://github.com/aarnott/libgit2sharp)
+-  [LibGit2Sharp](https://github.com/aarnott/libgit2sharp)
 -  [Handlebars.Net](https://github.com/rexm/Handlebars.Net)
 -  [Fody](https://github.com/Fody/Fody)
 -  [Fody.Costura](https://github.com/Fody/Costura)
