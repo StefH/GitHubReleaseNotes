@@ -6,7 +6,7 @@ namespace GitHubReleaseNotes.Logic.Models
     {
         public int Number { get; set; }
 
-        public bool IsPulRequest { get; set; }
+        public bool IsPullRequest { get; set; }
 
         public string IssueUrl { get; set; }
 

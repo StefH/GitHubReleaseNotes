@@ -51,7 +51,7 @@ namespace GitHubReleaseNotes.Logic
                 var issueInfos = issuesForThisTag.Select(issue => new IssueInfo
                 {
                     Number = issue.Number,
-                    IsPulRequest = false,
+                    IsPullRequest = false,
                     IssueUrl = issue.HtmlUrl,
                     Title = issue.Title,
                     User = issue.User.Login,
@@ -64,7 +64,7 @@ namespace GitHubReleaseNotes.Logic
                 var pullInfos = pullsForThisTag.Select(pull => new IssueInfo
                 {
                     Number = pull.Number,
-                    IsPulRequest = true,
+                    IsPullRequest = true,
                     IssueUrl = pull.HtmlUrl,
                     Title = pull.Title,
                     User = pull.User.Login,
@@ -82,7 +82,7 @@ namespace GitHubReleaseNotes.Logic
                     .Distinct()
                     .Where(issueInfo => !ExcludeIssue(issueInfo.Labels));
 
-                x.releaseInfo.IssueInfos = allIssues.OrderByDescending(issue => issue.IsPulRequest).ThenBy(issue => issue.Number).ToList();
+                x.releaseInfo.IssueInfos = allIssues.OrderByDescending(issue => issue.IsPullRequest).ThenBy(issue => issue.Number).ToList();
             }
 
             if (_configuration.SkipEmptyReleases)

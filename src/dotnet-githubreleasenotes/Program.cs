@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CommandLine;
 using GitHubReleaseNotes.Logic;
 
-namespace CoverageConverter
+namespace GitHubReleaseNotes
 {
     public class Program
     {
