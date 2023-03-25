@@ -3,92 +3,96 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace GitHubReleaseNotes
+namespace GitHubReleaseNotes;
+
+// Based on
+// - http://blog.gauffin.org/2014/12/simple-command-line-parser/
+// - https://github.com/WireMock-Net/WireMock.Net/blob/master/src/WireMock.Net.StandAlone/SimpleCommandLineParser.cs
+internal class SimpleCommandLineParser
 {
-    // Based on
-    // - http://blog.gauffin.org/2014/12/simple-command-line-parser/
-    // - https://github.com/WireMock-Net/WireMock.Net/blob/master/src/WireMock.Net.StandAlone/SimpleCommandLineParser.cs
-    internal class SimpleCommandLineParser
+    private const string Sigil = "--";
+
+    private IDictionary<string, string[]> Arguments { get; } = new Dictionary<string, string[]>();
+
+    public void Parse(string[] args)
     {
-        private const string Sigil = "--";
+        string? currentName = null;
 
-        private IDictionary<string, string[]> Arguments { get; } = new Dictionary<string, string[]>();
-
-        public void Parse(string[] args)
+        var values = new List<string>();
+        foreach (string arg in args)
         {
-            string currentName = null;
-
-            var values = new List<string>();
-            foreach (string arg in args)
+            if (arg.StartsWith(Sigil))
             {
-                if (arg.StartsWith(Sigil))
+                if (!string.IsNullOrEmpty(currentName))
                 {
-                    if (!string.IsNullOrEmpty(currentName))
-                    {
-                        Arguments[currentName] = values.ToArray();
-                    }
+                    Arguments[currentName!] = values.ToArray();
+                }
 
-                    values.Clear();
-                    currentName = arg.Substring(Sigil.Length);
-                }
-                else if (string.IsNullOrEmpty(currentName))
-                {
-                    Arguments[arg] = new string[0];
-                }
-                else
-                {
-                    values.Add(arg);
-                }
+                values.Clear();
+                currentName = arg.Substring(Sigil.Length);
             }
-
-            if (!string.IsNullOrEmpty(currentName))
+            else if (string.IsNullOrEmpty(currentName))
             {
-                Arguments[currentName] = values.ToArray();
+                Arguments[arg] = Array.Empty<string>();
+            }
+            else
+            {
+                values.Add(arg);
             }
         }
 
-        public bool Contains(string name)
+        if (!string.IsNullOrEmpty(currentName))
         {
-            return Arguments.ContainsKey(name);
+            Arguments[currentName!] = values.ToArray();
         }
+    }
 
-        public string[] GetValues(string name, string[] defaultValue = null)
-        {
-            return Contains(name) ? Arguments[name] : defaultValue;
-        }
+    public bool Contains(string name)
+    {
+        return Arguments.ContainsKey(name);
+    }
 
-        public T GetValue<T>(string name, Func<string[], T> func, T defaultValue = default(T))
-        {
-            return Contains(name) ? func(Arguments[name]) : defaultValue;
-        }
+    public string[]? GetValues(string name, string[]? defaultValues = null)
+    {
+        return Contains(name) ? Arguments[name] : defaultValues;
+    }
 
-        public bool GetBoolValue(string name, bool defaultValue = false)
-        {
-            return GetValue(name, values =>
-            {
-                string value = values.FirstOrDefault();
-                return !string.IsNullOrEmpty(value) ? bool.Parse(value) : defaultValue;
-            }, defaultValue);
-        }
+    public T GetValue<T>(string name, Func<string[], T> func, T defaultValue = default(T))
+    {
+        return Contains(name) ? func(Arguments[name]) : defaultValue;
+    }
 
-        public int? GetIntValue(string name, int? defaultValue = null)
+    public bool GetBoolValue(string name, bool defaultValue = false)
+    {
+        return GetValue(name, values =>
         {
-            return GetValue(name, values =>
-            {
-                string value = values.FirstOrDefault();
-                return !string.IsNullOrEmpty(value) ? int.Parse(value) : defaultValue;
-            }, defaultValue);
-        }
+            var value = values.FirstOrDefault();
+            return !string.IsNullOrEmpty(value) ? bool.Parse(value) : defaultValue;
+        }, defaultValue);
+    }
 
-        public string GetStringValue(string name, string defaultValue = null)
+    public int? GetIntValue(string name, int? defaultValue = null)
+    {
+        return GetValue(name, values =>
         {
-            return GetValue(name, values => values.FirstOrDefault() ?? defaultValue, defaultValue);
-        }
+            var value = values.FirstOrDefault();
+            return !string.IsNullOrEmpty(value) ? int.Parse(value) : defaultValue;
+        }, defaultValue);
+    }
 
-        public CultureInfo GetCultureInfo(string name)
-        {
-            string value = GetStringValue(name, "en");
-            return value == "system" ? CultureInfo.CurrentCulture : new CultureInfo(value);
-        }
+    public string? GetStringValue(string name)
+    {
+        return GetValue(name, values => values.FirstOrDefault());
+    }
+
+    public string GetStringValue(string name, string defaultValue)
+    {
+        return GetValue(name, values => values.FirstOrDefault() ?? defaultValue, defaultValue);
+    }
+
+    public CultureInfo GetCultureInfo(string name)
+    {
+        var value = GetStringValue(name, "en");
+        return value == "system" ? CultureInfo.CurrentCulture : new CultureInfo(value);
     }
 }

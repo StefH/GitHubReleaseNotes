@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GitHubReleaseNotes.Logic.Models
+namespace GitHubReleaseNotes.Logic.Models;
+
+internal class ReleaseInfo
 {
-    internal class ReleaseInfo
-    {
-        public long Version { get; set; }
+    public long Version { get; set; }
 
-        public string FriendlyName { get; set; }
+    public string FriendlyName { get; set; }
 
-        public DateTimeOffset When { get; set; }
+    public DateTimeOffset When { get; set; }
 
-        public List<IssueInfo> IssueInfos { get; set; }
-    }
+    public List<IssueInfo> IssueInfos { get; set; }
 }

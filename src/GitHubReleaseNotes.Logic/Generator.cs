@@ -2,44 +2,43 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace GitHubReleaseNotes.Logic
+namespace GitHubReleaseNotes.Logic;
+
+public class Generator
 {
-    public class Generator
+    private readonly IConfiguration _configuration;
+    private readonly RepositoryHelper _repositoryHelper;
+    private readonly HandleBarsHelper _handleBarsHelper;
+
+    public Generator(IConfiguration configuration)
     {
-        private readonly IConfiguration _configuration;
-        private readonly RepositoryHelper _repositoryHelper;
-        private readonly HandleBarsHelper _handleBarsHelper;
+        _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
 
-        public Generator(IConfiguration configuration)
+        _repositoryHelper = new RepositoryHelper(configuration);
+        _handleBarsHelper = new HandleBarsHelper(configuration);
+    }
+
+    public async Task GenerateAsync()
+    {
+        try
         {
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            var releaseInfos = await _repositoryHelper.GetReleaseInfoAsync().ConfigureAwait(false);
 
-            _repositoryHelper = new RepositoryHelper(configuration);
-            _handleBarsHelper = new HandleBarsHelper(configuration);
+            string result = _handleBarsHelper.Generate(releaseInfos);
+
+            if (!string.IsNullOrEmpty(_configuration.OutputFile))
+            {
+                Console.WriteLine($"Release Notes written to '{new FileInfo(_configuration.OutputFile!).FullName}'");
+                File.WriteAllText(_configuration.OutputFile!, result);
+            }
+            else
+            {
+                Console.WriteLine(result);
+            }
         }
-
-        public async Task GenerateAsync()
+        catch (Exception ex)
         {
-            try
-            {
-                var releaseInfos = await _repositoryHelper.GetReleaseInfoAsync().ConfigureAwait(false);
-
-                string result = _handleBarsHelper.Generate(releaseInfos);
-
-                if (!string.IsNullOrEmpty(_configuration.OutputFile))
-                {
-                    Console.WriteLine($"Release Notes written to '{new FileInfo(_configuration.OutputFile).FullName}'");
-                    File.WriteAllText(_configuration.OutputFile, result);
-                }
-                else
-                {
-                    Console.WriteLine(result);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine(ex.Message);
         }
     }
 }

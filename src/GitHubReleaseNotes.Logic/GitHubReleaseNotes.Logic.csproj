@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net46;net472;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net48;netstandard2.0</TargetFrameworks>
     <ProjectGuid>{B6269AAC-170A-43D0-8B9B-579DED3D9A99}</ProjectGuid>
     <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
@@ -13,7 +13,7 @@
   <ItemGroup>
     <PackageReference Include="LibGit2Sharp" Version="0.26.2" />
     <PackageReference Include="Octokit" Version="0.48.0" />
-    <PackageReference Include="Handlebars.Net" Version="1.9.5" />
+    <PackageReference Include="Handlebars.Net" Version="2.1.4" />
   </ItemGroup>
 
   <ItemGroup>
