@@ -83,7 +83,7 @@ public class RepositoryHelper
                 .Distinct()
                 .Where(issueInfo => !ExcludeIssue(issueInfo.Labels));
 
-            x.releaseInfo.IssueInfos = allIssues.OrderByDescending(issue => issue.IsPulRequest).ThenBy(issue => issue.Number).ToList();
+            x.releaseInfo.IssueInfos = allIssues.OrderByDescending(issue => issue.IsPullRequest).ThenBy(issue => issue.Number).ToList();
         }
 
         if (_configuration.SkipEmptyReleases)
@@ -148,7 +148,7 @@ public class RepositoryHelper
         };
     }
 
-    private static async Task<ICollection<Issue>> GetIssuesForRepositoryAsync(IGitHubClient client, string owner, string name)
+    private static async Task<IReadOnlyList<Issue>> GetIssuesForRepositoryAsync(IGitHubClient client, string owner, string name)
     {
         // Do a request to GitHub using Octokit.GitHubClient to get all Closed Issues (this does also include Closed and Merged Pull Requests)
         var closedIssuesRequest = new RepositoryIssueRequest
@@ -161,7 +161,7 @@ public class RepositoryHelper
         return (await client.Issue.GetAllForRepository(owner, name, closedIssuesRequest).ConfigureAwait(false)).OrderBy(i => i.Id).ToList().AsReadOnly();
     }
 
-    private static async Task<ICollection<PullRequest>> GetMergedPullRequestsForRepositoryAsync(IGitHubClient client, string owner, string name)
+    private static async Task<IReadOnlyList<PullRequest>> GetMergedPullRequestsForRepositoryAsync(IGitHubClient client, string owner, string name)
     {
         // Do a request to GitHub using Octokit.GitHubClient to get all Closed Pull Requests
         var closedPullRequestsRequest = new PullRequestRequest

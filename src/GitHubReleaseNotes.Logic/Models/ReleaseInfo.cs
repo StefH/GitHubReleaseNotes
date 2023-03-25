@@ -7,9 +7,9 @@ internal class ReleaseInfo
 {
     public long Version { get; set; }
 
-    public string FriendlyName { get; set; }
+    public string FriendlyName { get; set; } = null!;
 
     public DateTimeOffset When { get; set; }
 
-    public List<IssueInfo> IssueInfos { get; set; }
+    public IReadOnlyList<IssueInfo> IssueInfos { get; set; } = new List<IssueInfo>();
 }

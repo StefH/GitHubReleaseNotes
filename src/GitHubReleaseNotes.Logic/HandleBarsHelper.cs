@@ -32,16 +32,14 @@ internal class HandleBarsHelper
         // If provided, read custom Template
         if (!string.IsNullOrEmpty(_configuration.TemplatePath))
         {
-            return File.ReadAllText(_configuration.TemplatePath);
+            return File.ReadAllText(_configuration.TemplatePath!);
         }
 
         // Use default embedded Template
         var assembly = typeof(HandleBarsHelper).GetTypeInfo().Assembly;
-        using (Stream stream = assembly.GetManifestResourceStream(TemplateFilename))
-        using (StreamReader reader = new StreamReader(stream))
-        {
-            return reader.ReadToEnd();
-        }
+        using Stream stream = assembly.GetManifestResourceStream(TemplateFilename)!;
+        using StreamReader reader = new StreamReader(stream);
+        return reader.ReadToEnd();
     }
 
     private void RegisterHelpers()

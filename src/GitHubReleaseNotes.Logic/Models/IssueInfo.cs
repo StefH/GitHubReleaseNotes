@@ -11,13 +11,13 @@ internal class IssueInfo
 
     public bool IsPullRequest { get; set; }
 
-    public string IssueUrl { get; set; }
+    public string IssueUrl { get; set; } = null!;
 
-    public string Title { get; set; }
+    public string Title { get; set; } = null!;
 
-    public string User { get; set; }
+    public string User { get; set; } = null!;
 
-    public string UserUrl { get; set; }
+    public string UserUrl { get; set; } = null!;
 
-    public string[] Labels { get; set; }
+    public string[] Labels { get; set; } = null!;
 }
