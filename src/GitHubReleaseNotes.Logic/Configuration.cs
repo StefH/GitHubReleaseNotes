@@ -9,7 +9,7 @@ public class Configuration : IConfiguration
 
     public string? OutputFile { get; set; }
 
-    public string? Version { get; set; }
+    public string Version { get; set; } = "next";
 
     public CultureInfo Culture { get; set; } = CultureInfo.CurrentCulture;
 

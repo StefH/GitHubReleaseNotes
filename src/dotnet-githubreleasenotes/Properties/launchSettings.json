@@ -2,7 +2,7 @@
   "profiles": {
     "GitHubReleaseNotes.Tool": {
       "commandName": "Project",
-      "commandLineArgs": "--path \"C:\\Users\\StefHeyenrath\\Documents\\Github\\System.Linq.Dynamic.Core\" --output  ../../../../../examples/System.Linq.Dynamic.Core.md --skip-empty-releases --exclude-labels invalid question --language en --version v1.2.8"
+      "commandLineArgs": "--path \"C:\\Dev\\GitHub\\WireMock.Net\" --output ../../../../../examples/WireMock.Net.md --skip-empty-releases --exclude-labels invalid question --language en --token %GH_TOKEN%"
     }
   }
 }

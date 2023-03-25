@@ -9,7 +9,7 @@ public interface IConfiguration
 
     string? OutputFile { get; }
 
-    string? Version { get; }
+    string Version { get; }
 
     CultureInfo Culture { get; }
 

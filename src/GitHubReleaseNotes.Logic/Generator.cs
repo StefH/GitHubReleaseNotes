@@ -28,8 +28,8 @@ public class Generator
 
             if (!string.IsNullOrEmpty(_configuration.OutputFile))
             {
-                Console.WriteLine($"Release Notes written to '{new FileInfo(_configuration.OutputFile).FullName}'");
-                File.WriteAllText(_configuration.OutputFile, result);
+                Console.WriteLine($"Release Notes written to '{new FileInfo(_configuration.OutputFile!).FullName}'");
+                File.WriteAllText(_configuration.OutputFile!, result);
             }
             else
             {

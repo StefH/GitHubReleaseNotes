@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using GitHubReleaseNotes.Logic.Models;
+using LibGit2Sharp;
 using Octokit;
 
 namespace GitHubReleaseNotes.Logic;
@@ -13,7 +14,7 @@ public class RepositoryHelper
 {
     private const int DeltaSeconds = 30;
 
-    private static readonly Regex OwnerAndProjectRegex = new Regex("(^https:\\/\\/github\\.com\\/(?<ownerHttps>.+)\\/(?<projectHttps>.+)\\.git)|(^git@github\\.com:(?<ownerSSH>.+)\\/(?<projectSSH>.+)\\.git$)$", RegexOptions.Compiled);
+    private static readonly Regex OwnerAndProjectRegex = new("(^https:\\/\\/github\\.com\\/(?<ownerHttps>.+)\\/(?<projectHttps>.+)\\.git)|(^git@github\\.com:(?<ownerSSH>.+)\\/(?<projectSSH>.+)\\.git$)$", RegexOptions.Compiled);
 
     private readonly IConfiguration _configuration;
 
@@ -93,7 +94,7 @@ public class RepositoryHelper
         return orderedReleaseInfos.OrderByDescending(r => r.Version);
     }
 
-    private List<ReleaseInfo> GetOrderedReleaseInfos(LibGit2Sharp.Repository repo)
+    private List<ReleaseInfo> GetOrderedReleaseInfos(IRepository repo)
     {
         var orderedReleaseInfos = repo.Tags
 
@@ -125,7 +126,7 @@ public class RepositoryHelper
 
     private async Task<IssuesAndPullRequestsModel> GetAllIssuesAndPullRequestsAsync(string url)
     {
-        GetOwnerAndProject(url, out string owner, out string project);
+        GetOwnerAndProject(url, out var owner, out var project);
 
         var client = GitHubClientFactory.CreateClient(_configuration, owner);
 
@@ -135,14 +136,19 @@ public class RepositoryHelper
         //    throw new Exception($"You have only {miscellaneousRateLimit.Resources.Core.Remaining} Core Requests remaining.");
         //}
 
+        var issuesTask = GetIssuesForRepositoryAsync(client, owner, project);
+        var pullRequestsTask = GetMergedPullRequestsForRepositoryAsync(client, owner, project);
+
+        await Task.WhenAll(issuesTask, pullRequestsTask).ConfigureAwait(false);
+
         return new IssuesAndPullRequestsModel
         {
-            Issues = await GetIssuesForRepositoryAsync(client, owner, project).ConfigureAwait(false),
-            PullRequests = await GetMergedPullRequestsForRepositoryAsync(client, owner, project).ConfigureAwait(false)
+            Issues = await issuesTask.ConfigureAwait(false),
+            PullRequests = await pullRequestsTask.ConfigureAwait(false)
         };
     }
 
-    private async Task<ICollection<Issue>> GetIssuesForRepositoryAsync(IGitHubClient client, string owner, string name)
+    private static async Task<ICollection<Issue>> GetIssuesForRepositoryAsync(IGitHubClient client, string owner, string name)
     {
         // Do a request to GitHub using Octokit.GitHubClient to get all Closed Issues (this does also include Closed and Merged Pull Requests)
         var closedIssuesRequest = new RepositoryIssueRequest
@@ -155,7 +161,7 @@ public class RepositoryHelper
         return (await client.Issue.GetAllForRepository(owner, name, closedIssuesRequest).ConfigureAwait(false)).OrderBy(i => i.Id).ToList().AsReadOnly();
     }
 
-    private async Task<ICollection<PullRequest>> GetMergedPullRequestsForRepositoryAsync(IGitHubClient client, string owner, string name)
+    private static async Task<ICollection<PullRequest>> GetMergedPullRequestsForRepositoryAsync(IGitHubClient client, string owner, string name)
     {
         // Do a request to GitHub using Octokit.GitHubClient to get all Closed Pull Requests
         var closedPullRequestsRequest = new PullRequestRequest
@@ -185,7 +191,7 @@ public class RepositoryHelper
     private static long? GetVersionAsLong(string friendlyName)
     {
         var versionAsString = new string(friendlyName.Where(c => char.IsDigit(c) || c == '.').ToArray());
-        if (Version.TryParse(versionAsString, out Version version))
+        if (System.Version.TryParse(versionAsString, out var version))
         {
             return version.Major * 1000000000L + version.Minor * 1000000L + (version.Build > 0 ? version.Build : 0) * 1000L + (version.Revision > 0 ? version.Revision : 0);
         }
