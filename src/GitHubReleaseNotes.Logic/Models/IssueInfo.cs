@@ -1,10 +1,15 @@
-﻿namespace GitHubReleaseNotes.Logic.Models;
+﻿using System;
+
+namespace GitHubReleaseNotes.Logic.Models;
 
 internal class IssueInfo
 {
     public int Number { get; set; }
 
-    public bool IsPulRequest { get; set; }
+    [Obsolete("Use IsPullRequest")]
+    public bool IsPulRequest => IsPullRequest;
+
+    public bool IsPullRequest { get; set; }
 
     public string IssueUrl { get; set; }
 

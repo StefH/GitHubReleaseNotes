@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="GitHubReleaseNotes" Language="1033" Manufacturer="Stef Heyenrath" Version="1.0.8.0" UpgradeCode="ca1f74e0-dfca-4774-ae65-9421b4d08ff2">
+  <Product Id="*" Name="GitHubReleaseNotes" Language="1033" Manufacturer="Stef Heyenrath" Version="1.0.8.1" UpgradeCode="ca1f74e0-dfca-4774-ae65-9421b4d08ff2">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />

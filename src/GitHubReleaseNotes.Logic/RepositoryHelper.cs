@@ -52,7 +52,7 @@ public class RepositoryHelper
             var issueInfos = issuesForThisTag.Select(issue => new IssueInfo
             {
                 Number = issue.Number,
-                IsPulRequest = false,
+                IsPullRequest = false,
                 IssueUrl = issue.HtmlUrl,
                 Title = issue.Title,
                 User = issue.User.Login,
@@ -65,7 +65,7 @@ public class RepositoryHelper
             var pullInfos = pullsForThisTag.Select(pull => new IssueInfo
             {
                 Number = pull.Number,
-                IsPulRequest = true,
+                IsPullRequest = true,
                 IssueUrl = pull.HtmlUrl,
                 Title = pull.Title,
                 User = pull.User.Login,
