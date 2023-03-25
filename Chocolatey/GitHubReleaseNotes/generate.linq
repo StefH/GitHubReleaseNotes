@@ -49,7 +49,7 @@ To verify this package, follow these steps:
 
 3] For the changes in this release, see ReleaseNotes.md
 
-Note that this application is build with the .NET 4.7.2 framework and uses Fody and Fody.Costura to include all dependencies to generate a single exe file.";
+Note that this application is build with the .NET 4.8 framework and uses Fody and Fody.Costura to include all dependencies to generate a single exe file.";
 
 File.WriteAllText(Path.Combine(chocolateyFolder, "tools", "VERIFICATION.txt"), text, Encoding.UTF8);
 
