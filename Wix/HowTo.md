@@ -13,10 +13,10 @@ Update the version in `Product.wxs`
 Build setup project
 
 ## Generate yaml
-Use LinqPad on `generate files.linq` to generate the yaml files.
+Use LinqPad on `generate files.linq` to generate the 3 yaml files.
 
 ## Add yaml
-Add the new {version}.yaml to the soluton in the "Wix and winget-pkgs" folder
+Add the 3 new yaml files to the soluton in the "Wix and winget-pkgs" folder
 
 ## Verify : Validate
 Do a `winget validate --manifest {version}.yaml` 
