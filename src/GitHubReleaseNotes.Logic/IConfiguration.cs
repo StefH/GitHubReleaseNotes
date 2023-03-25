@@ -1,28 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 
-namespace GitHubReleaseNotes.Logic
+namespace GitHubReleaseNotes.Logic;
+
+public interface IConfiguration
 {
-    public interface IConfiguration
-    {
-        string RepositoryPath { get; }
+    string RepositoryPath { get; }
 
-        string OutputFile { get; }
+    string? OutputFile { get; }
 
-        string Version { get; }
+    string? Version { get; }
 
-        CultureInfo Culture { get; }
+    CultureInfo Culture { get; }
 
-        bool SkipEmptyReleases { get; }
+    bool SkipEmptyReleases { get; }
 
-        string TemplatePath { get; }
+    string? TemplatePath { get; }
 
-        string Login { get; }
+    string? Login { get; }
 
-        string Password { get; }
+    string? Password { get; }
 
-        string Token { get; }
+    string? Token { get; }
 
-        IEnumerable<string> ExcludeLabels { get; }
-    }
+    IEnumerable<string>? ExcludeLabels { get; }
 }
