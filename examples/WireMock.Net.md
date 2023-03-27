@@ -1,4 +1,4 @@
-# next (25 March 2023)
+# next (26 March 2023)
 - [#913](https://github.com/WireMock-Net/WireMock.Net/pull/913) - Update comments for models [doc] contributed by [StefH](https://github.com/StefH)
 - [#914](https://github.com/WireMock-Net/WireMock.Net/pull/914) - #912 add excluded params to proxy mapping [feature] contributed by [walidhaidarii](https://github.com/walidhaidarii)
 - [#912](https://github.com/WireMock-Net/WireMock.Net/issues/912) - Feature: adding excluded params to proxy and records settings [feature]
