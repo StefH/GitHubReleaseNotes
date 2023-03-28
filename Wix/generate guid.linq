@@ -7,7 +7,7 @@ string wixFolder = Path.GetDirectoryName(Util.CurrentQueryPath);
 string setupFolder = Path.Combine(wixFolder, "Setup");
 string productWxsFile = Path.Combine(setupFolder, "Product.wxs");
 
-string productGuid = "32249977-C6C1-40ED-B6A8-7084E69A0E7"; // Guid.NewGuid().ToString().ToUpperInvariant();
+string productGuid = Guid.NewGuid().ToString().ToUpperInvariant();
 string productCode = $"{{{{{productGuid}}}}}";
 
 // Get version
