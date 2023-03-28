@@ -44,8 +44,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{EC3EE34B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wix and winget-pkgs", "Wix and winget-pkgs", "{1D8E407B-B13C-4377-8D6E-76521411105D}"
 	ProjectSection(SolutionItems) = preProject
-		..\Wix\HowTo.md = ..\Wix\HowTo.md
 		..\Wix\generate files.linq = ..\Wix\generate files.linq
+		..\Wix\generate guid.linq = ..\Wix\generate guid.linq
+		..\Wix\guid.txt = ..\Wix\guid.txt
+		..\Wix\HowTo.md = ..\Wix\HowTo.md
 		..\Wix\StefHeyenrath.GitHubReleaseNotes.installer.yaml = ..\Wix\StefHeyenrath.GitHubReleaseNotes.installer.yaml
 		..\Wix\StefHeyenrath.GitHubReleaseNotes.locale.en-US.yaml = ..\Wix\StefHeyenrath.GitHubReleaseNotes.locale.en-US.yaml
 		..\Wix\StefHeyenrath.GitHubReleaseNotes.yaml = ..\Wix\StefHeyenrath.GitHubReleaseNotes.yaml
