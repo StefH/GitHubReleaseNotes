@@ -7,7 +7,7 @@ Do Chocolatey first
 Build in release mode
 
 ## Update version
-Update the version in `Product.wxs`
+Use LinqPad on `generate guid.linq` to generate + update the product guid,.
 
 ## Build setup
 Build setup project

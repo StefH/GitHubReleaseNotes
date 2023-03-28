@@ -1,26 +1,30 @@
 <Query Kind="Statements" />
 
-// LinqPad script to generate the `manifest.yaml` file
+// LINQPad script to generate the `manifest.yaml` files.
 
 // Get the folder where this LinqPad script is located (https://stackoverflow.com/questions/3802779/linqpad-script-directory)
 string folder = Path.GetDirectoryName(Util.CurrentQueryPath);
 string chocolateyFolder = Path.Combine(folder, "../", "Chocolatey", "GithubReleaseNotes");
 
-var doc = new XmlDocument(); doc.Load(Path.Combine(chocolateyFolder, "GitHubReleaseNotes.nuspec"));
+var doc = new XmlDocument(); 
+doc.Load(Path.Combine(chocolateyFolder, "GitHubReleaseNotes.nuspec"));
+
 string version = doc["package"]["metadata"]["version"].FirstChild.Value;
 string msi = Path.Combine(folder, "Setup", "bin", "release", "Setup.msi");
 
 string CreateSHA256()
 {
-var crypt = new System.Security.Cryptography.SHA256Managed();
-var hash = new System.Text.StringBuilder();
-byte[] crypto = crypt.ComputeHash(File.ReadAllBytes(msi));
-foreach (byte theByte in crypto)
-{
-hash.Append(theByte.ToString("x2"));
+	var crypt = new System.Security.Cryptography.SHA256Managed();
+	var hash = new System.Text.StringBuilder();
+	byte[] crypto = crypt.ComputeHash(File.ReadAllBytes(msi));
+	foreach (byte theByte in crypto)
+	{
+		hash.Append(theByte.ToString("x2"));
+	}
+	return hash.ToString().ToUpperInvariant();
 }
-return hash.ToString().ToUpperInvariant();
-}
+
+string productCode = $"{{{File.ReadAllText(Path.Combine(folder, "guid.txt"))}}}";
 
 string installerText =
 $@"# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.4.0.schema.json
@@ -33,7 +37,7 @@ Installers:
 - Architecture: x64
   InstallerUrl: https://github.com/StefH/GitHubReleaseNotes/releases/download/{version}/Setup.msi
   InstallerSha256: {CreateSHA256()}
-  ProductCode: '{{1D840FA8-29CC-47FB-B192-A932DE13480F}}'
+  ProductCode: '{productCode}'
 ManifestType: installer
 ManifestVersion: 1.4.0";
 
