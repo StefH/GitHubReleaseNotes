@@ -11,7 +11,7 @@ dotnet tool install --global GitHubReleaseNotes
 
 ## WinGet
 ``` cmd
-winget install GitHubReleaseNotes
+winget install -e --id StefHeyenrath.GitHubReleaseNotes
 ```
 
 ## Chocolatey
