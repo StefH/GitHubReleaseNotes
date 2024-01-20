@@ -5,6 +5,8 @@ namespace GitHubReleaseNotes.Logic;
 
 internal static class GitHubClientFactory
 {
+    private static readonly TimeSpan RequestTimeout = TimeSpan.FromMinutes(5);
+
     private const string AppName = "GitHubReleaseNotes";
 
     public static IGitHubClient CreateClient(IConfiguration configuration, string owner)
@@ -14,7 +16,7 @@ internal static class GitHubClientFactory
             throw new ArgumentNullException(nameof(configuration));
         }
 
-        string product = !string.IsNullOrEmpty(owner) ? owner : AppName;
+        var product = !string.IsNullOrEmpty(owner) ? owner : AppName;
         var client = new GitHubClient(new ProductHeaderValue(product));
 
         if (!string.IsNullOrEmpty(configuration.Token))
@@ -25,6 +27,8 @@ internal static class GitHubClientFactory
         {
             client.Credentials = new Credentials(configuration.Login, configuration.Password);
         }
+
+        client.SetRequestTimeout(RequestTimeout);
 
         return client;
     }

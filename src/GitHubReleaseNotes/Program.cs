@@ -7,9 +7,9 @@ namespace GitHubReleaseNotes;
 
 static class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
-        MainAsync(args).GetAwaiter().GetResult();
+        await MainAsync(args).ConfigureAwait(false);
     }
 
     private static Task MainAsync(string[] args)
