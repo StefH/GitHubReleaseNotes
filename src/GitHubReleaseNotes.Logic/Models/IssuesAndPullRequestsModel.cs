@@ -5,7 +5,7 @@ namespace GitHubReleaseNotes.Logic.Models;
 
 internal class IssuesAndPullRequestsModel
 {
-    public ICollection<Issue> Issues { get; set; }
+    public required ICollection<Issue> Issues { get; set; }
 
-    public ICollection<PullRequest> PullRequests { get; set; }
+    public required ICollection<PullRequest> PullRequests { get; set; }
 }

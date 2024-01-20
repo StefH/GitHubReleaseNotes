@@ -2,17 +2,17 @@
 
 internal class IssueInfo
 {
-    public int Number { get; set; }
+    public required int Number { get; set; }
 
-    public bool IsPulRequest { get; set; }
+    public required bool IsPulRequest { get; set; }
 
-    public string IssueUrl { get; set; }
+    public required string IssueUrl { get; set; }
 
-    public string Title { get; set; }
+    public required string Title { get; set; }
 
-    public string User { get; set; }
+    public required string User { get; set; }
 
-    public string UserUrl { get; set; }
+    public required string UserUrl { get; set; }
 
-    public string[] Labels { get; set; }
+    public required string[] Labels { get; set; }
 }

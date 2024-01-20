@@ -5,11 +5,11 @@ namespace GitHubReleaseNotes.Logic.Models;
 
 internal class ReleaseInfo
 {
-    public long Version { get; set; }
+    public required long Version { get; set; }
 
-    public string FriendlyName { get; set; }
+    public required string FriendlyName { get; set; }
 
-    public DateTimeOffset When { get; set; }
+    public required DateTimeOffset When { get; set; }
 
-    public List<IssueInfo> IssueInfos { get; set; }
+    public List<IssueInfo> IssueInfos { get; set; } = null!;
 }
