@@ -100,18 +100,14 @@ public class RepositoryHelper
     {
         GetRepositorySettingsOrThrowException(gitUrl, headBranchName, out var repositorySettings);
 
-        // Create separate clients (2 parallel tasks are used)
-        var clientIssues = GitHubClientFactory.CreateClient(_configuration, repositorySettings.Owner);
-        var clientPullRequests = GitHubClientFactory.CreateClient(_configuration, repositorySettings.Owner);
-
         //var miscellaneousRateLimit = await client.Miscellaneous.GetRateLimits();
         //if (miscellaneousRateLimit.Resources.Core.Remaining < 21)
         //{
         //    throw new Exception($"You have only {miscellaneousRateLimit.Resources.Core.Remaining} Core Requests remaining.");
         //}
 
-        var issuesTask = GetIssuesForRepositoryAsync(clientIssues, repositorySettings);
-        var pullRequestsTask = GetMergedPullRequestsForRepositoryAsync(clientPullRequests, repositorySettings);
+        var issuesTask = GetIssuesForRepositoryAsync(repositorySettings);
+        var pullRequestsTask = GetMergedPullRequestsForRepositoryAsync(repositorySettings);
 
         await Task.WhenAll(issuesTask, pullRequestsTask).ConfigureAwait(false);
 
@@ -122,8 +118,10 @@ public class RepositoryHelper
         };
     }
 
-    private static async Task<ICollection<Issue>> GetIssuesForRepositoryAsync(IGitHubClient client, RepositorySettings repositorySettings)
+    private async Task<ICollection<Issue>> GetIssuesForRepositoryAsync(RepositorySettings repositorySettings)
     {
+        var client = GitHubClientFactory.CreateClient(_configuration, repositorySettings.Owner);
+
         // Do a request to GitHub using Octokit.GitHubClient to get all Closed Issues (this does also include Closed and Merged Pull Requests)
         var closedIssuesRequest = new RepositoryIssueRequest
         {
@@ -138,8 +136,10 @@ public class RepositoryHelper
             .AsReadOnly();
     }
 
-    private static async Task<ICollection<PullRequest>> GetMergedPullRequestsForRepositoryAsync(IGitHubClient client, RepositorySettings repositorySettings)
+    private async Task<ICollection<PullRequest>> GetMergedPullRequestsForRepositoryAsync(RepositorySettings repositorySettings)
     {
+        var client = GitHubClientFactory.CreateClient(_configuration, repositorySettings.Owner);
+
         // Do a request to GitHub using Octokit.GitHubClient to get all Closed Pull Requests
         var closedPullRequestsRequest = new PullRequestRequest
         {
