@@ -7,8 +7,9 @@ string wixFolder = Path.GetDirectoryName(Util.CurrentQueryPath);
 string setupFolder = Path.Combine(wixFolder, "Setup");
 string productWxsFile = Path.Combine(setupFolder, "Product.wxs");
 
-string productGuid = "32249977-C6C1-40ED-B6A8-7084E69A0E7"; // Guid.NewGuid().ToString().ToUpperInvariant();
-string productCode = $"{{{{{productGuid}}}}}";
+string productCode = "32249977-C6C1-40ED-B6A8-7084E69A0E7A";
+string upgradeCode = Guid.NewGuid().ToString().ToUpperInvariant();
+// string productCode = $"{{{productGuid}}}";
 
 // Get version
 string chocolateyFolder = Path.Combine(wixFolder, "../", "Chocolatey", "GithubReleaseNotes");
@@ -24,12 +25,14 @@ var doc = XDocument.Load(productWxsFile);
 
 // Find the Product element
 var productElement = doc.Descendants(wixNamespace + "Product").Single();
-productElement.Attribute("Id").Value = productGuid;
+productElement.Attribute("Id").Value = productCode;
 productElement.Attribute("Version").Value = version;
+productElement.Attribute("UpgradeCode").Value = upgradeCode;
 
 // Save the modified XML file
 doc.Save(productWxsFile);
 
-File.WriteAllText(Path.Combine(wixFolder, "guid.txt"), productGuid);
+File.WriteAllText(Path.Combine(wixFolder, "productGuid.txt"), productCode);
+File.WriteAllText(Path.Combine(wixFolder, "upgradeGuid.txt"), upgradeCode);
 
-$"product guid generated".Dump();
+$"ProductGuid and UpgradeGuid generated and saved to folder".Dump();

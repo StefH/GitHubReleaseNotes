@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="32249977-C6C1-40ED-B6A8-7084E69A0E7" Name="GitHubReleaseNotes" Language="1033" Manufacturer="Stef Heyenrath" Version="1.0.8.0" UpgradeCode="ca1f74e0-dfca-4774-ae65-9421b4d08ff2">
+  <Product Id="32249977-C6C1-40ED-B6A8-7084E69A0E7A" Name="GitHubReleaseNotes" Language="1033" Manufacturer="Stef Heyenrath" Version="1.0.9.0" UpgradeCode="9A4C29E2-4598-4D4A-BA2D-DE476B708ACB">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <MediaTemplate EmbedCab="yes" />

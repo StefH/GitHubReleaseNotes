@@ -1,3 +1,9 @@
+# 1.0.9.0 (01 February 2024)
+- [#27](https://github.com/StefH/GitHubReleaseNotes/pull/27) - Update method GetAllIssuesAndPullRequestsAsync [feature] contributed by [StefH](https://github.com/StefH)
+
+# 1.0.8.0 (25 March 2023)
+- [#26](https://github.com/StefH/GitHubReleaseNotes/pull/26) - Upgrade to .NET 6 [feature] contributed by [StefH](https://github.com/StefH)
+
 # 1.0.7.1 (23 June 2021)
 - [#20](https://github.com/StefH/GitHubReleaseNotes/pull/20) - Fix version from setup.exe [bug] contributed by [StefH](https://github.com/StefH)
 - [#21](https://github.com/StefH/GitHubReleaseNotes/pull/21) - Replace LibGit2Sharp.Portable with latest LibGit2Sharp [bug] contributed by [StefH](https://github.com/StefH)

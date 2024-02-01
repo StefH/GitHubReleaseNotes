@@ -3,11 +3,8 @@
 ## Update release
 Do Chocolatey first
 
-## Build tool
-Build in release mode
-
 ## Update version
-Use LinqPad on `generate guid.linq` to generate + update the product guid,.
+Use LinqPad on `generate guid.linq` to generate + update the product guid and the upgrade guid.
 
 ## Build setup
 Build setup project

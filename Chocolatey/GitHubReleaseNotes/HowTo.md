@@ -1,9 +1,9 @@
 # HowTo
 
 ## Update release
-- Update release in `Directory.Build.props`
-- Update release in `GitHubReleaseNotes.nuspec`
-- Update release in this file
+- Update Version in `Directory.Build.props`
+- Update version in `GitHubReleaseNotes.nuspec`
+- Update Version in this file
 
 ## Build
 Build in release mode
@@ -12,6 +12,8 @@ Build in release mode
 Use LinqPad on `.\Chocolatey\generate.linq` to generate VERIFICATION.txt
 
 ## Generate the release-notes
+- Update the version in 'GenerateReleaseNotes.cmd'
+- Run GenerateReleaseNotes.cmd
 
 ## Pack
 Run as **Administrator**:
@@ -28,5 +30,5 @@ choco apikey --key {KEY} --source https://push.chocolatey.org/
 
 Then push:
 ``` cmd
-choco push githubreleasenotes.1.0.8.0.nupkg --source https://push.chocolatey.org/
+choco push githubreleasenotes.1.0.9.nupkg --source https://push.chocolatey.org/
 ```

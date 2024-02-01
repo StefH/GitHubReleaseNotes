@@ -10,9 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A9E332DE-6598-41D3-B4FA-A4C5E1523BFA}"
 	ProjectSection(SolutionItems) = preProject
 		..\Directory.Build.props = ..\Directory.Build.props
+		..\GenerateReleaseNotes.cmd = ..\GenerateReleaseNotes.cmd
 		..\README.md = ..\README.md
 		..\ReleaseNotes.md = ..\ReleaseNotes.md
-		..\ReleaseNotes.txt = ..\ReleaseNotes.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{5B560300-4B76-4FFF-8B7B-D0F52972A2F5}"
@@ -46,11 +46,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wix and winget-pkgs", "Wix 
 	ProjectSection(SolutionItems) = preProject
 		..\Wix\generate files.linq = ..\Wix\generate files.linq
 		..\Wix\generate guid.linq = ..\Wix\generate guid.linq
-		..\Wix\guid.txt = ..\Wix\guid.txt
 		..\Wix\HowTo.md = ..\Wix\HowTo.md
+		..\Wix\productGuid.txt = ..\Wix\productGuid.txt
 		..\Wix\StefHeyenrath.GitHubReleaseNotes.installer.yaml = ..\Wix\StefHeyenrath.GitHubReleaseNotes.installer.yaml
 		..\Wix\StefHeyenrath.GitHubReleaseNotes.locale.en-US.yaml = ..\Wix\StefHeyenrath.GitHubReleaseNotes.locale.en-US.yaml
 		..\Wix\StefHeyenrath.GitHubReleaseNotes.yaml = ..\Wix\StefHeyenrath.GitHubReleaseNotes.yaml
+		..\Wix\upgradeGuid.txt = ..\Wix\upgradeGuid.txt
 	EndProjectSection
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Setup", "..\Wix\Setup\Setup.wixproj", "{9456D153-CBDD-470B-9BFF-17C145ED9C24}"
