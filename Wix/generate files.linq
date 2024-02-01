@@ -63,7 +63,6 @@ PackageLocale: en-US
 Publisher: Stef Heyenrath
 PublisherUrl: https://github.com/StefH
 PublisherSupportUrl: https://github.com/StefH/GitHubReleaseNotes
-Author: Stef Heyenrath
 PackageName: GitHubReleaseNotes
 PackageUrl: https://github.com/StefH/GitHubReleaseNotes
 License: MIT
@@ -93,9 +92,11 @@ DefaultLocale: en-US
 ManifestType: version
 ManifestVersion: 1.5.0";
 
+var versionFolder = Path.Combine(folder, version);
+Directory.CreateDirectory(versionFolder);
 
-File.WriteAllText(Path.Combine(folder, @"StefHeyenrath.GitHubReleaseNotes.installer.yaml"), installerText, Encoding.UTF8);
-File.WriteAllText(Path.Combine(folder, @"StefHeyenrath.GitHubReleaseNotes.locale.en-US.yaml"), defaultLocaleText, Encoding.UTF8);
-File.WriteAllText(Path.Combine(folder, @"StefHeyenrath.GitHubReleaseNotes.yaml"), versionText, Encoding.UTF8);
+File.WriteAllText(Path.Combine(versionFolder, @"StefHeyenrath.GitHubReleaseNotes.installer.yaml"), installerText, Encoding.UTF8);
+File.WriteAllText(Path.Combine(versionFolder, @"StefHeyenrath.GitHubReleaseNotes.locale.en-US.yaml"), defaultLocaleText, Encoding.UTF8);
+File.WriteAllText(Path.Combine(versionFolder, @"StefHeyenrath.GitHubReleaseNotes.yaml"), versionText, Encoding.UTF8);
 
 $"Manifest yamls are generated for {version}".Dump();

@@ -16,14 +16,14 @@ Use LinqPad on `generate files.linq` to generate the 3 yaml files.
 Add the 3 new yaml files to the soluton in the "Wix and winget-pkgs" folder
 
 ## Verify : Validate
-Do a `winget validate --manifest {version}.yaml` 
+Do a `winget validate --manifest {version}`
 
 ## Upload
 Create the new version (tag) and upload setup to https://github.com/StefH/GitHubReleaseNotes/releases
 
 ### Verify Install + Uninstall
-Do a `winget install --manifest {version}.yaml`
-Do a `winget uninstall --manifest {version}.yaml`
+Do a `winget install --manifest {version}`
+Do a `winget uninstall --manifest {version}`
 
 ## winget-pkgs
 Create a PR with the new {version}.yaml in https://github.com/StefH/winget-pkgs

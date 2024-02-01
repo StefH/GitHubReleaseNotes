@@ -1,12 +1,11 @@
-﻿# Created with WinGet Automation using Komac v1.10.0
-# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
+﻿# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
 
 PackageIdentifier: StefHeyenrath.GitHubReleaseNotes
-PackageVersion: 1.0.8.0
+PackageVersion: 1.0.9.0
 PackageLocale: en-US
 Publisher: Stef Heyenrath
 PublisherUrl: https://github.com/StefH
-PublisherSupportUrl: https://github.com/StefH/GitHubReleaseNotes/issues
+PublisherSupportUrl: https://github.com/StefH/GitHubReleaseNotes
 PackageName: GitHubReleaseNotes
 PackageUrl: https://github.com/StefH/GitHubReleaseNotes
 License: MIT
@@ -21,10 +20,6 @@ Tags:
 - md
 - releasenotes
 - tags
-ReleaseNotes: |-
-  What's Changed
-  - Upgrade to .
-    NET 6 by @StefH in #26
-ReleaseNotesUrl: https://github.com/StefH/GitHubReleaseNotes/releases/tag/1.0.8.0
+ReleaseNotesUrl: https://github.com/StefH/GitHubReleaseNotes/blob/master/ReleaseNotes.md
 ManifestType: defaultLocale
 ManifestVersion: 1.5.0
