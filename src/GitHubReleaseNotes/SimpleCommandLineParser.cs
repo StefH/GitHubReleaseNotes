@@ -57,7 +57,7 @@ internal class SimpleCommandLineParser
         return Contains(name) ? Arguments[name] : defaultValues;
     }
 
-    public T GetValue<T>(string name, Func<string[], T> func, T defaultValue = default(T))
+    public T? GetValue<T>(string name, Func<string[], T> func, T? defaultValue = default)
     {
         return Contains(name) ? func(Arguments[name]) : defaultValue;
     }
@@ -87,7 +87,7 @@ internal class SimpleCommandLineParser
 
     public string GetStringValue(string name, string defaultValue)
     {
-        return GetValue(name, values => values.FirstOrDefault() ?? defaultValue, defaultValue);
+        return GetValue(name, values => values.FirstOrDefault() ?? defaultValue) ?? defaultValue;
     }
 
     public CultureInfo GetCultureInfo(string name)
