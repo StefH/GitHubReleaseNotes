@@ -2,15 +2,15 @@
 
 PackageIdentifier: StefHeyenrath.GitHubReleaseNotes
 PackageVersion: 1.0.9.0
-InstallerLocale: en-US
-InstallerType: msi
+InstallerType: zip
+NestedInstallerType: portable
+NestedInstallerFiles:
+- RelativeFilePath: GitHubReleaseNotes.exe
 ProductCode: '{32249977-C6C1-40ED-B6A8-7084E69A0E7A}'
-ReleaseDate: 2024-02-01
-AppsAndFeaturesEntries:
-- UpgradeCode: '{C6C9F090-5E9F-4E30-B9D1-43238271456F}'
+ReleaseDate: 2024-02-02
 Installers:
 - Architecture: x64
-  InstallerUrl: https://github.com/StefH/GitHubReleaseNotes/releases/download/1.0.9.0/Setup.msi
-  InstallerSha256: 89202CCCCBA257BAFC7376B055E20DFC518759BD22D8E0D518120082FA3D69D1
+  InstallerUrl: https://github.com/StefH/GitHubReleaseNotes/releases/download/1.0.9.0/GitHubReleaseNotes.zip
+  InstallerSha256: 26C3558610A7FBAB818C70560B28DF11636057D8DDFEEF0D11D0001A8729F619
 ManifestType: installer
 ManifestVersion: 1.5.0

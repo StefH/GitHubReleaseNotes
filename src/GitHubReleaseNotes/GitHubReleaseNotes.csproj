@@ -24,4 +24,56 @@
 		</ProjectReference>
 	</ItemGroup>
 
+	<Target Name="Zip" AfterTargets="Build">
+		<Zip
+			SourceFile="$(OutputPath)\$(AssemblyName).exe"
+			ZipFileName="$(OutputPath)\$(AssemblyName).zip"
+		/>
+	</Target>
+
+	<UsingTask TaskName="Zip" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v12.0.dll">
+		<ParameterGroup>
+			<SourceFile ParameterType="System.String" Required="true" />
+			<ZipFileName ParameterType="System.String" Required="true" />
+		</ParameterGroup>
+
+		<Task>
+			<Reference Include="System.IO.Compression.FileSystem" />
+			<Using Namespace="System.IO.Compression" />
+			<Code Type="Fragment" Language="cs">
+				<![CDATA[
+      try
+      {
+        Log.LogMessage(string.Format("Zipping file {0} to {1}", SourceFile, ZipFileName));
+		
+		// Temporarily create a directory to hold the file to be zipped
+        string tempFolder = Path.Combine(Path.GetDirectoryName(SourceFile), Path.GetFileNameWithoutExtension(SourceFile) + "_temp");
+        Directory.CreateDirectory(tempFolder);
+
+        // Copy the source file to the temp directory
+        string tempFilePath = Path.Combine(tempFolder, Path.GetFileName(SourceFile));
+        File.Copy(SourceFile, tempFilePath, true);
+
+        // Create a zip archive that contains the file in the temp directory
+        if (File.Exists(ZipFileName))
+        {
+            File.Delete(ZipFileName); // Ensure we are creating a new zip file
+        }
+        ZipFile.CreateFromDirectory(tempFolder, ZipFileName);
+
+        // Clean up the temp directory
+        Directory.Delete(tempFolder, true);
+		
+        return true;
+      }
+      catch(Exception ex)
+      {
+        Log.LogErrorFromException(ex);
+        return false;
+      }
+    ]]>
+			</Code>
+		</Task>
+	</UsingTask>
+
 </Project>

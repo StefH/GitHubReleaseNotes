@@ -1,25 +1,22 @@
-# HowTo
+# HowTo - WinGet
 
 ## Update release
 Do Chocolatey first
 
 ## Update version
-Use LinqPad on `generate guid.linq` to generate + update the product guid and the upgrade guid.
-
-## Build setup
-Build setup project
+Use LinqPad on `generate guid.linq` to generate the product guid and + update the upgrade guid.
 
 ## Generate yaml
 Use LinqPad on `generate files.linq` to generate the 3 yaml files.
 
 ## Add yaml
-Add the 3 new yaml files to the soluton in the "Wix and winget-pkgs" folder
+Add the 3 new yaml files to the soluton in the "winget-pkgs" folder
 
 ## Verify : Validate
 Do a `winget validate --manifest {version}`
 
 ## Upload
-Create the new version (tag) and upload setup to https://github.com/StefH/GitHubReleaseNotes/releases
+Create the new version (tag) and upload 'zip' to https://github.com/StefH/GitHubReleaseNotes/releases
 
 ### Verify Install + Uninstall
 Do a `winget install --manifest {version}`
@@ -28,4 +25,17 @@ Do a `winget uninstall --manifest {version}`
 ## winget-pkgs
 Create a PR with the new {version}.yaml in https://github.com/StefH/winget-pkgs
 
-Use the "." key on GitHub StefH/winget-pkgs to start VS Code and create a folder + add yaml.
+Use the "." key on GitHub StefH/winget-pkgs to start VS Code and create a folder + add 3 yamls.
+
+
+
+--------------------------------
+
+
+# HowTo - WinGet
+
+## Build setup
+Build setup project
+
+## Upload
+Upload the wix setup to https://github.com/StefH/GitHubReleaseNotes/releases

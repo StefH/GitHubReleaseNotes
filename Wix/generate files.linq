@@ -7,13 +7,15 @@ string folder = Path.GetDirectoryName(Util.CurrentQueryPath);
 string chocolateyFolder = Path.Combine(folder, "../", "Chocolatey", "GithubReleaseNotes");
 string projectFolder = Path.Combine(chocolateyFolder, "../", "../");
 
-string exe = Path.Combine(projectFolder, "src", "GitHubReleaseNotes", "bin", "release", "net48", "GitHubReleaseNotes.exe");
+string outputFolder = Path.Combine(projectFolder, "src", "GitHubReleaseNotes", "bin", "release", "net48");
+string exe = Path.Combine(outputFolder, "GitHubReleaseNotes.exe");
+string zip = Path.Combine(outputFolder, "GitHubReleaseNotes.zip");
 
 var doc = new XmlDocument(); 
 doc.Load(Path.Combine(chocolateyFolder, "GitHubReleaseNotes.nuspec"));
 
 string version = doc["package"]["metadata"]["version"].FirstChild.Value;
-string msi = Path.Combine(folder, "Setup", "bin", "release", "Setup.msi");
+// string msi = Path.Combine(folder, "Setup", "bin", "release", "Setup.msi");
 
 var fi = new FileInfo(exe);
 string dateModified = fi.LastWriteTime.ToString("yyyy-MM-dd");
@@ -22,7 +24,7 @@ string CreateSHA256()
 {
 	var crypt = new System.Security.Cryptography.SHA256Managed();
 	var hash = new System.Text.StringBuilder();
-	byte[] crypto = crypt.ComputeHash(File.ReadAllBytes(msi));
+	byte[] crypto = crypt.ComputeHash(File.ReadAllBytes(zip));
 	foreach (byte theByte in crypto)
 	{
 		hash.Append(theByte.ToString("x2"));
@@ -31,7 +33,7 @@ string CreateSHA256()
 }
 
 string productCode = $"{{{File.ReadAllText(Path.Combine(folder, "productGuid.txt"))}}}";
-string upgradeCode = $"{{{File.ReadAllText(Path.Combine(folder, "upgradeGuid.txt"))}}}";
+// string upgradeCode = $"{{{File.ReadAllText(Path.Combine(folder, "upgradeGuid.txt"))}}}";
 
 // StefHeyenrath.GitHubReleaseNotes.installer.yaml
 string installerText =
@@ -39,15 +41,15 @@ $@"# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.5.
 
 PackageIdentifier: StefHeyenrath.GitHubReleaseNotes
 PackageVersion: {version}
-InstallerLocale: en-US
-InstallerType: msi
+InstallerType: zip
+NestedInstallerType: portable
+NestedInstallerFiles:
+- RelativeFilePath: GitHubReleaseNotes.exe
 ProductCode: '{productCode}'
 ReleaseDate: {dateModified}
-AppsAndFeaturesEntries:
-- UpgradeCode: '{upgradeCode}'
 Installers:
 - Architecture: x64
-  InstallerUrl: https://github.com/StefH/GitHubReleaseNotes/releases/download/{version}/Setup.msi
+  InstallerUrl: https://github.com/StefH/GitHubReleaseNotes/releases/download/{version}/GitHubReleaseNotes.zip
   InstallerSha256: {CreateSHA256()}
 ManifestType: installer
 ManifestVersion: 1.5.0";

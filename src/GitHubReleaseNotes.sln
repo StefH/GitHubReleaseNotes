@@ -42,7 +42,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{EC3EE34B
 		..\Chocolatey\GitHubReleaseNotes\tools\VERIFICATION.txt = ..\Chocolatey\GitHubReleaseNotes\tools\VERIFICATION.txt
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wix and winget-pkgs", "Wix and winget-pkgs", "{1D8E407B-B13C-4377-8D6E-76521411105D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "winget-pkgs", "winget-pkgs", "{1D8E407B-B13C-4377-8D6E-76521411105D}"
 	ProjectSection(SolutionItems) = preProject
 		..\Wix\generate files.linq = ..\Wix\generate files.linq
 		..\Wix\generate guid.linq = ..\Wix\generate guid.linq
@@ -63,6 +63,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.0.9.0", "1.0.9.0", "{CB61
 		..\Wix\1.0.9.0\StefHeyenrath.GitHubReleaseNotes.locale.en-US.yaml = ..\Wix\1.0.9.0\StefHeyenrath.GitHubReleaseNotes.locale.en-US.yaml
 		..\Wix\1.0.9.0\StefHeyenrath.GitHubReleaseNotes.yaml = ..\Wix\1.0.9.0\StefHeyenrath.GitHubReleaseNotes.yaml
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wix [not used anymore]", "Wix [not used anymore]", "{E0D35E17-7751-4C7E-BA6E-86F475EA54D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -118,7 +120,7 @@ Global
 		{B6269AAC-170A-43D0-8B9B-579DED3D9A00} = {EF77BB40-C919-4644-81A3-968854FB9B23}
 		{B6269AAC-170A-43D0-8B9B-579DED3D9A99} = {EF77BB40-C919-4644-81A3-968854FB9B23}
 		{EC3EE34B-AC6A-4051-90D8-BECA56E110CE} = {13B407F6-F183-4D36-8218-497AF9C05280}
-		{9456D153-CBDD-470B-9BFF-17C145ED9C24} = {1D8E407B-B13C-4377-8D6E-76521411105D}
+		{9456D153-CBDD-470B-9BFF-17C145ED9C24} = {E0D35E17-7751-4C7E-BA6E-86F475EA54D9}
 		{E851802A-C1F1-47BB-8725-1FD1868CC6EB} = {EF77BB40-C919-4644-81A3-968854FB9B23}
 		{A50D0A88-AC3D-455E-9048-B9BF6E6E2E5F} = {EF77BB40-C919-4644-81A3-968854FB9B23}
 		{CB61AA1D-6C90-4002-939F-77ABB1830CE4} = {1D8E407B-B13C-4377-8D6E-76521411105D}
