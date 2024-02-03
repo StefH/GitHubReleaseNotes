@@ -10,12 +10,12 @@ To verify this package, follow these steps:
    - Product version    1.0.10.0
    - Copyright          Stef Heyenrath
    - Size               67,21 MB
-   - Date modified      2024-02-03 07:36
+   - Date modified      2024-02-03 07:47
    - Language           Language Neutral
    - Original filename  GitHubReleaseNotes.exe
 
 2] Verify the SHA256 from the GitHubReleaseNotes.exe file (7zip can be used for this)
-   - SHA256             6EA5931E0B96FB3A240A1C4FD60114D271CD428B7F85141E582E9A23EFD72B49
+   - SHA256             0124EC06B2C5DCF54F8BE851445A3A31ADF79DA49004DC03DCE882B9DA7E3DD4
 
 3] For the changes in this release, see ReleaseNotes.md
 
