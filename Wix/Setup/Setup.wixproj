@@ -23,8 +23,8 @@
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\GitHubReleaseNotes\GitHubReleaseNotes.csproj">
-      <Name>GitHubReleaseNotes</Name>
+    <ProjectReference Include="..\..\src\GitHubReleaseNotes.NET48\GitHubReleaseNotes.NET48.csproj">
+      <Name>GitHubReleaseNotes.NET48</Name>
       <Project>{b6269aac-170a-43d0-8b9b-579ded3d9a00}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>

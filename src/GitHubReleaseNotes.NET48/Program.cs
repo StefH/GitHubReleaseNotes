@@ -5,13 +5,18 @@ using GitHubReleaseNotes.Logic;
 
 namespace GitHubReleaseNotes;
 
-class Program
+static class Program
 {
     static async Task Main(string[] args)
+    {
+        await MainAsync(args).ConfigureAwait(false);
+    }
+
+    private static Task MainAsync(string[] args)
     {
         var configuration = ConfigurationParser.Parse(args);
 
         Console.WriteLine($"GitHubReleaseNotes ({Assembly.GetExecutingAssembly().GetName().Version})");
-        await new Generator(configuration).GenerateAsync();
+        return new Generator(configuration).GenerateAsync();
     }
 }

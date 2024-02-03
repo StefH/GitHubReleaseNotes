@@ -207,7 +207,7 @@
 - [#239](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/239) - SingleOrDefaultAsync [feature] contributed by [StefH](https://github.com/StefH)
 - [#238](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/238) - Missing SingleOrDefaultAsync for EntityFrameworkCore [feature]
 
-# 1.0.9.1 (07 January 2019)
+# 1.0.10.0 (07 January 2019)
 - [#210](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/210) - Set up CI with Azure Pipelines contributed by [azure-pipelines[bot]](https://github.com/apps/azure-pipelines)
 - [#211](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/211) - ParameterExpressionRenamer contributed by [StefH](https://github.com/StefH)
 - [#212](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/212) - Make ExpressionPromoter plugable contributed by [david-garcia-garcia](https://github.com/david-garcia-garcia)
