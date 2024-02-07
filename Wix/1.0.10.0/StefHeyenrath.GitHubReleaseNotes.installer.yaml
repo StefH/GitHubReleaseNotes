@@ -7,10 +7,12 @@ NestedInstallerType: portable
 NestedInstallerFiles:
 - RelativeFilePath: GitHubReleaseNotes.exe
 ProductCode: '{32249977-C6C1-40ED-B6A8-7084E69A0E7A}'
-ReleaseDate: 2024-02-03
+ReleaseDate: 2024-02-07
+AppsAndFeaturesEntries:
+- UpgradeCode: '{4E0EDF71-49CA-4113-8EF5-E1518AADE1E1}'
 Installers:
 - Architecture: x64
   InstallerUrl: https://github.com/StefH/GitHubReleaseNotes/releases/download/1.0.10.0/GitHubReleaseNotes.zip
-  InstallerSha256: 8699A5D4011AFA17B6EF62AFD6455929DC619327845EE230D3DD617DFB57A2B5
+  InstallerSha256: D04789BCB4CF33B6FB6D35C8CFA0297F6083B8FF1E65F1F50317C7781218C289
 ManifestType: installer
 ManifestVersion: 1.5.0
