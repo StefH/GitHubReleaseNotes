@@ -33,7 +33,7 @@ string CreateSHA256()
 }
 
 string productCode = $"{{{File.ReadAllText(Path.Combine(folder, "productGuid.txt"))}}}";
-// string upgradeCode = $"{{{File.ReadAllText(Path.Combine(folder, "upgradeGuid.txt"))}}}";
+string upgradeCode = $"{{{File.ReadAllText(Path.Combine(folder, "upgradeGuid.txt"))}}}";
 
 // StefHeyenrath.GitHubReleaseNotes.installer.yaml
 string installerText =
@@ -47,6 +47,8 @@ NestedInstallerFiles:
 - RelativeFilePath: GitHubReleaseNotes.exe
 ProductCode: '{productCode}'
 ReleaseDate: {dateModified}
+AppsAndFeaturesEntries:
+- UpgradeCode: '{upgradeCode}'
 Installers:
 - Architecture: x64
   InstallerUrl: https://github.com/StefH/GitHubReleaseNotes/releases/download/{version}/GitHubReleaseNotes.zip
