@@ -13,6 +13,6 @@ AppsAndFeaturesEntries:
 Installers:
 - Architecture: x64
   InstallerUrl: https://github.com/StefH/GitHubReleaseNotes/releases/download/1.0.10.0/GitHubReleaseNotes.zip
-  InstallerSha256: D04789BCB4CF33B6FB6D35C8CFA0297F6083B8FF1E65F1F50317C7781218C289
+  InstallerSha256: 729D5834C36F567601A41D7EDA9E6AE9383DEED14436046B93AD7EF5EF0F1B0E
 ManifestType: installer
 ManifestVersion: 1.5.0
