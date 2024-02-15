@@ -1,1 +1,1 @@
-GitHubReleaseNotes --output ReleaseNotes.md --skip-empty-releases --exclude-labels invalid question doc tip --version 1.0.9.0
+GitHubReleaseNotes --output ReleaseNotes.md --skip-empty-releases --exclude-labels invalid question doc tip --version 1.0.10.0

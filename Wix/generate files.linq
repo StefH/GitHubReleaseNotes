@@ -7,7 +7,7 @@ string folder = Path.GetDirectoryName(Util.CurrentQueryPath);
 string chocolateyFolder = Path.Combine(folder, "../", "Chocolatey", "GithubReleaseNotes");
 string projectFolder = Path.Combine(chocolateyFolder, "../", "../");
 
-string outputFolder = Path.Combine(projectFolder, "src", "GitHubReleaseNotes", "bin", "release", "net48");
+string outputFolder = Path.Combine(projectFolder, "src", "GitHubReleaseNotes", "bin", "release", "net8.0", "win-x64", "publish");
 string exe = Path.Combine(outputFolder, "GitHubReleaseNotes.exe");
 string zip = Path.Combine(outputFolder, "GitHubReleaseNotes.zip");
 

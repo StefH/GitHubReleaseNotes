@@ -2,35 +2,35 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net8.0</TargetFramework>
-		<AssemblyName>GitHubReleaseNotes</AssemblyName>
-		<RootNamespace>GitHubReleaseNotes</RootNamespace>
-		<PackageIcon>icon.png</PackageIcon>
-		<ProjectGuid>{E851802A-C1F1-47BB-8725-1FD1868CC6EB}</ProjectGuid>
-		<PublishSingleFile>true</PublishSingleFile>
-		<SelfContained>True</SelfContained>
-		<!--
-		handlebars.net\2.1.4\lib\netstandard2.1\Handlebars.dll : warning IL2104: Assembly 'Handlebars' produced trim warnings.
-		libgit2sharp\0.26.2\lib\netstandard2.0\LibGit2Sharp.dll : warning IL2104: Assembly 'LibGit2Sharp' produced trim warnings.
-		octokit\0.48.0\lib\netstandard2.0\Octokit.dll : warning IL2104: Assembly 'Octokit' produced trim warnings.
-		-->
-		<PublishTrimmed>false</PublishTrimmed>
-
-		<!-- For "git2-106a5f2.dll" (https://learn.microsoft.com/en-us/answers/questions/296816/self-contained-single-file-does-not-produce-a-sing) -->
-		<IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+		<TargetFramework>net48</TargetFramework>
+		<ProjectGuid>{B6269AAC-170A-43D0-8B9B-579DED3D9A00}</ProjectGuid>
+		<StartupObject>GitHubReleaseNotes.Program</StartupObject>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\GitHubReleaseNotes.Logic\GitHubReleaseNotes.Logic.csproj" />
+	  <Compile Include="..\GitHubReleaseNotes\ConfigurationParser.cs" Link="ConfigurationParser.cs" />
+	  <Compile Include="..\GitHubReleaseNotes\SimpleCommandLineParser.cs" Link="SimpleCommandLineParser.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="../../icon.png" Pack="true" PackagePath="" />
+		<PackageReference Include="Costura.Fody" Version="5.7.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Fody" Version="6.8.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 
-	<Target Name="PublishAndZip" AfterTargets="Build">
-		<Exec Command="dotnet publish --no-build --no-restore -r win-x64 --self-contained" />
-		<Zip SourceFile="$(OutputPath)\publish\$(AssemblyName).exe" ZipFileName="$(OutputPath)\publish\$(AssemblyName).zip" />
+	<ItemGroup>
+		<ProjectReference Include="..\GitHubReleaseNotes.Logic\GitHubReleaseNotes.Logic.csproj">
+			<AdditionalProperties>TargetFramework=net48</AdditionalProperties>
+		</ProjectReference>
+	</ItemGroup>
+
+	<Target Name="Zip" AfterTargets="Build">
+		<Zip SourceFile="$(OutputPath)\$(AssemblyName).exe" ZipFileName="$(OutputPath)\$(AssemblyName).zip" />
 	</Target>
 
 	<UsingTask TaskName="Zip" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v12.0.dll">

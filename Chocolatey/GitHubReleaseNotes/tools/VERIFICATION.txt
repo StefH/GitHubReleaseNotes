@@ -5,18 +5,18 @@ To verify this package, follow these steps:
 1] Right click the GitHubReleaseNotes.exe in Windows file explorer and go to the "Details" tab and check the following properties:
    - File description   GitHubReleaseNotes
    - Type               Application
-   - File version       1.0.9.0
+   - File version       1.0.10.0
    - Product name       GitHubReleaseNotes
-   - Product version    1.0.9.0
+   - Product version    1.0.10.0
    - Copyright          Stef Heyenrath
-   - Size               1,16 MB
-   - Date modified      2024-02-01 15:45
+   - Size               67,21 MB
+   - Date modified      2024-02-03 07:47
    - Language           Language Neutral
    - Original filename  GitHubReleaseNotes.exe
 
 2] Verify the SHA256 from the GitHubReleaseNotes.exe file (7zip can be used for this)
-   - SHA256             03D15D98897FF00DF4F7A0AD2F4438E0299CAF3282D49AC702AEFFECB1ED5958
+   - SHA256             0124EC06B2C5DCF54F8BE851445A3A31ADF79DA49004DC03DCE882B9DA7E3DD4
 
 3] For the changes in this release, see ReleaseNotes.md
 
-Note that this application is build with the .NET 4.8 framework and uses Fody and Fody.Costura to include all dependencies to generate a single exe file.
+Note that this application is build as a selfcontained .NET 8 executable.
