@@ -37,7 +37,7 @@ string upgradeCode = $"{{{File.ReadAllText(Path.Combine(folder, "upgradeGuid.txt
 
 // StefHeyenrath.GitHubReleaseNotes.installer.yaml
 string installerText =
-$@"# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.5.0.schema.json
+$@"# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.6.0.schema.json
 
 PackageIdentifier: StefHeyenrath.GitHubReleaseNotes
 PackageVersion: {version}
@@ -54,12 +54,12 @@ Installers:
   InstallerUrl: https://github.com/StefH/GitHubReleaseNotes/releases/download/{version}/GitHubReleaseNotes.zip
   InstallerSha256: {CreateSHA256()}
 ManifestType: installer
-ManifestVersion: 1.5.0";
+ManifestVersion: 1.6.0";
 
 
 // StefHeyenrath.GitHubReleaseNotes.locale.en-US.yaml
 string defaultLocaleText =
-$@"# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.5.0.schema.json
+$@"# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.6.0.schema.json
 
 PackageIdentifier: StefHeyenrath.GitHubReleaseNotes
 PackageVersion: {version}
@@ -83,18 +83,18 @@ Tags:
 - tags
 ReleaseNotesUrl: https://github.com/StefH/GitHubReleaseNotes/blob/master/ReleaseNotes.md
 ManifestType: defaultLocale
-ManifestVersion: 1.5.0";
+ManifestVersion: 1.6.0";
 
 
 // StefHeyenrath.GitHubReleaseNotes
 string versionText =
-$@"# yaml-language-server: $schema=https://aka.ms/winget-manifest.version.1.5.0.schema.json
+$@"# yaml-language-server: $schema=https://aka.ms/winget-manifest.version.1.6.0.schema.json
 
 PackageIdentifier: StefHeyenrath.GitHubReleaseNotes
 PackageVersion: {version}
 DefaultLocale: en-US
 ManifestType: version
-ManifestVersion: 1.5.0";
+ManifestVersion: 1.6.0";
 
 var versionFolder = Path.Combine(folder, version);
 Directory.CreateDirectory(versionFolder);
