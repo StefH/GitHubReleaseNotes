@@ -1,6 +1,9 @@
-# 1.0.0.0 (23 January 2024)
+# 1.0.0.0 (21 February 2024)
 - [#761](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/761) - Add unit tests for Any [test] contributed by [StefH](https://github.com/StefH)
 - [#765](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/765) - #764 - Introduce Sliding Cache to Constant Expression Helper [feature] contributed by [TWhidden](https://github.com/TWhidden)
+- [#770](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/770) - Enhancements to SlidingCache&lt;&gt; for Improved Thread Safety and Performance [feature] contributed by [TWhidden](https://github.com/TWhidden)
+- [#780](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/780) - Add RadzenDataGrid.BlazorApp example [test] contributed by [StefH](https://github.com/StefH)
+- [#764](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/764) - Possible Memory Leak with ConstantExpressionHelper [bug]
 
 # v1.3.8 (20 January 2024)
 - [#758](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/758) - Update function argument parsing for strings [bug] contributed by [StefH](https://github.com/StefH)
@@ -413,7 +416,7 @@
 - [#239](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/239) - SingleOrDefaultAsync [feature] contributed by [StefH](https://github.com/StefH)
 - [#238](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/238) - Missing SingleOrDefaultAsync for EntityFrameworkCore [feature]
 
-# 1.0.10.0 (07 January 2019)
+# 1.0.9.1 (07 January 2019)
 - [#210](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/210) - Set up CI with Azure Pipelines contributed by [azure-pipelines[bot]](https://github.com/apps/azure-pipelines)
 - [#211](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/211) - ParameterExpressionRenamer contributed by [StefH](https://github.com/StefH)
 - [#212](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/212) - Make ExpressionPromoter plugable contributed by [david-garcia-garcia](https://github.com/david-garcia-garcia)

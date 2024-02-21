@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net48;netstandard2.0</TargetFrameworks>
+		<TargetFrameworks>net48;net6.0</TargetFrameworks>
 		<ProjectGuid>{B6269AAC-170A-43D0-8B9B-579DED3D9A99}</ProjectGuid>
 		<PackageIcon>icon.png</PackageIcon>
 		<Nullable>enable</Nullable>
@@ -12,8 +12,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="LibGit2Sharp" Version="0.26.2" />
-		<PackageReference Include="Octokit" Version="0.48.0" />
+		<PackageReference Include="GitReader" Version="1.7.0" />
+		<PackageReference Include="Octokit" Version="9.1.2" />
 		<PackageReference Include="Handlebars.Net" Version="2.1.4" />
 		<PackageReference Include="IsExternalInit" Version="1.0.3">
 			<PrivateAssets>all</PrivateAssets>
@@ -27,5 +27,9 @@
 
 	<ItemGroup>
 		<None Include="../../icon.png" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+	  <Reference Include="System.Net.Http" />
 	</ItemGroup>
 </Project>
