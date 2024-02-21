@@ -197,7 +197,7 @@
 - [#248](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/248) - Add IQueryable.OfType support to ExpressionParser.
 - [#252](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/252) - Implement ResolveTypesBySimpleName [feature]
 
-# 1.0.10.0 (05 February 2019)
+# 1.0.10.1 (05 February 2019)
 - [#223](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/223) - Add 'np(...)' Null Propagating function [feature] contributed by [StefH](https://github.com/StefH)
 - [#98](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/98) - Feature: Add the &quot;?.&quot; operator (null-conditional operator) to support navigation properties with null values [feature]
 - [#182](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/182) - Error when navigation property which named &quot;Parent&quot;
@@ -207,7 +207,7 @@
 - [#239](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/239) - SingleOrDefaultAsync [feature] contributed by [StefH](https://github.com/StefH)
 - [#238](https://github.com/zzzprojects/System.Linq.Dynamic.Core/issues/238) - Missing SingleOrDefaultAsync for EntityFrameworkCore [feature]
 
-# 1.0.10.0 (07 January 2019)
+# 1.0.10.1 (07 January 2019)
 - [#210](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/210) - Set up CI with Azure Pipelines contributed by [azure-pipelines[bot]](https://github.com/apps/azure-pipelines)
 - [#211](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/211) - ParameterExpressionRenamer contributed by [StefH](https://github.com/StefH)
 - [#212](https://github.com/zzzprojects/System.Linq.Dynamic.Core/pull/212) - Make ExpressionPromoter plugable contributed by [david-garcia-garcia](https://github.com/david-garcia-garcia)

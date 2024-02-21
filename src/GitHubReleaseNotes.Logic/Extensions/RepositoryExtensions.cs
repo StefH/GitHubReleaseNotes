@@ -25,7 +25,7 @@ internal static class RepositoryExtensions
 
         await Task.WhenAll(getCommitTasks.Values);
 
-        foreach (var tag in await Task.WhenAll(getCommitTasks.Values))
+        foreach (var tag in getCommitTasks)
         {
             var tagVersion = GetVersionAsLong(tag.Key);
             if (tagVersion == null)
