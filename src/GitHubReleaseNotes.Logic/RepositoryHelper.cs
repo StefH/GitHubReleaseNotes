@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using GitHubReleaseNotes.Logic.Extensions;
 using GitHubReleaseNotes.Logic.Models;
+using GitReader.Structures;
 using Octokit;
 
 namespace GitHubReleaseNotes.Logic;
@@ -25,13 +26,14 @@ public class RepositoryHelper
 
     internal async Task<IEnumerable<ReleaseInfo>> GetReleaseInfoAsync()
     {
-        var repository = new LibGit2Sharp.Repository(_configuration.RepositoryPath);
-        var originUrl = repository.Network.Remotes.First(r => r.Name == "origin").Url;
+        using var repository = await GitReader.Repository.Factory.OpenStructureAsync(_configuration.RepositoryPath);
+
+        var originUrl = repository.RemoteUrls.First(r => r.Key == "origin").Value;
         var gitUrl = !originUrl.EndsWith(".git") ? $"{originUrl}.git" : originUrl;
-        var headBranchName = repository.Head.FriendlyName;
+        var headBranchName = repository.Head?.Name ?? throw new InvalidOperationException("The Head branch has no name.");
 
         Console.WriteLine($"Analyzing Git Repository at '{new FileInfo(_configuration.RepositoryPath).FullName}'");
-        var orderedReleaseInfos = repository.GetOrderedReleaseInfos(_configuration.Version);
+        var orderedReleaseInfos = await repository.GetOrderedReleaseInfosAsync(_configuration.Version);
 
         Console.WriteLine($"Getting Issues and Pull Requests from '{gitUrl}'");
         var result = await GetAllIssuesAndPullRequestsAsync(gitUrl, headBranchName).ConfigureAwait(false);

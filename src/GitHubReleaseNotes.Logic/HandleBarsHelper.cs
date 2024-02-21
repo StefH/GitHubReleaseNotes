@@ -37,11 +37,10 @@ internal class HandleBarsHelper
 
         // Use default embedded Template
         var assembly = typeof(HandleBarsHelper).GetTypeInfo().Assembly;
-        using (Stream stream = assembly.GetManifestResourceStream(TemplateFilename))
-        using (StreamReader reader = new StreamReader(stream))
-        {
-            return reader.ReadToEnd();
-        }
+        using var stream = assembly.GetManifestResourceStream(TemplateFilename)!;
+        using var reader = new StreamReader(stream);
+
+        return reader.ReadToEnd();
     }
 
     private void RegisterHelpers()

@@ -73,6 +73,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.0.10.0", "1.0.10.0", "{4A
 		..\Wix\1.0.10.0\StefHeyenrath.GitHubReleaseNotes.yaml = ..\Wix\1.0.10.0\StefHeyenrath.GitHubReleaseNotes.yaml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.0.10.1", "1.0.10.1", "{1465CF9D-BCBB-450B-AD34-9D4E965C93B6}"
+	ProjectSection(SolutionItems) = preProject
+		..\Wix\1.0.10.1\StefHeyenrath.GitHubReleaseNotes.installer.yaml = ..\Wix\1.0.10.1\StefHeyenrath.GitHubReleaseNotes.installer.yaml
+		..\Wix\1.0.10.1\StefHeyenrath.GitHubReleaseNotes.locale.en-US.yaml = ..\Wix\1.0.10.1\StefHeyenrath.GitHubReleaseNotes.locale.en-US.yaml
+		..\Wix\1.0.10.1\StefHeyenrath.GitHubReleaseNotes.yaml = ..\Wix\1.0.10.1\StefHeyenrath.GitHubReleaseNotes.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -132,6 +139,7 @@ Global
 		{E851802A-C1F1-47BB-8725-1FD1868CC6EB} = {EF77BB40-C919-4644-81A3-968854FB9B23}
 		{B6269AAC-170A-43D0-8B9B-579DED3D9A00} = {EF77BB40-C919-4644-81A3-968854FB9B23}
 		{4A8497B4-9F89-4989-AC7A-7E65245D64BC} = {1D8E407B-B13C-4377-8D6E-76521411105D}
+		{1465CF9D-BCBB-450B-AD34-9D4E965C93B6} = {1D8E407B-B13C-4377-8D6E-76521411105D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A791AAB-CF55-4174-A6B7-C2AC7E7DECB2}

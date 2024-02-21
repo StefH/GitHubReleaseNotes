@@ -9,15 +9,12 @@
 		<ProjectGuid>{E851802A-C1F1-47BB-8725-1FD1868CC6EB}</ProjectGuid>
 		<PublishSingleFile>true</PublishSingleFile>
 		<SelfContained>True</SelfContained>
+
 		<!--
 		handlebars.net\2.1.4\lib\netstandard2.1\Handlebars.dll : warning IL2104: Assembly 'Handlebars' produced trim warnings.
-		libgit2sharp\0.26.2\lib\netstandard2.0\LibGit2Sharp.dll : warning IL2104: Assembly 'LibGit2Sharp' produced trim warnings.
 		octokit\0.48.0\lib\netstandard2.0\Octokit.dll : warning IL2104: Assembly 'Octokit' produced trim warnings.
 		-->
 		<PublishTrimmed>false</PublishTrimmed>
-
-		<!-- For "git2-106a5f2.dll" (https://learn.microsoft.com/en-us/answers/questions/296816/self-contained-single-file-does-not-produce-a-sing) -->
-		<IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -29,7 +26,7 @@
 	</ItemGroup>
 
 	<Target Name="PublishAndZip" AfterTargets="Build">
-		<Exec Command="dotnet publish --no-build --no-restore -r win-x64 --self-contained" />
+		<Exec Command="dotnet publish --no-build --no-restore -r win-x64 --self-contained --configuration $(Configuration)" />
 		<Zip SourceFile="$(OutputPath)\publish\$(AssemblyName).exe" ZipFileName="$(OutputPath)\publish\$(AssemblyName).zip" />
 	</Target>
 
