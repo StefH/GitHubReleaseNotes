@@ -15,7 +15,7 @@ winget install -e --id StefHeyenrath.GitHubReleaseNotes
 ```
 
 ## Chocolatey
-[![Chocolatey downloads](https://img.shields.io/chocolatey/dt/githubreleasenotes.svg)]()
+[![Chocolatey downloads](https://img.shields.io/chocolatey/dt/githubreleasenotes.svg)](https://chocolatey.org/packages/GitHubReleaseNotes)
 [![Chocolatey](https://img.shields.io/chocolatey/v/githubreleasenotes.svg)](https://chocolatey.org/packages/GitHubReleaseNotes)
 
 ### Installation
