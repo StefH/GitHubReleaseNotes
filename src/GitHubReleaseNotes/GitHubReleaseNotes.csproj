@@ -17,6 +17,10 @@
 		<PublishTrimmed>false</PublishTrimmed>
 	</PropertyGroup>
 
+	<!--<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>-->
+
 	<ItemGroup>
 		<ProjectReference Include="..\GitHubReleaseNotes.Logic\GitHubReleaseNotes.Logic.csproj" />
 	</ItemGroup>

@@ -4,7 +4,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Version>1.0.10.1</Version>
+		<Version>1.0.11.0</Version>
 		<Description>Generate Release Notes from a GitHub project.</Description>
 		<Summary>Generate Release Notes from a GitHub project.</Summary>
 		<Authors>Stef Heyenrath</Authors>
@@ -17,7 +17,7 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/StefH/GitHubReleaseNotes</RepositoryUrl>
-    <LangVersion>11</LangVersion>
-    <Nullable>enable</Nullable>
+		<LangVersion>11</LangVersion>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 </Project>

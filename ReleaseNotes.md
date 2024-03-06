@@ -1,3 +1,9 @@
+# 1.0.10.1 (21 February 2024)
+- [#29](https://github.com/StefH/GitHubReleaseNotes/pull/29) - Replace LibGit2Sharp by GitReader [feature] contributed by [StefH](https://github.com/StefH)
+
+# 1.0.10.0 (15 February 2024)
+- [#28](https://github.com/StefH/GitHubReleaseNotes/pull/28) - Convert GitHubReleaseNotes to a .NET 8 self contained executable [feature] contributed by [StefH](https://github.com/StefH)
+
 # 1.0.9.0 (01 February 2024)
 - [#27](https://github.com/StefH/GitHubReleaseNotes/pull/27) - Update method GetAllIssuesAndPullRequestsAsync [feature] contributed by [StefH](https://github.com/StefH)
 
