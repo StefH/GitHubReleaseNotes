@@ -2,7 +2,7 @@
 Generate Release Notes from GitHub.
 
 ## dotnet tool
-[![NuGet Badge GitHubReleaseNotes](https://buildstats.info/nuget/GitHubReleaseNotes)](https://www.nuget.org/packages/GitHubReleaseNotes)
+[![NuGet Badge GitHubReleaseNotes](https://img.shields.io/nuget/v/GitHubReleaseNotes)](https://www.nuget.org/packages/GitHubReleaseNotes)
 
 ### Installation
 ``` cmd
