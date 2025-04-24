@@ -47,6 +47,9 @@ public class RepositoryHelper
         bool IssueLinkedToRelease(IReadOnlyList<ReleaseInfo> releaseInfos, int idx, ReleaseInfo releaseInfo, DateTimeOffset? issueClosedAtTime) =>
             IssueTimeIsLessThenReleaseTime(releaseInfo.When, issueClosedAtTime) && IssueTimeIsGreaterThenPreviousReleaseTime(releaseInfos, idx, issueClosedAtTime);
 
+        bool ExcludeIssue(string[] labels) =>
+            _configuration.ExcludeLabels != null && _configuration.ExcludeLabels.Any(s => labels.Contains(s, StringComparer.OrdinalIgnoreCase));
+
         // Loop all orderedReleaseInfos and add the correct Pull Requests and Issues
         foreach (var x in orderedReleaseInfos.Select((releaseInfo, index) => new { index, releaseInfo }))
         {
@@ -66,22 +69,29 @@ public class RepositoryHelper
 
             // Process PullRequests
             var pullsForThisTag = result.PullRequests.Where(pullRequest => IssueLinkedToRelease(releaseInfos, x.index, x.releaseInfo, pullRequest.ClosedAt));
-            var pullInfos = pullsForThisTag.Select(pull => new IssueInfo
-            {
-                Number = pull.Number,
-                IsPulRequest = true,
-                IssueUrl = pull.HtmlUrl,
-                Title = pull.Title,
-                User = pull.User.Login,
-                UserUrl = pull.User.HtmlUrl,
-                Labels = result.Issues
-                    .First(issue => issue.Number == pull.Number).Labels // Get the labels from the Issues (because this is not present in the 'PullRequest')
-                    .Select(label => label.Name)
-                    .ToArray()
-            });
 
-            bool ExcludeIssue(string[] labels) => _configuration.ExcludeLabels != null &&
-                                                  _configuration.ExcludeLabels.Any(s => labels.Contains(s, StringComparer.OrdinalIgnoreCase));
+            var pullInfos = pullsForThisTag.Select(pull =>
+            {
+                var labels = pull.Labels.Select(l => l.Name);
+
+                // Get the labels from the Issues (if present). Because these are not present in the 'PullRequest' ?
+                var relatedIssue = result.Issues.FirstOrDefault(issue => issue.Number == pull.Number);
+                if (relatedIssue != null)
+                {
+                    labels = relatedIssue.Labels.Select(label => label.Name);
+                }
+
+                return new IssueInfo
+                {
+                    Number = pull.Number,
+                    IsPulRequest = true,
+                    IssueUrl = pull.HtmlUrl,
+                    Title = pull.Title,
+                    User = pull.User.Login,
+                    UserUrl = pull.User.HtmlUrl,
+                    Labels = labels.ToArray()
+                };
+            });
 
             var allIssues = issueInfos.Union(pullInfos)
                 .Distinct()
@@ -115,8 +125,8 @@ public class RepositoryHelper
 
         return new IssuesAndPullRequestsModel
         {
-            Issues = await issuesTask.ConfigureAwait(false),
-            PullRequests = await pullRequestsTask.ConfigureAwait(false)
+            Issues = await issuesTask,
+            PullRequests = await pullRequestsTask
         };
     }
 
@@ -134,8 +144,7 @@ public class RepositoryHelper
         // Return all Closed issues
         return (await client.Issue.GetAllForRepository(repositorySettings.Owner, repositorySettings.Name, closedIssuesRequest).ConfigureAwait(false))
             .OrderBy(i => i.Id)
-            .ToList()
-            .AsReadOnly();
+            .ToList();
     }
 
     private async Task<ICollection<PullRequest>> GetMergedPullRequestsForRepositoryAsync(RepositorySettings repositorySettings)

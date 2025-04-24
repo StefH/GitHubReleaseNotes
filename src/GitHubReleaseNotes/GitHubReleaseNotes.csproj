@@ -34,6 +34,13 @@
 		<Zip SourceFile="$(OutputPath)\publish\$(AssemblyName).exe" ZipFileName="$(OutputPath)\publish\$(AssemblyName).zip" />
 	</Target>
 
+  <!--
+  To use "Microsoft.Build.Tasks.v12.0.dll", install Microsoft.VisualStudio.2022.BuildTools
+
+  Note that the two dashes in front of "id" need to be escaped in the command below:
+
+  winget install \-\-id=Microsoft.VisualStudio.2022.BuildTools -e  
+  -->
 	<UsingTask TaskName="Zip" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v12.0.dll">
 		<ParameterGroup>
 			<SourceFile ParameterType="System.String" Required="true" />
@@ -49,7 +56,7 @@
       {
         Log.LogMessage(string.Format("Zipping file {0} to {1}", SourceFile, ZipFileName));
 		
-		// Temporarily create a directory to hold the file to be zipped
+		    // Temporarily create a directory to hold the file to be zipped
         string tempFolder = Path.Combine(Path.GetDirectoryName(SourceFile), Path.GetFileNameWithoutExtension(SourceFile) + "_temp");
         Directory.CreateDirectory(tempFolder);
 
